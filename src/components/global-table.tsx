@@ -12,9 +12,9 @@ interface Iprops {
     url:string;
     api:string;
     filter: any;
+    openMadal:any;
 }
-const GlobalTitle = ({columns,api,url,filter}: Iprops) => {
-  
+const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
     const navigate = useNavigate()
     const [page,setPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
@@ -35,10 +35,10 @@ const GlobalTitle = ({columns,api,url,filter}: Iprops) => {
         fixed: 'right',
         width: 100,
         render: (e: any) => <div className='flex gap-[6px]'>
-            <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>console.log(setOpen(e?.id))} type="primary" danger>
+            <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>setOpen(e?.id)} type="primary" danger>
              <DeleteOutlined />
             </Button>
-            <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={()=>navigate(`/${url}/${e?.id}`)} type="primary" block>
+            <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={openMadal? ()=> openMadal(e?.id): ()=>navigate(`/${url}/${e?.id}`)} type="primary" block>
                 <FormOutlined />
             </Button>
         </div>,
@@ -53,6 +53,7 @@ const GlobalTitle = ({columns,api,url,filter}: Iprops) => {
           queryClient.invalidateQueries([api]);
         });
       }
+      
   return (
     <>
     <Modal
@@ -78,7 +79,7 @@ const GlobalTitle = ({columns,api,url,filter}: Iprops) => {
       </Modal>
         <Table
         columns={[...columns, Actioncolumns]}
-        dataSource={data}
+        dataSource={data?.data}
         loading={isLoading}
         onChange={(e:any)=>{
            setPage( e.current)
@@ -86,6 +87,7 @@ const GlobalTitle = ({columns,api,url,filter}: Iprops) => {
         }}
         pagination={
             { 
+                total:data?.pagination?.total,
                 current:page,
                 pageSize: pageSize 
             }

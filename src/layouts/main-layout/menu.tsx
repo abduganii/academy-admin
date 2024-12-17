@@ -18,14 +18,28 @@ const items: MenuItem[] = [
         children: [
           { key: '/books', label: 'Книги' },
           { key: '/authors', label: 'Авторы' },
+          { key: '/categories', label: 'Категории' },
           { key: '/tags', label: 'Теги' },
-          { key: '/publishing-house', label: 'Издательство' },
+          { key: '/publishers', label: 'Издательство' },
           { key: '/translators', label: 'Переводчики' },
         ]
       },
       { key: '/literature', label: 'Литература' },
-      { key: '/videos', label: 'Видеоматериалы' },
-      { key: '/articles', label: 'Статьи' },
+      { 
+        key: '/videos', label: 'Видеоматериалы',
+        children: [
+          { key: '/videos', label: 'Видеоматериалы'},
+          { key: '/tags', label: 'Теги' },
+         ]
+       },
+      {
+         key: '/articles', label: 'Статьи',
+         children: [
+          { key: '/articles', label: 'Статьи'},
+          { key: '/authors', label: 'Авторы' },
+        
+         ]
+       },
       { key: '/map', label: 'Карта' },
       { key: '/analytics', label: 'Аналитика' },
     ],
@@ -33,11 +47,26 @@ const items: MenuItem[] = [
   {
     key: '2',
     icon: <MailOutlined />,
-    label: 'Navigation One',
+    label: 'Статистика',
     children: [
-      { key: '/option1', label: 'Option 1' },
-      { key: '/option2', label: 'Option 2' },
-      { key: '/option3', label: 'Option 3' },
+      { key: '/news', label: 'Пользователи' },
+      { key: '/tags', label: 'Посещения' },
+      { key: '/tags', label: 'Просмотр' },
+    ],
+  },
+  {
+    key: '/users',
+    icon: <MailOutlined />,
+    label: 'Пользователи',
+   
+  },
+  {
+    key: '4',
+    icon: <MailOutlined />,
+    label: 'Новости',
+    children: [
+      { key: '/news', label: 'Новости' },
+      { key: '/tags', label: 'Теги' }
     ],
   },
 ];
@@ -61,8 +90,8 @@ const SiteBar: React.FC = () => {
 
   return (
     <div className='w-full h-screen max-w-[312px]'>
-      <div className='w-full border-b p-6 h-[68px]'>
-        logo
+      <div className='w-full border-b px-[26px] py-[12px] h-[68px]'>
+        <img src='/logo.svg'/>
       </div>
       <Menu
         mode="inline"

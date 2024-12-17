@@ -7,23 +7,23 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
-    title: 'Title',
-    dataIndex: 'title',
+    title: 'Name',
+    dataIndex: 'name',
   },
   {
-    title: 'Body',
-    dataIndex: 'body',
+    title: 'Annotation',
+    dataIndex: 'annotation',
   },
   {
-    title: 'UserId',
-    dataIndex: 'id',
+    title: 'price',
+    dataIndex: 'price',
   }
   ]
   return (
     <div>
       <TopBar title="Книги" setSearch={setSearch} search={search} url='books' />
       <div className="p-4">
-        <GlobalTitle api='posts' url='books' columns={columns} filter={{search:search}}/>
+        <GlobalTitle api='books' url='books' columns={columns} filter={{name:search}}/>
       </div>
     </div>
   )

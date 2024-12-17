@@ -1,11 +1,13 @@
 import axios from "axios";
 import { QueryClient } from "react-query";
 import qs from "qs";
+import { Store } from "../utils/storage";
 const api = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/',
+  baseURL: import.meta.env.VITE_API_BACKEND_URL,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+
   },
   paramsSerializer: (params) => {
     return qs.stringify(params, { arrayFormat: "repeat" });
@@ -14,10 +16,11 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config: any) => {
-    const isPublicApi = window.localStorage.getItem("authToken");
-    if (isPublicApi) {
-      config.headers["Authorization"] = `Bearer ${isPublicApi}`;
+  
+    if (Store.getToken()) {
+      config.headers["Authorization"] = `Bearer ${Store.getToken()}`;
     }
+    config.headers['lang'] = Store.getLang()
     return config;
   },
   (error: any) => {

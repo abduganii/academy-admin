@@ -29,15 +29,18 @@ Object.values(dynimicImportRoutes).forEach(el=>{
 
 const nestedRoutes = (routes: IRouter[]) =>
     routes.map(({ Element, url, children ,meta}: IRouter) => {
-        if (children?.length && meta?.isLoginIf ) {
-            return (
-                <Fragment key={url}>
-                    <Route path={url} element={<Element />} />
-                    {nestedRoutes(children)}
-                </Fragment>
-            );
+        console.log(meta)
+        if(meta?.isLoginIf){
+            if (children?.length ) {
+                return (
+                    <Fragment key={url}>
+                        <Route path={url} element={<Element />} />
+                        {nestedRoutes(children)}
+                    </Fragment>
+                );
+            }
+            return <Route key={url} path={url} element={<Element />} />;
         }
-        return <Route key={url} path={url} element={<Element />} />;
     });
 
 export const AuthorizedRoutes = () => {

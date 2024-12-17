@@ -1,15 +1,15 @@
 import axios from "axios";
+import { Store } from "../utils/storage";
 
-export const UploadFile = async (data: any, query: any, onProgress: any) => {
-  const params = new URLSearchParams(query);
+export const UploadFile = async (data: any, onProgress?: any) => {
+  const isPublicApi = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM0NDA3MzgzLCJleHAiOjE3MzQ0OTM3ODN9._IIeKaAq18J6CPnjne6x0zGfd4UVcLlBJ3zHOBO0_ug';
   const response = await axios.post(
-    `${import.meta.env.VITE_API_BACKEND_URL}/upload/custom_upload${
-      query ? "?" + params.toString() : ""
-    }`,
+    `${import.meta.env.VITE_API_BACKEND_URL}files/upload`,
     data,
     {
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${Store.getToken()}`
       },
       onUploadProgress: (progressEvent: any) => {
         if (onProgress && progressEvent.total) {
@@ -22,9 +22,10 @@ export const UploadFile = async (data: any, query: any, onProgress: any) => {
   );
   return response;
 };
+
 export const FileRemove = async (body: any) => {
   const response = await axios.delete(
-    `${import.meta.env.VITE_API_STORE_URL}/remove`,
+    `${import.meta.env.VITE_API_STORE_URL}/files`,
     { data: body }
   );
   return response;

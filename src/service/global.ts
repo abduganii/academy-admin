@@ -85,7 +85,7 @@ export const GetMe = async () => {
     const res = await api.get("/users/me");
     return res;
   } catch (error: any) {
-    handleError(error);
+    return handleError(error);
   }
 };
 
@@ -94,9 +94,10 @@ const handleError = (error: any) => {
     window.location.replace("/auth/login");
     window.localStorage.removeItem("authToken");
   }
+
   toast.error(
-    error?.response?.data?.error?.message ||
-      error?.response?.data ||
+    error?.response?.data?.message ||
+      error?.response?.data || error?.message|| 
       "error not given"
   );
 };

@@ -1,5 +1,8 @@
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
+import { Store } from '../utils/storage';
+import { useDispatch } from 'react-redux';
+import { changeLang } from '../redux/lang';
 
 
 
@@ -9,8 +12,8 @@ const items: TabsProps['items'] = [
     label: 'uz',
   },
   {
-    key: 'uz-cur',
-    label: 'uz-cur',
+    key: 'cr',
+    label: 'cr',
   },
   {
     key: 'ru',
@@ -22,6 +25,15 @@ const items: TabsProps['items'] = [
   },
 ];
 
-const LangTab: any = ({setLang,lang}:any) => <Tabs className=' inline-block' defaultActiveKey={lang || 'uz'} items={items} onChange={(key:string)=> setLang(key)} />;
+const LangTab: any = ({className}:any) =>{
+  const dispatch: any = useDispatch();
+  return(
+    <Tabs className={`${className && className} inline-block`} defaultActiveKey={Store.getLang() || 'uz'} items={items} onChange={(key:string)=> {
+      dispatch(changeLang(key))
+      Store.setLanguage(key)
+    }} 
+    />
+  )
+}
 
 export default LangTab;

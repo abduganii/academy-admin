@@ -1,4 +1,5 @@
-
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode } from "react";
 import { Form, Formik, FormikProps } from "formik";
 import { isFunction } from "lodash";
@@ -11,7 +12,6 @@ interface IFORMCONTAINER {
   formik?: FormikProps<any>;
   formProps?: any;
   children: (formik: FormikProps<any>) => ReactNode;
-  params?: any;
   isFormData?: boolean;
   fields?: any;
   normalizeData?: any;
@@ -23,12 +23,11 @@ interface IFORMCONTAINER {
   onSubmit?: any;
   validateOnMount?: boolean;
   validate?: any;
-  loaderGlob?: any;
   setLoader?: any;
+  madalId?:string | number | boolean
 }
 export const FormContainer: FC<IFORMCONTAINER> = ({
   url,
-  params,
   children,
   isFormData,
   fields,
@@ -37,7 +36,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
   onFinal,
   customData,
   onSubmit,
-  loaderGlob,
+  madalId,
   setLoader,
   validateOnMount = false,
   ...formProps
@@ -48,10 +47,12 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
   const handleSubmit = async (values: any, formikHelper: any) => {
     const formValues = formHelpers.getFormValues(values, fields, isFormData);
     setLoader(true);
-    if (id == "new" || !id) {
+    console.log(id)
+    if ((madalId || id) == "new" || !(madalId || id)) {
       await AddData(url, formValues)
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
+            toast.success("seccessfully created");
             formikHelper.resetForm();
             onSuccess(res);
           }
@@ -61,9 +62,9 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
         })
         .finally(() => {
           onFinal();
-          setLoader();
+          setLoader(false);
         });
-    } else if (id == "old") {
+    } else if ((madalId || id) == "old") {
       await UpdateDataOne(url, formValues)
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
@@ -74,26 +75,32 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
         .catch((errors) => {
           onError(errors);
         })
-        .finally(() => onFinal());
+        .finally(() => {
+          onFinal()
+          setLoader(false)
+        });
     } else {
-      await UpdateData(url, formValues, id)
+      await UpdateData(url, formValues, (madalId || id))
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
-            onSuccess(res);
             toast.success("seccessfully update");
+            onSuccess(res);
           }
         })
         .catch((errors) => {
           onError(errors);
         })
-        .finally(() => onFinal());
+        .finally(() => {
+          onFinal()
+
+          setLoader(false)
+        });
     }
   };
 
   return (
     <>
     <Formik
-    
       initialValues={initialValues}
       validationSchema={validationSchema}
       validateOnMount={validateOnMount}

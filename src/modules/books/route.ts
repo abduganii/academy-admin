@@ -12,7 +12,8 @@ const BooksRoute = [
     url: "/books/:id",
     Element: Action,
     meta: { isLoginIf: true, role: new Set(["admin"]) }
-  }
+  },
+
 ];
 
 export default BooksRoute;

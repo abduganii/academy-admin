@@ -5,3 +5,8 @@
 .ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline{
     background-color: white !important;
 }
+
+:root {
+    scroll-behavior: smooth;
+  }
+  
