@@ -5,10 +5,12 @@ import { useState } from "react";
 import { Store } from "../../../utils/storage";
 import { useDispatch } from "react-redux";
 import { HandleAuth } from "../../../redux/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function ActionPage() {
    const [loader, setLoader] = useState<boolean>(false);
    const  dispatch = useDispatch()
+   const navigate = useNavigate() 
   return (
     <div>
        <FormContainer
@@ -28,7 +30,7 @@ export default function ActionPage() {
                   validations: [{ type: "required" }],
                   value:  '',
                 }]}
-              onSuccess={(e) => {
+              onSuccess={(e:any) => {
                 Store.setToken(e?.data?.data?.token)
                 dispatch(HandleAuth(e?.data?.data?.token))
                   navigate("/books");
@@ -42,7 +44,7 @@ export default function ActionPage() {
               validateOnMount={false}
             >
               {(formik) => {
-                console.log(formik)
+               
                 return (
                   <>
                    <div className="p-4">

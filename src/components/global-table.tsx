@@ -11,8 +11,8 @@ interface Iprops {
     columns: any;
     url:string;
     api:string;
-    filter: any;
-    openMadal:any;
+    filter?: any;
+    openMadal?:any;
 }
 const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
     const navigate = useNavigate()

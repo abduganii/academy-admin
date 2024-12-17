@@ -48,7 +48,7 @@ export default function CreatePage() {
         validateOnMount={false}
       >
         {(formik) => {
-        
+         console.log(formik,"ds")
           return (
             <>
              <div className="p-4">

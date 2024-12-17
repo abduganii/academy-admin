@@ -1,5 +1,4 @@
 import Action from "./pages/action.tsx";
-import Page from "./pages/index.tsx";
 
 const AuthRoute = [
  
