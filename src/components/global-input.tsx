@@ -1,5 +1,5 @@
 import { DatePicker, Input, Select } from "antd";
-
+import dayjs from 'dayjs';
 const { TextArea } = Input;
 export default function GlobalInput({
     placeholder,
@@ -44,7 +44,8 @@ export default function GlobalInput({
           name={name} 
           onChange={(e) => {
             if (localChange) localChange(e);
-          }} 
+          }}
+          value={dayjs(value, 'YYYY-MM-DD')}
           placeholder={placeholder}
           disabled={disabled}
           required={required}

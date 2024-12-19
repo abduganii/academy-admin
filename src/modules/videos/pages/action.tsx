@@ -176,7 +176,7 @@ export default function CreatePage() {
                  
                 
                       <FileUpload
-                      acceptTypes="video/*,.pdf,.doc,.docx"
+                      acceptTypes="video/*"
                     className={"mb-4"}
                       label="Загрузить файл"
                       text="Загрузить"

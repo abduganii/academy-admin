@@ -22,7 +22,7 @@ export const  DataFiels = (data:any)=>  [
         name: "published_at",
         validationType:"string",
         validations: [{ type: "required" }],
-        value:data?.published_at || ''
+        value:data?.published_at || null
         },
       {
         name: "translator",
