@@ -9,25 +9,27 @@ import FileUpload from "../../../components/upload";
 import { DataFiels } from "./fiels";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
+import LangTab from "../../../components/lang-tab";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+  const language = useSelector((state:any) => state.lang?.lang); 
     const { id } = useParams();
-  
-    const { data } = useQuery(["oneArticle",id], () =>
+    const { data,isLoading } = useQuery(["oneArticle",id,language], () =>
       GetByIdData("articles",id),
     {
       enabled: id != "new"
     }
     );
     const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
-   const { isLoading:authorsLoading, data: authors} = useQuery('authors',() =>GetAllData('authors'));
+   const { isLoading:authorsLoading, data: authors} = useQuery(['authors',language],() =>GetAllData('authors'));
    
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
-      <FormContainer
+      {isLoading?"":  <FormContainer
         url={"articles"}
         isFormData={false}
         setLoader={setLoader}
@@ -49,6 +51,7 @@ export default function CreatePage() {
             <>
              <div className="p-4">
               <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
+              {id == "new" ? '' : <LangTab /> }
                 <div className="w-full max-w-[504px]">
                   <GlobalInput
                     type="text"
@@ -151,11 +154,16 @@ export default function CreatePage() {
                     }}
                     errors={(formik.errors as any).published_at}
                   />
-                      <FileUpload
-                    className={"mb-4"}
-                      label="Загрузить файл"
-                      text="Загрузить"
-                      onUpload={(e: any)=>console.log(e)}
+                     <FileUpload
+                        acceptTypes=".pdf,.doc,.docx"
+                        className={"mb-4"}
+                        label="Загрузить файл"
+                        text="Загрузить"
+                        errors={formik.errors.file}
+                        valueName={data?.data?.file?.name || ''}
+                        onUpload={(e: any)=>{
+                          formik.setFieldValue(`file`, e?.data?.id);
+                        }}
                     />
                 </div>
               </div>
@@ -164,7 +172,7 @@ export default function CreatePage() {
             </>
           );
         }}
-      </FormContainer>
+      </FormContainer>}
       {/* {isLoading && <Loader />} */}
     </>
   );

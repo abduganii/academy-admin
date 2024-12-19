@@ -16,7 +16,7 @@ export const  DataFiels = (data:any)=>  [
       name: "lang",
       validationType:"string",
       validations: [{ type: "required" }],
-      value:data?.lang || ''
+      value:data?.lang || null
       },
       {
         name: "published_at",
@@ -28,19 +28,19 @@ export const  DataFiels = (data:any)=>  [
         name: "translator",
         validationType:"number",
         validations: [{ type: "required" }],
-        value:data?.translator?.id || ''
+        value:data?.translator?.id || null
       },
       {
           name: "author",
           validationType:"number",
           validations: [{ type: "required" }],
-          value:data?.author?.id || ''
+          value:data?.author?.id || null
       },
       {
           name: "publisher",
           validationType:"number",
           validations: [{ type: "required" }],
-          value:data?.publisher?.id || ''
+          value:data?.publisher?.id || null
       },
       {
           name: "pageCount",
@@ -57,13 +57,13 @@ export const  DataFiels = (data:any)=>  [
         name: "tags",
         validationType:"array",
         validations: [{ type: "required" }],
-        value: data?.tags || []
+        value: data?.tags?.map((e:any)=>e?.id) || []
       },
       {
         name: "section",
         validationType:"string",
         validations: [{ type: "required" }],
-        value:data?.section || ''
+        value:data?.section || null
       },
       {
         name: "isPaid",
@@ -81,7 +81,7 @@ export const  DataFiels = (data:any)=>  [
       name: "file",
       validationType:"number",
       validations: [{ type: "required" }],
-      value: data?.file || '',
+      value: data?.file?.id || '',
     },
 
   ]

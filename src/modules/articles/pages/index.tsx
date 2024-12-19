@@ -11,12 +11,12 @@ export default function IndexPage() {
     dataIndex: 'title',
   },
   {
-    title: 'Body',
-    dataIndex: 'body',
+    title: 'annotation',
+    dataIndex: 'annotation',
   },
   {
-    title: 'UserId',
-    dataIndex: 'id',
+    title: 'author',
+    dataIndex: 'author.id',
   }
   ]
   return (

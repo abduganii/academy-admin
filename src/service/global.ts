@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import api from "./api";
 import qs from "qs";
+import { Store } from "../utils/storage";
 
 export const GetAllData = async (url: string, query?: any) => {
   try {
@@ -92,7 +93,7 @@ export const GetMe = async () => {
 const handleError = (error: any) => {
   if (error?.response?.status === 401) {
     window.location.replace("/auth/login");
-    window.localStorage.removeItem("authToken");
+    Store.clearStorage()
   }
 
   toast.error(

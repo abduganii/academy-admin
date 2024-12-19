@@ -11,12 +11,16 @@ export default function IndexPage() {
     dataIndex: 'title',
   },
   {
-    title: 'Body',
-    dataIndex: 'body',
+    title: 'section',
+    dataIndex: 'section',
   },
   {
-    title: 'UserId',
-    dataIndex: 'id',
+    title: 'publishStartTime',
+    dataIndex: 'publishStartTime',
+  },
+   {
+    title: 'isActive',
+    dataIndex: 'isActive',
   }
   ]
   return (

@@ -24,7 +24,7 @@ const items: MenuItem[] = [
           { key: '/translators', label: 'Переводчики' },
         ]
       },
-      { key: '/literature', label: 'Литература' },
+      // { key: '/literature', label: 'Литература' },
       { 
         key: '/videos', label: 'Видеоматериалы',
         children: [
@@ -40,20 +40,20 @@ const items: MenuItem[] = [
         
          ]
        },
-      { key: '/map', label: 'Карта' },
-      { key: '/analytics', label: 'Аналитика' },
+      // { key: '/map', label: 'Карта' },
+      // { key: '/analytics', label: 'Аналитика' },
     ],
   },
-  {
-    key: '2',
-    icon: <MailOutlined />,
-    label: 'Статистика',
-    children: [
-      { key: '/news', label: 'Пользователи' },
-      { key: '/tags', label: 'Посещения' },
-      { key: '/tags', label: 'Просмотр' },
-    ],
-  },
+  // {
+  //   key: '2',
+  //   icon: <MailOutlined />,
+  //   label: 'Статистика',
+  //   children: [
+  //     { key: '/news', label: 'Пользователи' },
+  //     { key: '/tags', label: 'Посещения' },
+  //     { key: '/tags', label: 'Просмотр' },
+  //   ],
+  // },
   {
     key: '/users',
     icon: <MailOutlined />,

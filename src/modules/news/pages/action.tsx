@@ -9,25 +9,27 @@ import FileUpload from "../../../components/upload";
 import { DataFiels } from "./fiels";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import LangTab from "../../../components/lang-tab";
+import { useSelector } from "react-redux";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
     const { id } = useParams();
-  
-    const { data } = useQuery(["oneNews",id], () =>
+    const language = useSelector((state:any) => state.lang?.lang); 
+    const { data,isLoading } = useQuery(["oneNews",id,language], () =>
       GetByIdData("news",id),
     {
       enabled: id != "new"
     }
     );
     const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
-    const { isLoading:tagsLoading, data: tags} = useQuery('tags',() =>GetAllData('tags'));
+    const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
 
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
-      <FormContainer
+      {isLoading?"":  <FormContainer
         url={"news"}
         isFormData={false}
         setLoader={setLoader}
@@ -49,6 +51,7 @@ export default function CreatePage() {
             <>
              <div className="p-4">
               <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
+              {id == "new" ? '' : <LangTab /> }
                 <div className="w-full max-w-[504px]">
                   <GlobalInput
                     type="text"
@@ -73,11 +76,16 @@ export default function CreatePage() {
                     className={"mb-4 colm2"}
                     errors={formik.errors.content}
                  />
-                  <FileUpload
+                   <FileUpload
+                        errors={formik.errors.image}
+                      acceptTypes="image/*"
+                      valueName={data?.data?.image?.name || ''}
                       className={"mb-4"}
                         label="Обложка"
                         text="Загрузить"
-                        onUpload={(e: any)=>console.log(e)}
+                        onUpload={(e: any)=>{
+                          formik.setFieldValue(`image`, e?.data?.id);
+                        }}
                       />
                       <GlobalInput
                       type="select"
@@ -151,7 +159,7 @@ export default function CreatePage() {
                       options={[{ value: true, label: 'active' },
                         { value: false, label: 'isActive' },
                        ]}
-                      value={formik.values.isPaid || null}
+                      value={formik.values.isActive || null}
                       label={"isActive"}
                       name={`isActive`}
                       typeValue=""
@@ -169,7 +177,7 @@ export default function CreatePage() {
             </>
           );
         }}
-      </FormContainer>
+      </FormContainer>}
       {/* {isLoading && <Loader />} */}
     </>
   );

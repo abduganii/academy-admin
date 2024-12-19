@@ -28,7 +28,7 @@ export const  DataFiels = (data:any)=>  [
       name: "language",
       validationType:"string",
       validations: [{ type: "required" }],
-      value:data?.language ||''
+      value:data?.language || null
     },
     {
       name: "section",
@@ -40,19 +40,19 @@ export const  DataFiels = (data:any)=>  [
       name: "tags",
       validationType:"array",
       validations: [{ type: "required" }],
-      value: data?.tags || []
+      value: data?.tags?.map((e:any)=>e?.id) || []
     },
     {
         name: "poster",
         validationType:"number",
         validations: [{ type: "required" }],
-        value:data?.poster || ''
+        value:data?.poster?.id || ''
     },
     {
       name: "file",
       validationType:"number",
       validations: [{ type: "required" }],
-      value: data?.file || '',
+      value: data?.file?.id || '',
     },
      
   ]

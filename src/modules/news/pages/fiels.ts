@@ -16,25 +16,25 @@ export const  DataFiels = (data:any)=>  [
       name: "section",
       validationType:"string",
       validations: [{ type: "required" }],
-      value:data?.section || ''
+      value:data?.section || null
     },
     {
       name: "isActive",
       validationType:"string",
       validations: [{ type: "required" }],
-      value:data?.isActive || ''
+      value:data?.isActive || null
     },
     {
       name: "image",
       validationType:"number",
       validations: [{ type: "required" }],
-      value:data?.image || ''
+      value:data?.image?.id || ''
   },
   {
     name: "tags",
     validationType:"array",
     validations: [{ type: "required" }],
-    value: data?.tags || []
+    value: data?.tags?.map((e:any)=>e?.id)  || []
   },
  
     {

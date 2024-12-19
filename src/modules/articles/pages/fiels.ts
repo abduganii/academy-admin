@@ -20,7 +20,7 @@ export const  DataFiels = (data:any)=>  [
       name: "section",
       validationType:"string",
       validations: [{ type: "required" }],
-      value:data?.section || ''
+      value:data?.section ||  null
     },
     {
       name: "link",
@@ -32,13 +32,13 @@ export const  DataFiels = (data:any)=>  [
       name: "file",
       validationType:"number",
       validations: [{ type: "required" }],
-      value: data?.file || '',
+      value: data?.file?.id || '',
     },
       {
           name: "author",
           validationType:"number",
           validations: [{ type: "required" }],
-          value:data?.author || ''
+          value:data?.author?.id || null
       },
       {
         name: "published_at",

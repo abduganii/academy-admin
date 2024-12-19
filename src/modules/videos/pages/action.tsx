@@ -76,13 +76,20 @@ export default function CreatePage() {
                     errors={formik.errors.description}
                  />
                   <FileUpload
-                      className={"mb-4"}
-                        label="Обложка"
-                        text="Загрузить"
-                        onUpload={(e: any)=>console.log(e)}
-                      />
-                       <GlobalInput
-                    type="datePicker"
+                    acceptTypes="image/*"
+                    className={"mb-4"}
+                      label="Обложка"
+                      text="Загрузить"
+                      valueName={data?.data?.poster?.name || ''}
+                      onUpload={(e: any)=>{
+                        formik.setFieldValue(`poster`, e?.data?.id);
+                      }}
+                      errors={formik.errors?.poster}
+                    />
+                     
+                   <GlobalInput
+                    type="text"
+                    typeValue={'number'}
                     formik={formik}
                     value={formik.values.releasedYear}
                     label={"releasedYear"}
@@ -90,11 +97,8 @@ export default function CreatePage() {
                     id={"releasedYear"}
                     placeholder={'releasedYear'}
                     className={"mb-4 colm2"}
-                    localChange={(e:any)=>{
-                      console.log(e)
-                      formik.setFieldValue(`releasedYear`, e);
-                    }}
-                    errors={(formik.errors as any).releasedYear}
+                    errors={formik.errors.releasedYear}
+                    required={true}
                   />
                    <GlobalInput
                       type="select"
@@ -172,10 +176,15 @@ export default function CreatePage() {
                  
                 
                       <FileUpload
+                      acceptTypes="video/*,.pdf,.doc,.docx"
                     className={"mb-4"}
                       label="Загрузить файл"
                       text="Загрузить"
-                      onUpload={(e: any)=>console.log(e)}
+                      valueName={data?.data?.file?.name || ''}
+                      onUpload={(e: any)=>{
+                        formik.setFieldValue(`file`, e?.data?.id);
+                      }}
+                      errors={formik.errors?.file}
                     />
                 </div>
               </div>

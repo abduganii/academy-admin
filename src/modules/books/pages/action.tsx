@@ -9,29 +9,32 @@ import FileUpload from "../../../components/upload";
 import { DataFiels } from "./fiels";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import LangTab from "../../../components/lang-tab";
+import { useSelector } from "react-redux";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
-    const { id } = useParams();
-  
-    const { data } = useQuery(["oneBooks",id], () =>
-      GetByIdData("books",id),
-    {
-      enabled: id != "new"
-    }
-    );
+  const language = useSelector((state:any) => state.lang?.lang); 
+  const { id } = useParams();
+  const { data,isLoading } = useQuery(["oneBooks",id,language], () =>
+    GetByIdData("books",id),
+  {
+    enabled: id != "new"
+  }
+  );
    const { isLoading:landLoading, data: staticLang} = useQuery('static-lang',() =>GetAllData('static-data/Languages'));
    const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
-   const { isLoading:authorsLoading, data: authors} = useQuery('authors',() =>GetAllData('authors'));
-   const { isLoading:tagsLoading, data: tags} = useQuery('tags',() =>GetAllData('tags'));
-   const { isLoading:translatorsLoading, data: translators} = useQuery('translators',() =>GetAllData('translators'));
-   const { isLoading:publishersLoading, data: publishers} = useQuery('publishers',() =>GetAllData('publishers'));
+   const { isLoading:authorsLoading, data: authors} = useQuery(['authors',language],() =>GetAllData('authors'));
+   const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
+   const { isLoading:translatorsLoading, data: translators} = useQuery(['translators',language],() =>GetAllData('translators'));
+   const { isLoading:publishersLoading, data: publishers} = useQuery(['publishers',language],() =>GetAllData('publishers'));
    
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
-      <FormContainer
+      
+      {isLoading?"": <FormContainer
         url={"books"}
         isFormData={false}
         setLoader={setLoader}
@@ -48,11 +51,11 @@ export default function CreatePage() {
         validateOnMount={false}
       >
         {(formik) => {
-         console.log(formik,"ds")
           return (
             <>
              <div className="p-4">
               <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
+               {id == "new" ? '' : <LangTab /> }
                 <div className="w-full max-w-[504px]">
                   <GlobalInput
                     type="text"
@@ -67,6 +70,9 @@ export default function CreatePage() {
                     required={true}
                   />
                    <FileUpload
+                      errors={formik.errors.image}
+                    acceptTypes="image/*"
+                    valueName={data?.data?.image?.name || ''}
                     className={"mb-4"}
                       label="Обложка"
                       text="Загрузить"
@@ -80,7 +86,7 @@ export default function CreatePage() {
                     loading={landLoading}
                     options={staticLang?.data}
                     fieldNames={{value: 'id', label: 'name'}}
-                    value={formik.values.lang || null}
+                    value={formik.values.lang }
                     label={"lang"}
                     name={`lang`}
                     id={"lang"}
@@ -98,7 +104,7 @@ export default function CreatePage() {
                       loading={translatorsLoading}
                       options={translators?.data}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.translator || null}
+                      value={formik.values.translator }
                       label={"translator"}
                       name={`translator`}
                       typeValue=""
@@ -131,7 +137,7 @@ export default function CreatePage() {
                       loading={authorsLoading}
                       options={authors?.data}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.author || null}
+                      value={formik.values.author }
                       label={"author"}
                       name={`author`}
                       typeValue=""
@@ -149,7 +155,7 @@ export default function CreatePage() {
                       loading={publishersLoading}
                       options={publishers?.data}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.publisher || null}
+                      value={formik.values.publisher}
                       label={"publisher"}
                       name={`publisher`}
                       typeValue=""
@@ -191,7 +197,7 @@ export default function CreatePage() {
                       loading={tagsLoading}
                       fieldNames={{value: 'id', label: 'name'}}
                       options={tags?.data}
-                      value={formik.values.tags || null}
+                      value={formik.values.tags }
                       label={"tags"}
                       name={`tags`}
                       typeValue="multiple"
@@ -208,7 +214,7 @@ export default function CreatePage() {
                       loading={sectionsLoading}
                       options={staticSections?.data}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.section || null}
+                      value={formik.values.section }
                       label={"section"}
                       name={`section`}
                       typeValue=""
@@ -226,7 +232,7 @@ export default function CreatePage() {
                       options={[{ value: false, label: 'free' },
                         { value: true, label: 'unfreee' },
                        ]}
-                      value={formik.values.isPaid || null}
+                      value={formik.values.isPaid}
                       label={"isPaid"}
                       name={`isPaid`}
                       typeValue=""
@@ -250,9 +256,12 @@ export default function CreatePage() {
                       errors={formik.errors.price}
                     />
                       <FileUpload
+                       acceptTypes=".pdf,.doc,.docx"
                     className={"mb-4"}
                       label="Загрузить файл"
                       text="Загрузить"
+                      errors={formik.errors.file}
+                      valueName={data?.data?.file?.name || ''}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`file`, e?.data?.id);
                       }}
@@ -264,7 +273,7 @@ export default function CreatePage() {
             </>
           );
         }}
-      </FormContainer>
+      </FormContainer>}
       {/* {isLoading && <Loader />} */}
     </>
   );

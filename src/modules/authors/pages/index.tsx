@@ -56,6 +56,12 @@ export default function IndexPage() {
             validations: [{ type: "required" }],
             value:data?.data?.name,
           },
+          {
+            name: "type",
+            validationType:"string",
+            validations: [{ type: "required" }],
+            value: 'book',
+          },
         ]}
         onSuccess={() => {
           setOpenId(false);
