@@ -61,7 +61,7 @@ export default function CreatePage() {
                     name={`title`}
                     id={"title"}
                     placeholder={'title'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
                   />
@@ -73,7 +73,7 @@ export default function CreatePage() {
                     name={`content`}
                     id={"content"}
                     placeholder={'content'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.content}
                  />
                    <FileUpload
@@ -130,7 +130,7 @@ export default function CreatePage() {
                     name={`publishStartTime`}
                     id={"publishStartTime"}
                     placeholder={'publishStartTime'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       console.log(e)
                       formik.setFieldValue(`publishStartTime`, e);
@@ -145,7 +145,7 @@ export default function CreatePage() {
                   name={`publishEndTime`}
                   id={"publishEndTime"}
                   placeholder={'publishEndTime'}
-                  className={"mb-4 colm2"}
+                  className={"mb-4 colm1"}
                   localChange={(e:any)=>{
                     console.log(e)
                     formik.setFieldValue(`publishEndTime`, e);

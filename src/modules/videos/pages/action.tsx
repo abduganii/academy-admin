@@ -60,7 +60,7 @@ export default function CreatePage() {
                     name={`name`}
                     id={"name"}
                     placeholder={'name'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
                   />
@@ -72,7 +72,7 @@ export default function CreatePage() {
                     name={`description`}
                     id={"description"}
                     placeholder={'description'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.description}
                  />
                   <FileUpload
@@ -96,7 +96,7 @@ export default function CreatePage() {
                     name={`releasedYear`}
                     id={"releasedYear"}
                     placeholder={'releasedYear'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.releasedYear}
                     required={true}
                   />
@@ -112,7 +112,7 @@ export default function CreatePage() {
                       id={"country"}
                       typeValue=""
                       placeholder={'country'}
-                      className={"mb-4 colm2"}
+                      className={"mb-4 colm1"}
                       errors={formik.errors.country}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`country`, e);
@@ -130,7 +130,7 @@ export default function CreatePage() {
                       id={"language"}
                       typeValue=""
                       placeholder={'language'}
-                      className={"mb-4 colm2"}
+                      className={"mb-4 colm1"}
                       errors={formik.errors.language}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`language`, e);

@@ -29,7 +29,8 @@ export default function CreatePage() {
    const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
    const { isLoading:translatorsLoading, data: translators} = useQuery(['translators',language],() =>GetAllData('translators'));
    const { isLoading:publishersLoading, data: publishers} = useQuery(['publishers',language],() =>GetAllData('publishers'));
-   
+
+   console.log(data)
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
@@ -65,7 +66,7 @@ export default function CreatePage() {
                     name={`name`}
                     id={"name"}
                     placeholder={'name'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
                   />
@@ -80,6 +81,7 @@ export default function CreatePage() {
                         formik.setFieldValue(`image`, e?.data?.id);
                       }}
                     />
+                      
                   <GlobalInput
                     type="select"
                     formik={formik}
@@ -92,7 +94,7 @@ export default function CreatePage() {
                     id={"lang"}
                     typeValue=""
                     placeholder={'lang'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.lang}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`lang`, e);
@@ -124,7 +126,7 @@ export default function CreatePage() {
                     name={`published_at`}
                     id={"published_at"}
                     placeholder={'published_at'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       console.log(e)
                       formik.setFieldValue(`published_at`, e);
@@ -177,7 +179,7 @@ export default function CreatePage() {
                     id={"pageCount"}
                     typeValue='number'
                     placeholder={'pageCount'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.pageCount}
                   />
                    <GlobalInput
@@ -188,7 +190,7 @@ export default function CreatePage() {
                     name={`annotation`}
                     id={"annotation"}
                     placeholder={'annotation'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                   />
                    <GlobalInput
@@ -252,7 +254,7 @@ export default function CreatePage() {
                       id={"price"}
                         typeValue='number'
                       placeholder={'price'}
-                      className={"mb-4 colm2"}
+                      className={"mb-4 colm1"}
                       errors={formik.errors.price}
                     />
                       <FileUpload

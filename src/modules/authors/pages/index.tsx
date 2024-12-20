@@ -88,7 +88,7 @@ export default function IndexPage() {
                     name={`name`}
                     id={"name"}
                     placeholder={'Имя автора'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.name}
                   />
               </div>

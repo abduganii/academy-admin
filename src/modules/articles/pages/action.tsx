@@ -61,7 +61,7 @@ export default function CreatePage() {
                     name={`title`}
                     id={"title"}
                     placeholder={'title'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
                   />
@@ -111,7 +111,7 @@ export default function CreatePage() {
                     name={`annotation`}
                     id={"annotation"}
                     placeholder={'annotation'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                  />
                  
@@ -123,7 +123,7 @@ export default function CreatePage() {
                     name={`text`}
                     id={"text"}
                     placeholder={'text'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.text}
                  />
                    <GlobalInput
@@ -134,7 +134,7 @@ export default function CreatePage() {
                     name={`link`}
                     id={"link"}
                     placeholder={'link'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     errors={formik.errors.link}
                     required={true}
                   />
@@ -147,7 +147,7 @@ export default function CreatePage() {
                     name={`published_at`}
                     id={"published_at"}
                     placeholder={'published_at'}
-                    className={"mb-4 colm2"}
+                    className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       console.log(e)
                       formik.setFieldValue(`published_at`, e);

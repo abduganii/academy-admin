@@ -28,7 +28,7 @@ export default function GlobalInput({
           mode={typeValue}
           className="w-full h-[48px]"
           placeholder={placeholder}
-          defaultValue={value}
+          value={value}
           fieldNames={fieldNames}
           loading={loading}
           onChange={(e) => {

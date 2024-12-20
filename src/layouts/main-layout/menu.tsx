@@ -41,7 +41,7 @@ const items: MenuItem[] = [
          ]
        },
       // { key: '/map', label: 'Карта' },
-      // { key: '/analytics', label: 'Аналитика' },
+      { key: '/analytics', label: 'Аналитика' },
     ],
   },
   // {

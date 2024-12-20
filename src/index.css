@@ -10,3 +10,7 @@
     scroll-behavior: smooth;
   }
   
+
+  .colm2{
+    width: calc((100% - 16px) / 2);
+  }

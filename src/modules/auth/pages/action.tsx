@@ -58,7 +58,7 @@ export default function ActionPage() {
                           name={`email`}
                           id={"email"}
                           placeholder={'email'}
-                          className={"mb-4 colm2"}
+                          className={"mb-4 colm1"}
                           errors={formik.errors.email}
                           required={true}
                         />
@@ -72,7 +72,7 @@ export default function ActionPage() {
                             id={"password"}
                             typeValue='password'
                             placeholder={'password'}
-                            className={"mb-4 colm2"}
+                            className={"mb-4 colm1"}
                             errors={formik.errors.password}
                           />
                           
