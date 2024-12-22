@@ -4,10 +4,9 @@ const BooksRoute = [
   {
     url: "/user-messages",
     Element: Page,
-    meta: { isLoginIf: true, role: new Set(["admin"]) },
-    hideIfchildern: true
+    meta: { isLoginIf: true, role: new Set(["admin", "manager"]) },
+    hideIfchildern: true,
   },
-
 ];
 
 export default BooksRoute;

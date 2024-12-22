@@ -3,10 +3,11 @@ import { FileTextOutlined, MailOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-
+import { Store } from "../../utils/storage";
+import { useSelector } from "react-redux";
 type MenuItem = Required<MenuProps>['items'][number];
 
-const items: MenuItem[] = [
+const Adminitems: MenuItem[] = [
   {
     key: '1',
     icon: <FileTextOutlined />,
@@ -79,8 +80,64 @@ const items: MenuItem[] = [
     
   },
 ];
+const Manegeritems: MenuItem[] = [
+  {
+    key: '1',
+    icon: <FileTextOutlined />,
+    label: 'Ресурсы',
+    children: [
+      { 
+        key: '/books',
+        label: 'Книги',
+       
+      },
+      {
+        key: '/videos', label: 'Видеоматериалы',
+      },
+      // { key: '/literature', label: 'Литература' },
+     
+      { key: '/articles', label: 'Статьи'},
+      // { key: '/map', label: 'Карта' },
+      { key: '/analytics', label: 'Аналитика' },
+    ],
+  },
+  // {
+  //   key: '2',
+  //   icon: <MailOutlined />,
+  //   label: 'Статистика',
+  //   children: [
+  //     { key: '/news', label: 'Пользователи' },
+  //     { key: '/tags', label: 'Посещения' },
+  //     { key: '/tags', label: 'Просмотр' },
+  //   ],
+  // },
+  {
+    key: '/users',
+    icon: <MailOutlined />,
+    label: 'Пользователи',
+   
+  },
+  
+   {
+    key: '3',
+    icon: <MailOutlined />,
+    label: 'Уведомления',
+    children: [
+      { key: '/contact-us-messages', label: 'Связаться с нами' },
+      { key: '/user-messages', label: 'Сообщения' },
+      { key: '/notifications', label: 'Отправить уведомление' },
+    ],
+  },
+  {
+    key: '/news',
+    icon: <MailOutlined />,
+    label: 'Новости',
+    
+  },
+];
 
 const SiteBar: React.FC = () => {
+  const role = useSelector((state: any) => state.role?.Role) || Store.getRole();
   const [stateOpenKeys, setStateOpenKeys] = useState(['1']);
   const navigate = useNavigate();
 
@@ -108,7 +165,7 @@ const SiteBar: React.FC = () => {
         onOpenChange={onOpenChange}
         onClick={onClick} // Add onClick handler
         className='w-full h-full'
-        items={items}
+        items={role =="admin" ? Adminitems : Manegeritems}
       />
     </div>
   );

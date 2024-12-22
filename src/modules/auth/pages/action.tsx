@@ -33,7 +33,7 @@ export default function ActionPage() {
               onSuccess={(e:any) => {
                 Store.setToken(e?.data?.data?.token)
                 dispatch(HandleAuth(e?.data?.data?.token))
-                  navigate("/books");
+                navigate("/books");
               }}
               onError={(e: any) => {
                 console.log(e, "onError");

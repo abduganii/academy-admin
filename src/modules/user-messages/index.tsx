@@ -25,7 +25,7 @@ export default function IndexPage() {
     <div>
       <TopBar title="Сообщение" setSearch={setSearch} search={search} url='user-messages' />
       <div className="p-4">
-        <GlobalTitle isAction={false} api='user-messages' url='user-messages' columns={columns} filter={{name:search||undefined,relations:['user']}}/>
+        <GlobalTitle isAction={false} api='user-messages' url='user-messages' columns={columns} filter={{email:search||undefined,relations:['user']}}/>
       </div>
     </div>
   )

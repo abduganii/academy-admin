@@ -5,15 +5,14 @@ const BooksRoute = [
   {
     url: "/notifications",
     Element: Page,
-    meta: { isLoginIf: true, role: new Set(["admin"]) },
-    hideIfchildern: true
+    meta: { isLoginIf: true, role: new Set(["admin", "manager"]) },
+    hideIfchildern: true,
   },
   {
     url: "/notifications/:id",
     Element: Action,
-    meta: { isLoginIf: true, role: new Set(["admin"]) }
+    meta: { isLoginIf: true, role: new Set(["admin", "manager"]) },
   },
-
 ];
 
 export default BooksRoute;

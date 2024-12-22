@@ -93,12 +93,12 @@ export const GetMe = async () => {
 const handleError = (error: any) => {
   if (error?.response?.status === 401) {
     window.location.replace("/auth/login");
-    Store.clearStorage()
+    Store.clearStorage();
   }
-
   toast.error(
     error?.response?.data?.message ||
-      error?.response?.data || error?.message|| 
+      error?.response?.data ||
+      error?.message ||
       "error not given"
   );
 };

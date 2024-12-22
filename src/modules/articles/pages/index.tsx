@@ -23,7 +23,7 @@ export default function IndexPage() {
     <div>
       <TopBar title="Статьи" setSearch={setSearch} search={search} url='articles' />
       <div className="p-4">
-        <GlobalTitle api='articles' url='articles' columns={columns} filter={{name:search||undefined,relations:['author']}} />
+        <GlobalTitle api='articles' url='articles' columns={columns} filter={{title:search||undefined,relations:['author']}} />
       </div>
     </div>
   )

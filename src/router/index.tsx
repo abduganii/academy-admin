@@ -3,7 +3,8 @@ import { Fragment } from "react";
 import  AuthRoute  from "../modules/auth/route";
 import MainLayout from "../layouts/main-layout/index";
 import NotFound from "../NotFound";
-
+import { Store } from "../utils/storage";
+import { useSelector } from "react-redux";
 interface Imeta {
     role: Set<string>;
     isLoginIf: boolean
@@ -29,7 +30,9 @@ Object.values(dynimicImportRoutes).forEach(el=>{
 
 const nestedRoutes = (routes: IRouter[]) =>
     routes.map(({ Element, url, children ,meta}: IRouter) => {
-        if(meta?.isLoginIf){
+        const role = useSelector((state: any) => state.role?.Role) || Store.getRole();
+        console.log(role)
+        if(meta?.isLoginIf && meta.role.has(role)){
             if (children?.length ) {
                 return (
                     <Fragment key={url}>

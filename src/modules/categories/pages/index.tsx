@@ -33,7 +33,7 @@ export default function IndexPage() {
     <div>
       <TopBar openMadal={()=>setOpenId('new')} title="Категории" setSearch={setSearch} search={search} url='categories' />
       <div className="p-4">
-        <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='categories' url='categories' columns={columns} filter={{search:search}}/>
+        <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='categories' url='categories' columns={columns} filter={{name:search||undefined}}/>
       </div>
    
       <Modal

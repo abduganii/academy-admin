@@ -6,24 +6,40 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetAllData } from "./service/global";
 import { useQuery } from "react-query";
+import { HandleRole } from "./redux/role";
+import { useDispatch } from 'react-redux';
 function App() {
   const navigate = useNavigate()
-  // const pathName = 
+  const dispatch: any = useDispatch();
   Store.setLanguage(Store.getLang() ?? 'uz');
   const token = useSelector((state:any) => state.token.token) 
   const isAuth = token ||  Store.getToken() || false
 
-   const {  data:userMe} = useQuery('auth-me',() =>GetAllData('auth/me'), {
-      enabled:  location.pathname != "/auth/login"
-    });
-    console.log(userMe)
+   const {data:userMe} = useQuery('auth-me',() =>GetAllData('auth/me'), {
+      enabled:  location.pathname != "/auth/login" && Boolean(isAuth)
+   });
   useEffect(() => {
+    if (userMe?.data?.roles.includes('admin')) {
+      Store.setRole('admin')
+      dispatch(HandleRole('admin'))
+    } else if(userMe?.data?.roles.includes('manager')) {
+      Store.setRole('manager')
+      dispatch(HandleRole('manager'))
+    }
+  },[userMe])
+  
+  useEffect(() => {
+    console.log(userMe,"ds")
     if (!isAuth) {
       navigate("/auth/login");
     } else if (location.pathname == "/" || location.pathname == "/auth/login") {
-        navigate("/books");
+      
+      navigate("/books");
+      
     }
   }, [isAuth]);
+  
+
   return (
       <>
       
