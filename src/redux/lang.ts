@@ -1,23 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface metaState {
-    lang: string;
+  lang: string;
 }
 
 const initialState: metaState = {
-lang: 'uz',
+  lang: "uz",
 };
 export const LangSlice = createSlice({
-initialState,
-  name: 'lang',
+  initialState,
+  name: "lang",
   reducers: {
-    changeLang: (state, action: PayloadAction<string>) => {
+    changeLang: (state: any, action: PayloadAction<string>) => {
       state.lang = action.payload;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { changeLang } = LangSlice.actions
+export const { changeLang } = LangSlice.actions;
 
-export default LangSlice.reducer
+export default LangSlice.reducer;

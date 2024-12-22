@@ -1,4 +1,4 @@
-import {LoadingOutlined, UserOutlined} from "@ant-design/icons"
+import { UserOutlined} from "@ant-design/icons"
 import { UploadFile } from "../service/upload";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -12,7 +12,8 @@ interface iProps{
 
 export default function AvatarUpload({className,errors, value, onUpload}:iProps) {
   const [loadingFile, setLoadingFile] = useState<boolean>(false);
-  const [valueLoc, setValue] = useState<string>(value||'');
+  const [valueLoc, setValue] = useState<string>(value || '');
+  console.log(loadingFile)
   const hendleimg = async (e: any) => {
     setLoadingFile(true)
     if (e.target.files[0] && e.target.files[0]?.size < 5000000) {

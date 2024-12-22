@@ -1,9 +1,10 @@
 import { Avatar, Breadcrumb } from 'antd'
 import { UserOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 export default function Header() {
     const location = useLocation();
+    const navigate = useNavigate()
     const pathnames = location.pathname.split('/').filter((x) => x);
     const items = pathnames.map((name, index) => {
         const url = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -20,7 +21,9 @@ export default function Header() {
        <Breadcrumb
             items={items}
         />
-       <Avatar
+          <Avatar
+              onClick={()=>navigate('/profile')}
+            className="cursor-pointer"
             style={{
                 backgroundColor: '#87d068',
             }}

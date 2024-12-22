@@ -58,7 +58,7 @@ const createFormSchema = (fields: any) => {
 
   return {
     initialValues,
-    validationSchema: yup.object().shape(validationSchema)
+    validationSchema: yup.object().shape(validationSchema),
   };
 };
 
@@ -116,5 +116,5 @@ const gerErrorMessage = (error: any) => {
 export const formHelpers = {
   createFormSchema,
   getFormValues,
-  gerErrorMessage
+  gerErrorMessage,
 };

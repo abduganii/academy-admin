@@ -1,23 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface metaState {
-    user: string;
+  user: string;
 }
 
 const initialState: metaState = {
-    user: '',
+  user: "",
 };
 export const UserSlice = createSlice({
-initialState,
-  name: 'user',
+  initialState,
+  name: "user",
   reducers: {
-    HandleUser: (state, action: PayloadAction<string>) => {
+    HandleUser: (state: any, action: PayloadAction<string>) => {
       state.user = action.payload;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { HandleUser } = UserSlice.actions
+export const { HandleUser } = UserSlice.actions;
 
-export default UserSlice.reducer
+export default UserSlice.reducer;
