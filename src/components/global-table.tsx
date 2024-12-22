@@ -13,8 +13,11 @@ interface Iprops {
     api:string;
     filter?: any;
     openMadal?:any;
+    relations?:any;
+    isUpdate?:any;
+    isAction?:any
 }
-const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
+const GlobalTitle = ({columns,api,url,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
     const navigate = useNavigate()
     const [page,setPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
@@ -26,7 +29,7 @@ const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
           GetAllData(api,{
             page:page,
             pageSize:pageSize,
-            ...filter
+            ...filter,
           })
       );
       const Actioncolumns = {
@@ -38,9 +41,9 @@ const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
             <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>setOpen(e?.id)} type="primary" danger>
              <DeleteOutlined />
             </Button>
-            <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={openMadal? ()=> openMadal(e?.id): ()=>navigate(`/${url}/${e?.id}`)} type="primary" block>
+         {isUpdate?   <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={openMadal? ()=> openMadal(e?.id): ()=>navigate(`/${url}/${e?.id}`)} type="primary" block>
                 <FormOutlined />
-            </Button>
+            </Button>:''}
         </div>,
       }
 
@@ -78,7 +81,7 @@ const GlobalTitle = ({columns,api,url,openMadal,filter}: Iprops) => {
             
       </Modal>
         <Table
-        columns={[...columns, Actioncolumns]}
+        columns={isAction ?[...columns, Actioncolumns]:columns}
         dataSource={data?.data}
         loading={isLoading}
         onChange={(e:any)=>{

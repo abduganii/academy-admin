@@ -21,7 +21,7 @@ export default function IndexPage() {
     <div>
       <TopBar title="Пользователи" setSearch={setSearch} search={search} url='users' />
       <div className="p-4">
-        <GlobalTitle api='users' url='users' columns={columns} filter={{name:search}}/>
+        <GlobalTitle api='users' url='users' columns={columns} filter={{name:search||undefined}}/>
       </div>
     </div>
   )

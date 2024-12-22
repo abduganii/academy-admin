@@ -5,9 +5,8 @@ import { FormContainer } from "../../../components/Forms";
 import TopBar from "../../../components/top-bar";
 import GlobalInput from "../../../components/global-input";
 import SubmitBtn from "../../../components/submit-btn";
-import FileUpload from "../../../components/upload";
 import { DataFiels } from "./fiels";
-import { GetByIdData } from "../../../service/global";
+import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
@@ -17,23 +16,24 @@ export default function CreatePage() {
   const navigate = useNavigate();
     const { id } = useParams();
     const language = useSelector((state:any) => state.lang?.lang); 
-    const { data,isLoading } = useQuery(["oneanalytics",id,language], () =>
-      GetByIdData("analytics",id),
+    const { data,isLoading } = useQuery(["onenotifications",id,language], () =>
+      GetByIdData("notifications/temps",id),
     {
       enabled: id != "new"
     }
     );
-
+    const {  data: users,isLoading:userLoading} = useQuery('users',() =>GetAllData('users'));
+    
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
       {isLoading?"":  <FormContainer
-        url={"analytics"}
+        url={"notifications/temps"}
         isFormData={false}
         setLoader={setLoader}
         fields={DataFiels(data?.data)}
         onSuccess={() => {
-            navigate("/analytics");
+            navigate("/notifications");
         }}
         onError={(e: any) => {
           console.log(e, "onError");
@@ -44,13 +44,12 @@ export default function CreatePage() {
         validateOnMount={false}
       >
         {(formik) => {
-        
           return (
             <>
              <div className="p-4">
               <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
               {id == "new" ? '' : <LangTab /> }
-                <div className="w-full max-w-[504px]">
+                <div className="flex  flex-wrap gap-4 w-full max-w-[504px]">
                   <GlobalInput
                     type="text"
                     formik={formik}
@@ -59,32 +58,39 @@ export default function CreatePage() {
                     name={`title`}
                     id={"title"}
                     placeholder={'title'}
-                    className={"mb-4 colm1"}
+                    className={"colm1"}
                     errors={formik.errors.title}
                     required={true}
                   />
-                   <GlobalInput
-                    type="textArea"
-                    formik={formik}
-                    value={formik.values.description}
-                    label={"description"}
-                    name={`description`}
-                    id={"description"}
-                    placeholder={'description'}
-                    className={"mb-4 colm1"}
-                    errors={formik.errors.description}
-                 />
-                 <FileUpload
-                        errors={formik.errors.image}
-                      acceptTypes="image/*"
-                      valueName={data?.data?.image?.name || ''}
+                
+                    <GlobalInput
+                        type="textArea"
+                        formik={formik}
+                        value={formik.values.description}
+                        label={"description"}
+                        name={`description`}
+                        id={"description"}
+                        placeholder={'description'}
+                        className={"mb-4 colm1"}
+                        errors={formik.errors.description}
+                      />
+                  <GlobalInput
+                      type="select"
+                      formik={formik}
+                      loading={userLoading}
+                      fieldNames={{value: 'id', label: 'firstName'}}
+                      options={users?.data}
+                      value={formik.values.users }
+                      label={"users"}
+                      name={`users`}
+                      typeValue="multiple"
+                      id={"users"}
+                      placeholder={'users'}
                       className={"mb-4"}
-                        label="Обложка"
-                        text="Загрузить"
-                        onUpload={(e: any)=>{
-                          formik.setFieldValue(`image`, e?.data?.id);
-                        }}
-                      />               
+                      errors={formik.errors.users}
+                      localChange={(e:any)=>{
+                        formik.setFieldValue(`users`, e);
+                      }}/>
                 </div>
               </div>
             </div>

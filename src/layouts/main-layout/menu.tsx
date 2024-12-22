@@ -60,14 +60,23 @@ const items: MenuItem[] = [
     label: 'Пользователи',
    
   },
+  
+   {
+    key: '3',
+    icon: <MailOutlined />,
+    label: 'Уведомления',
+    children: [
+      { key: '/', label: 'Настройки уведомле..' },
+      { key: '/contact-us-messages', label: 'Связаться с нами' },
+      { key: '/user-messages', label: 'Сообщения' },
+      { key: '/notifications', label: 'Отправить уведомление' },
+    ],
+  },
   {
-    key: '4',
+    key: '/news',
     icon: <MailOutlined />,
     label: 'Новости',
-    children: [
-      { key: '/news', label: 'Новости' },
-      { key: '/tags', label: 'Теги' }
-    ],
+    
   },
 ];
 

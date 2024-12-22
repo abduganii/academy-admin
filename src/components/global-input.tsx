@@ -45,7 +45,7 @@ export default function GlobalInput({
           onChange={(e) => {
             if (localChange) localChange(e);
           }}
-          value={dayjs(value, 'YYYY-MM-DD')}
+          value={value ? dayjs(value, 'YYYY-MM-DD') : null}
           placeholder={placeholder}
           disabled={disabled}
           required={required}

@@ -7,23 +7,21 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
-    title: 'Title',
+    title: 'title',
     dataIndex: 'title',
   },
   {
-    title: 'annotation',
-    dataIndex: 'annotation',
+    title: 'description',
+    dataIndex: 'description',
   },
-  {
-    title: 'author',
-    dataIndex: 'author.name',
-  }
+
+  
   ]
   return (
     <div>
-      <TopBar title="Статьи" setSearch={setSearch} search={search} url='articles' />
+      <TopBar title="Уведомления" setSearch={setSearch} search={search} url='notifications' />
       <div className="p-4">
-        <GlobalTitle api='articles' url='articles' columns={columns} filter={{name:search||undefined,relations:['author']}} />
+        <GlobalTitle isUpdate={false} api='notifications' url='notifications' columns={columns} filter={{name:search||undefined}}/>
       </div>
     </div>
   )

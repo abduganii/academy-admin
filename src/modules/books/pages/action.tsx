@@ -30,7 +30,6 @@ export default function CreatePage() {
    const { isLoading:translatorsLoading, data: translators} = useQuery(['translators',language],() =>GetAllData('translators'));
    const { isLoading:publishersLoading, data: publishers} = useQuery(['publishers',language],() =>GetAllData('publishers'));
 
-   console.log(data)
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
@@ -121,7 +120,7 @@ export default function CreatePage() {
                    <GlobalInput
                     type="datePicker"
                     formik={formik}
-                    value={formik.values.published_at}
+                    value={formik.values?.published_at}
                     label={"published_at"}
                     name={`published_at`}
                     id={"published_at"}
