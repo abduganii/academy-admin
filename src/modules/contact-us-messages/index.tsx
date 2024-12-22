@@ -9,6 +9,7 @@ export default function IndexPage() {
     {
       title: 'fullName',
       dataIndex: 'fullName',
+      // colSpan:3
     },
     {
     title: 'theme',
