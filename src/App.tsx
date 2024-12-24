@@ -19,13 +19,13 @@ function App() {
       enabled:  location.pathname != "/auth/login" && Boolean(isAuth)
    });
   useEffect(() => {
-    if (userMe?.data?.roles.includes('admin')) {
+    // if (userMe?.data?.roles.includes('admin')) {
       Store.setRole('admin')
       dispatch(HandleRole('admin'))
-    } else if(userMe?.data?.roles.includes('manager')) {
-      Store.setRole('manager')
-      dispatch(HandleRole('manager'))
-    }
+    // } else if(userMe?.data?.roles.includes('manager')) {
+    //   Store.setRole('manager')
+    //   dispatch(HandleRole('manager'))
+    // }
   },[userMe])
   
   useEffect(() => {

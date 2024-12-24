@@ -1,4 +1,4 @@
-import { UserOutlined} from "@ant-design/icons"
+import { CloudUploadOutlined, UserOutlined} from "@ant-design/icons"
 import { UploadFile } from "../service/upload";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -52,6 +52,7 @@ export default function AvatarUpload({className,errors, value, onUpload}:iProps)
               <input   className="hidden" type="file"   accept={'image/*'} onChange={(e)=>{
                 hendleimg(e)
               }} />
+              <CloudUploadOutlined />
             </label>
         </div>
        

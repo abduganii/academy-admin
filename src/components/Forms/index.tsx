@@ -46,6 +46,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
     formHelpers.createFormSchema(fields);
   const handleSubmit = async (values: any, formikHelper: any) => {
     const formValues = formHelpers.getFormValues(values, fields, isFormData);
+    
     setLoader(true);
     if ((madalId || id) == "new" || !(madalId || id)) {
       await AddData(url, formValues)

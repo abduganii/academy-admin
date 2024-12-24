@@ -7,6 +7,11 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
+      title: '№',
+      dataIndex: 'id',
+      innerWidth:"30px"
+      },
+    {
     title: 'Title',
     dataIndex: 'title',
   },
@@ -17,11 +22,14 @@ export default function IndexPage() {
   {
     title: 'publishStartTime',
     dataIndex: 'publishStartTime',
+    render: (text:any) => <p>{text.slice(0,16)}</p>,
   },
-   {
-    title: 'isActive',
+  
+  {
+    title: 'Статус',
     dataIndex: 'isActive',
-  }
+    render: (text:boolean) => <p className={text ? 'text-[#0FB800]':'text-[#FB533D]'}>{text ? 'Активный':'Неактивный'}</p>,
+  },
   ]
   return (
     <div>

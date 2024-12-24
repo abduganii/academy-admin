@@ -7,8 +7,14 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
+      title:'№',
+      dataIndex:'id',
+      width:20
+    },
+    {
       title: 'nama',
-      dataIndex: 'user.firsName',
+      dataIndex: 'user',
+      render: (user:any) => <p>{user?.firstName} {user?.lastName}</p>,
     },
     {
       title: 'email',
@@ -23,7 +29,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Сообщение" setSearch={setSearch} search={search} url='user-messages' />
+      <TopBar title="Сообщение" setSearch={setSearch} search={search}  />
       <div className="p-4">
         <GlobalTitle isAction={false} api='user-messages' url='user-messages' columns={columns} filter={{email:search||undefined,relations:['user']}}/>
       </div>

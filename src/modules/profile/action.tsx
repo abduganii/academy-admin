@@ -26,6 +26,11 @@ export default function CreatePage() {
         onSuccess={() => {
             navigate("/books");
         }}
+        customData={(value: any) => {
+          const returnResult: any = JSON.parse(JSON.stringify(value));
+          !returnResult["password"] && delete returnResult["password"];
+          return returnResult;
+        }}
         onError={(e: any) => {
           console.log(e, "onError");
         }}

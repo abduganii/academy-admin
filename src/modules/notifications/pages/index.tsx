@@ -7,6 +7,11 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
+      title: '№',
+      dataIndex: 'id',
+      width: 20,
+      },
+    {
     title: 'title',
     dataIndex: 'title',
   },

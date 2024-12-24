@@ -10,9 +10,9 @@ export default function Header() {
         const url = `/${pathnames.slice(0, index + 1).join('/')}`;
         return {
             title: index < pathnames.length - 1 ? (
-                <Link to={url}>{name}</Link>
+                <Link to={url}>{name.replace('%20',' ')}</Link>
             ) : (
-                name
+                name.replace('%20',' ')
             ),
         };
     });

@@ -9,15 +9,16 @@ import { queryClient } from '../service/api';
 
 interface Iprops {
     columns: any;
-    url:string;
+    url?:string;
     api:string;
     filter?: any;
     openMadal?:any;
     relations?:any;
     isUpdate?:any;
-    isAction?:any
+    isAction?:any;
+    handleRowClick?:any
 }
-const GlobalTitle = ({columns,api,url,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
+const GlobalTitle = ({columns,api,url,handleRowClick,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
     const navigate = useNavigate()
     const [page,setPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
@@ -81,9 +82,13 @@ const GlobalTitle = ({columns,api,url,openMadal,filter,isAction=true,isUpdate=tr
             
       </Modal>
         <Table
+        className={handleRowClick? 'cursor-pointer':""}
         columns={isAction ?[...columns, Actioncolumns]:columns}
         dataSource={data?.data}
         loading={isLoading}
+        onRow={handleRowClick? (record) => ({
+          onClick: () => handleRowClick(record),
+        }):undefined}  
         onChange={(e:any)=>{
            setPage( e.current)
            setPageSize( e.pageSize)

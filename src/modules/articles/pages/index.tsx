@@ -7,6 +7,11 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
+      title: '№',
+      dataIndex: 'id',
+      width: 20,
+      },
+    {
     title: 'Title',
     dataIndex: 'title',
   },
@@ -16,8 +21,15 @@ export default function IndexPage() {
   },
   {
     title: 'author',
-    dataIndex: 'author.name',
-  }
+    dataIndex: 'author',
+    render: (author:any) => <p>{author?.name}</p>,
+    
+  },
+  {
+    title: 'Дата первого прочтения',
+    dataIndex: 'created_at',
+    render: (text:any) => <p>{text.slice(0,10)}</p>,
+  },
   ]
   return (
     <div>

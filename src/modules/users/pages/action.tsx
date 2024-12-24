@@ -33,12 +33,18 @@ export default function CreatePage() {
         isFormData={false}
         setLoader={setLoader}
         fields={DataFiels(data?.data)}
+        customData={(value: any) => {
+          const returnResult: any = JSON.parse(JSON.stringify(value));
+          !returnResult["password"] && delete returnResult["password"];
+          return returnResult;
+        }}
         onSuccess={() => {
             navigate("/users");
         }}
         onError={(e: any) => {
           console.log(e, "onError");
         }}
+        
         onFinal={() => {
           setLoader(false);
         }}

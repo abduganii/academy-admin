@@ -7,6 +7,11 @@ export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const columns = [
     {
+      title:'№',
+      dataIndex:'id',
+      width:20
+    },
+    {
       title: 'fullName',
       dataIndex: 'fullName',
       // colSpan:3
@@ -32,7 +37,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Сообщение" setSearch={setSearch} search={search} url='contact-us-messages' />
+      <TopBar title="Сообщение" setSearch={setSearch} search={search}  />
       <div className="p-4">
         <GlobalTitle isAction={false} api='contact-us-messages' url='contact-us-messages' columns={columns} filter={{fullName:search||undefined}}/>
       </div>

@@ -45,16 +45,16 @@ const Adminitems: MenuItem[] = [
       { key: '/analytics', label: 'Аналитика' },
     ],
   },
-  // {
-  //   key: '2',
-  //   icon: <MailOutlined />,
-  //   label: 'Статистика',
-  //   children: [
-  //     { key: '/news', label: 'Пользователи' },
-  //     { key: '/tags', label: 'Посещения' },
-  //     { key: '/tags', label: 'Просмотр' },
-  //   ],
-  // },
+  {
+    key: '2',
+    icon: <MailOutlined />,
+    label: 'Статистика',
+    children: [
+      { key: '/statistics-users', label: 'Пользователи' },
+      { key: '/statistics-visits', label: 'Посещения' },
+      { key: '/statistics-view', label: 'Просмотр' },
+    ],
+  },
   {
     key: '/users',
     icon: <MailOutlined />,

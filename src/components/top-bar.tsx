@@ -7,7 +7,7 @@ interface IPops {
     openMadal?:any,
     url?:string,
     setSearch?:any,
-    search?:any
+    search?:any,
 }
 const debounce = <F extends (...args: any[]) => any>(
   func: F,

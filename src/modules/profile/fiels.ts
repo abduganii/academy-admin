@@ -19,6 +19,11 @@ export const  DataFiels = (data:any)=>  [
       value:data?.middleName || '',
     },
     {
+      name: "password",
+      validationType:"string",
+      value:data?.password || undefined,
+    },
+    {
       name: "phone",
       validationType:"string",
       validations: [{ type: "required" },{type:'phone' }],

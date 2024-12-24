@@ -18,6 +18,11 @@ export default function IndexPage() {
    const queryClient = useQueryClient();
   const columns = [
     {
+      title: '№',
+      dataIndex: 'id',
+      width: 20,
+      },
+    {
       title: 'Title',
       dataIndex: 'name',
     }
