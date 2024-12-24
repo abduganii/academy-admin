@@ -41,7 +41,7 @@ const Adminitems: MenuItem[] = [
         
          ]
        },
-      // { key: '/map', label: 'Карта' },
+      { key: '/maps', label: 'Карта' },
       { key: '/analytics', label: 'Аналитика' },
     ],
   },
@@ -97,7 +97,7 @@ const Manegeritems: MenuItem[] = [
       // { key: '/literature', label: 'Литература' },
      
       { key: '/articles', label: 'Статьи'},
-      // { key: '/map', label: 'Карта' },
+      { key: '/maps', label: 'Карта' },
       { key: '/analytics', label: 'Аналитика' },
     ],
   },

@@ -22,12 +22,12 @@ export default function IndexOnePage() {
     {
       title: 'Дата первого прочтения',
       dataIndex: 'created_at',
-      render: (text:any) => <p>{text.slice(0,10)}</p>,
+      render: (text:string) => <p>{text.slice(0,10)}</p>,
     },
     {
       title: 'Общее время прочтения',
       dataIndex: 'total_duration',
-      render: (text:any) => <p>{text / 60 } часов</p>,
+      render: (text:number | string) => <p>{Number(text) / 60 } часов</p>,
       
     },
     {
