@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { FormContainer } from "../../../components/Forms";
-import TopBar from "../../../components/top-bar";
 import GlobalInput from "../../../components/global-input";
 import SubmitBtn from "../../../components/submit-btn";
 import {  GetByIdData } from "../../../service/global";
