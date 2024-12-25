@@ -31,7 +31,6 @@ Object.values(dynimicImportRoutes).forEach(el=>{
 const nestedRoutes = (routes: IRouter[]) =>
     routes.map(({ Element, url, children ,meta}: IRouter) => {
         const role = useSelector((state: any) => state.role?.Role) || Store.getRole();
-        console.log(role)
         if(meta?.isLoginIf && meta.role.has(role)){
             if (children?.length ) {
                 return (

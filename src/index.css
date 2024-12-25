@@ -14,3 +14,6 @@
   .colm2{
     width: calc((100% - 16px) / 2);
   }
+  .ant-tabs-nav{
+    margin-bottom: 0 !important;
+  }

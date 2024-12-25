@@ -9,26 +9,25 @@ export default function IndexPage() {
       title: '№',
       dataIndex: 'id',
       width: 20,
-      },
-     
+    },
     {
-    title: 'Name',
-    dataIndex: 'name',
+      title: 'Name',
+      dataIndex: 'name',
     },
     {
       title: 'price',
       dataIndex: 'price',
-      render: (price:any) => <p>{price} sum</p>,
+      render: (price: any) => <p>{price} sum</p>,
     }
   ]
  
   return (
     <div>
-      <TopSerach/>
+      <TopSerach />
       <div className="p-4">
         <GlobalTitle 
         api="maps"
-        handleRowClick={(e:any)=>navigate(`/maps/${e?.id}`)}
+        handleRowClick={(e:any)=>navigate(`/maps/${e?.id}?name=${e?.name}`)}
         isAction={false}
         url='maps'
         columns={columns}

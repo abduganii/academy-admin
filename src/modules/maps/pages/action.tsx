@@ -8,17 +8,8 @@ import {  GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
-import { ColorPicker, Tabs } from "antd";
-const items: any = [
-  {
-    key: 'modul',
-    label: 'modul',
-  },
-  {
-    key: 'info_country',
-    label: 'info_country',
-  },
-];
+import { ColorPicker } from "antd";
+
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const [params] = useSearchParams()
@@ -31,15 +22,11 @@ export default function CreatePage() {
     enabled: id != "new"
   }
   );
- 
 
   return (
     <>
       <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px] mt-3 font-semibold">{id == "new"? `Добавить`:"Редактировать"}</p>
-        <Tabs className={`inline-block`} defaultActiveKey={'uz'} items={items} onChange={(key:string)=> {
-          console.log(key)
-        }} />
+        <p className="text-[28px] leading-[33px]  font-semibold">{id == "new"? `Добавить`:"Редактировать"}</p>
       </div>
       {isLoading?"": <FormContainer
         url={"maps"}
@@ -56,7 +43,7 @@ export default function CreatePage() {
             name: "color",
             validationType:"string",
             validations: [{ type: "required" }],
-            value:data?.data?.color || '',
+            value:data?.data?.color || '#000',
           }
         ]}
         onSuccess={() => {
@@ -88,11 +75,13 @@ export default function CreatePage() {
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
+                    disabled={true}
                   />
                    <p className="text-[14px] leading-[24px] mb-[6px]">color</p>
                    <ColorPicker
                     className="w-full justify-start px-2 py-3"
-                    defaultValue="#000"
+                    // defaultValue="#000"
+                    value={formik.values.color}
                     onChange={(e:any)=> formik.setFieldValue(`color`, e.toHexString())}
                     showText={(color:any) => <span>Custom Text ({color.toHexString()})</span>}
                   />
