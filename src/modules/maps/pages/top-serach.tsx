@@ -24,7 +24,7 @@ export default function TopSerach() {
             className="ml-auto w-full max-w-[475px]"
             placeholder="Select a person"
             optionFilterProp="label"
-            onSelect={(e)=>navigate(`/maps/new?name=${e}`)}
+            onSelect={(e)=>navigate(`/maps/new/modul?name=${e}`)}
             options={[
                 {
                     value: 'uzbekistan',
@@ -37,6 +37,14 @@ export default function TopSerach() {
                 {
                     value: 'tajikistan',
                     label: 'tajikistan',
+                },
+                {
+                    value: 'franch',
+                    label: 'franch',
+                },
+                {
+                    value: 'Kazak',
+                    label: 'Kazak',
                 },
             ]}
         />

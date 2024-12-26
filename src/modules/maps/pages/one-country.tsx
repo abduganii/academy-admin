@@ -1,10 +1,11 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import TopBar from "../../../components/top-bar";
 import { Table } from "antd";
 
 export default function IndexCountryPage() {
   const navigate = useNavigate()
   const [params] = useSearchParams()
+  const {id} = useParams()
   const columns = [
     {
       title: '№',
@@ -23,7 +24,7 @@ export default function IndexCountryPage() {
         title:"modul",
     },
     {
-        id:1,
+        id:2,
         title:"info_country"
     },
   ]
@@ -37,7 +38,7 @@ export default function IndexCountryPage() {
         columns={columns}
         dataSource={data}
         onRow={(record) => ({
-          onClick: () => navigate(`/maps/${record?.id}/${record?.title}`),
+          onClick: () => navigate(`/maps/${id}/${record?.title}`),
         })}  
         />
       </div>
