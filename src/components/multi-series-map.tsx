@@ -5,13 +5,9 @@ import * as am5map from '@amcharts/amcharts5/map';
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-type CountryColor = {
-  id?: string;
-  name?: string;
-  color: string;
-};
 
-const ColoredMap: React.FC = ({data}:any) => {
+
+const ColoredMap: React.FC = ({data}:any):any => {
   const navigate = useNavigate()
   const chartRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
