@@ -37,7 +37,7 @@ export default function CreatePage() {
             value:Number(id),
           }, ...DataFiels(data?.data)]}
         onSuccess={() => {
-          navigate(`/maps/${id}/info_country/indexed`);
+          navigate(`/maps/${id}/info_country/indexes`);
         }}
         onError={(e: any) => {
           console.log(e, "onError");

@@ -71,7 +71,6 @@ const ColoredMap: React.FC = ({data}:any) => {
     polygonSeries.mapPolygons.template.on("active", function (_: any, target: any) {
       console.log(target.dataItem?.dataContext)
       const country = data?.find((c: any) => c.name === target.dataItem?.dataContext?.name);
-      console.log(country)
       if (country) {
         navigate(`/maps/${country?.id}?name=${target.dataItem?.dataContext?.name}&id=${target.dataItem?.dataContext?.id}`)
       } else {

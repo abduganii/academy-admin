@@ -149,7 +149,6 @@ export default function CreatePage() {
                     placeholder={'published_at'}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
-                      console.log(e)
                       formik.setFieldValue(`published_at`, e);
                     }}
                     errors={(formik.errors as any).published_at}

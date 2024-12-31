@@ -132,7 +132,6 @@ export default function CreatePage() {
                     placeholder={'publishStartTime'}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
-                      console.log(e)
                       formik.setFieldValue(`publishStartTime`, e);
                     }}
                     errors={(formik.errors as any).publishStartTime}
@@ -147,7 +146,6 @@ export default function CreatePage() {
                   placeholder={'publishEndTime'}
                   className={"mb-4 colm1"}
                   localChange={(e:any)=>{
-                    console.log(e)
                     formik.setFieldValue(`publishEndTime`, e);
                   }}
                   errors={(formik.errors as any).publishEndTime}

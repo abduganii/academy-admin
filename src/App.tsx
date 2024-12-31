@@ -29,7 +29,6 @@ function App() {
   },[userMe])
   
   useEffect(() => {
-    console.log(userMe,"ds")
     if (!isAuth) {
       navigate("/auth/login");
     } else if (location.pathname == "/" || location.pathname == "/auth/login") {
