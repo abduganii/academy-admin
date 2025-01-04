@@ -1,7 +1,7 @@
 import {LoadingOutlined, UploadOutlined} from "@ant-design/icons"
 import { UploadFile } from "../service/upload";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface iProps{
     label:string,
     className?:string,
@@ -15,6 +15,9 @@ interface iProps{
 export default function FileUpload({label,errors,text,valueName,acceptTypes, onUpload,className}:iProps) {
   const [loadingFile, setLoadingFile] = useState<boolean>(false);
   const [fileName, setfileName] = useState<string>(valueName||'');
+  useEffect(()=>{
+    setfileName(valueName)
+  },[valueName])
   const hendleimg = async (e: any) => {
     setLoadingFile(true)
     if (e.target.files[0] && e.target.files[0]?.size < 5000000) {

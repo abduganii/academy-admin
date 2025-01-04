@@ -16,9 +16,11 @@ interface Iprops {
     relations?:any;
     isUpdate?:any;
     isAction?:any;
-    handleRowClick?:any
+    handleRowClick?:any;
+    onCooperationsChange?:any;
+    params?:any
 }
-const GlobalTitle = ({columns,api,url,handleRowClick,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
+const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
     const navigate = useNavigate()
     const [page,setPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
@@ -39,10 +41,17 @@ const GlobalTitle = ({columns,api,url,handleRowClick,openMadal,filter,isAction=t
         fixed: 'right',
         width: 100,
         render: (e: any) => <div className='flex gap-[6px]'>
+          {
+            onCooperationsChange? 
+            <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>onCooperationsChange(e?.id)} type="primary" danger>
+             <FormOutlined />
+            </Button>:
             <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>setOpen(e?.id)} type="primary" danger>
-             <DeleteOutlined />
-            </Button>
-         {isUpdate?   <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={openMadal? ()=> openMadal(e?.id): ()=>navigate(`/${url}/${e?.id}`)} type="primary" block>
+            <DeleteOutlined />
+           </Button>
+          }
+            
+            {isUpdate?   <Button className='w-[30px] max-w-[30px] aspect-square flex items-center justify-center' onClick={openMadal? ()=> openMadal(e?.id): ()=>navigate(`/${url}/${e?.id}${ params ?params:''}`)} type="primary" block>
                 <FormOutlined />
             </Button>:''}
         </div>,
@@ -83,7 +92,7 @@ const GlobalTitle = ({columns,api,url,handleRowClick,openMadal,filter,isAction=t
       </Modal>
         <Table
         className={handleRowClick? 'cursor-pointer':""}
-        columns={isAction ?[...columns, Actioncolumns]:columns}
+        columns={isAction ? [...columns, Actioncolumns]:columns}
         dataSource={data?.data}
         loading={isLoading}
         onRow={handleRowClick? (record) => ({

@@ -16,7 +16,7 @@ export default function CreatePage() {
     const { id } = useParams();
   
     const { data } = useQuery(["oneVideos",id], () =>
-      GetByIdData("videos",id),
+      GetByIdData("videos",id,),
     {
       enabled: id != "new"
     }
@@ -24,8 +24,7 @@ export default function CreatePage() {
     const { isLoading:landLoading, data: staticLang} = useQuery('static-lang',() =>GetAllData('static-data/Languages'));
     const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
     const { isLoading:tagsLoading, data: tags} = useQuery('tags',() =>GetAllData('tags'));
-
-   
+  
   return (
     <>
       <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />

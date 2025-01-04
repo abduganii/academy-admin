@@ -8,6 +8,7 @@ interface IPops {
     url?:string,
     setSearch?:any,
     search?:any,
+    params?:any
 }
 const debounce = <F extends (...args: any[]) => any>(
   func: F,
@@ -22,7 +23,7 @@ const debounce = <F extends (...args: any[]) => any>(
   };
 };
 
-export default function TopBar({title,url,setSearch,openMadal}:IPops) {
+export default function TopBar({title,url,params,setSearch,openMadal}:IPops) {
     const navigate = useNavigate()
   return (
     <div className="flex  gap-[20px] items-center p-4 w-full bg-white">
@@ -30,7 +31,7 @@ export default function TopBar({title,url,setSearch,openMadal}:IPops) {
         {setSearch && <Input prefix={<SearchOutlined />}  className="w-full max-w-[300px]"  onChange={debounce((e) => {
           setSearch(e.target.value)
         }, 700)} placeholder="search"/>}
-        {url && <Button className="ml-auto" type="primary" size="large" onClick={openMadal? openMadal: ()=>navigate('/'+url+"/new")}>+ Добавить</Button>}
+        {url && <Button className="ml-auto" type="primary" size="large" onClick={openMadal? openMadal: ()=>navigate('/'+url+"/new"+ `${params ? params:''}`)}>+ Добавить</Button>}
     </div>
   )
 }

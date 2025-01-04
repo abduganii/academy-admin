@@ -17,13 +17,16 @@ export default function IndexPage() {
     title: 'firstName',
     dataIndex: 'firstName',
   },
+
   {
     title: 'date',
     dataIndex: 'created_at',
+    render: (text:any) => <p>{text.slice(0,10)}</p>,
   },
   {
     title: 'liveTime',
     dataIndex: 'liveTime',
+    render: (time:any) => <p>{time / 3600} </p>,
   },
 
   

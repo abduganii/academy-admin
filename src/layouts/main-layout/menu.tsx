@@ -43,6 +43,15 @@ const Adminitems: MenuItem[] = [
        },
       { key: '/maps', label: 'Карта' },
       { key: '/analytics', label: 'Аналитика' },
+      { 
+        key: '/courses', label: 'Курсы',
+        children: [
+          { key: '/courses?type=local', label: 'Наши курсы'},
+          { key: '/courses?type=virtual', label: 'Виртуальная академия' },
+          { key: '/courses?type=international', label: 'Международные курсы' },
+         ]
+       },
+      // /courses
     ],
   },
   {
@@ -77,7 +86,11 @@ const Adminitems: MenuItem[] = [
     key: '/news',
     icon: <MailOutlined />,
     label: 'Новости',
-    
+  },
+  {
+    key: '/cooperations',
+    icon: <MailOutlined />,
+    label: 'Сотрудничество',
   },
 ];
 const Manegeritems: MenuItem[] = [
@@ -132,9 +145,14 @@ const Manegeritems: MenuItem[] = [
     key: '/news',
     icon: <MailOutlined />,
     label: 'Новости',
-    
+  },
+  {
+    key: '/cooperations',
+    icon: <MailOutlined />,
+    label: 'Сотрудничество',
   },
 ];
+
 
 const SiteBar: React.FC = () => {
   const role = useSelector((state: any) => state.role?.Role) || Store.getRole();

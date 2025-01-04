@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import  { useLayoutEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import * as am5 from '@amcharts/amcharts5';
 import * as am5map from '@amcharts/amcharts5/map';
@@ -7,7 +7,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 
 
-const ColoredMap: React.FC = ({data}:any):any => {
+const ColoredMap: any = ({data}:any):any => {
   const navigate = useNavigate()
   const chartRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
