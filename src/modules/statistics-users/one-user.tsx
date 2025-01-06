@@ -17,7 +17,7 @@ export default function IndexOnePage() {
       },
     {
       title: 'Название',
-      render: (text:any) => <p>{text?.book?.name||text?.article?.title}</p>,
+      render: (text:any) => <p>{text?.book?.name||text?.article?.title   ||text?.video?.name}</p>,
     },
     {
       title: 'Дата первого прочтения',
@@ -56,7 +56,7 @@ const items: any = [
   return (
     <div>
        <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px] font-semibold mt-2">{param?.id}</p>
+        <p className="text-[28px] leading-[33px] font-semibold mt-2">{params.get("userName")}</p>
         <Tabs className={`inline-block`}  defaultActiveKey={type} items={items} onChange={(key:string)=> {
           setType(key)
       }} />
@@ -66,8 +66,8 @@ const items: any = [
       </div> */}
       <div className="p-4">
         <GlobalTitle 
-            handleRowClick={(e:any)=>navigate(`/statistics-users/${param?.id}/${type == "book"? e?.book?.name:e?.article?.title}?userId=${params.get("userId")}&itemsId=${e?.[type]?.id}&type=${type}`)}
-            api={`stats/user/${params.get("userId")}`} 
+            handleRowClick={(e:any)=>navigate(`/statistics-users/${param?.id}/${e?.[type]?.id}?userName=${params.get("userName")}&itemsName=${type == "book"? e?.book?.name : e?.article?.title}&type=${type}`)}
+            api={`stats/user/${param.id}`} 
             isAction={false}
             url='statistics-users' 
             columns={columns}

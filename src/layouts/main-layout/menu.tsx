@@ -88,6 +88,11 @@ const Adminitems: MenuItem[] = [
     label: 'Новости',
   },
   {
+    key: '/reviews',
+    icon: <MailOutlined />,
+    label: 'reviews',
+  },
+  {
     key: '/cooperations',
     icon: <MailOutlined />,
     label: 'Сотрудничество',
@@ -145,6 +150,11 @@ const Manegeritems: MenuItem[] = [
     key: '/news',
     icon: <MailOutlined />,
     label: 'Новости',
+  },
+  {
+    key: '/reviews',
+    icon: <MailOutlined />,
+    label: 'reviews',
   },
   {
     key: '/cooperations',

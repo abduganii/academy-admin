@@ -39,7 +39,7 @@ export default function IndexPage() {
       </div> */}
       <div className="p-4">
         <GlobalTitle 
-        handleRowClick={(e:any)=>navigate(`/statistics-users/${`${e?.firstName} ${e?.lastName}`}?userId=${e?.id}`)}
+        handleRowClick={(e:any)=>navigate(`/statistics-users/${e?.id}?userName=${`${e?.firstName} ${e?.lastName}`}`)}
         api='users'
         isAction={false} 
         url='statistics-users' 

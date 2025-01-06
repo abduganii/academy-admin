@@ -28,7 +28,7 @@ export default function OneBook() {
   return (
     <div>
        <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-          <p className="text-[28px] leading-[33px] font-semibold mt-2">{params.get("type")}: {param.userId}</p>
+          <p className="text-[28px] leading-[33px] font-semibold mt-2">{params.get("type")}: {params.get('itemsName')}</p>
       </div>
       <div className="p-4">
         <GlobalTitle
@@ -38,7 +38,7 @@ export default function OneBook() {
         filter={{
           timingType:"reading",
           itemType:params.get("type"),
-          userId:params.get("userId")
+          userId:param.id
         }}
         />
       </div>
