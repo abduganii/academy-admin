@@ -82,6 +82,12 @@ const Adminitems: MenuItem[] = [
       { key: '/notifications', label: 'Отправить уведомление' },
     ],
   },
+  
+  {
+    key: '/action_history',
+    icon: <MailOutlined />,
+    label: 'Журнал-logo',
+  },
   {
     key: '/news',
     icon: <MailOutlined />,

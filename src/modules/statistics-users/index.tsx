@@ -26,7 +26,7 @@ export default function IndexPage() {
   {
     title: 'liveTime',
     dataIndex: 'liveTime',
-    render: (time:any) => <p>{time / 3600} </p>,
+    render: (time:any) => <p>{time / 3600} часов </p>,
   },
 
   

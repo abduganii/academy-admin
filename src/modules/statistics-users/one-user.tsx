@@ -27,7 +27,7 @@ export default function IndexOnePage() {
     {
       title: 'Общее время прочтения',
       dataIndex: 'total_duration',
-      render: (text:number | string) => <p>{Number(text) / 60 } часов</p>,
+      render: (text:number | string) => <p>{Number(text) / 3600 } часов</p>,
       
     },
     {
