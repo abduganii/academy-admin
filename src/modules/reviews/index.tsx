@@ -1,5 +1,5 @@
 import GlobalTitle from "../../components/global-table";
-import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Rate, Tabs } from "antd";
 import { useState } from "react";
 

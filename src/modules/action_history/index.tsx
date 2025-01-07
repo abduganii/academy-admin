@@ -1,6 +1,5 @@
 import { useState } from "react";
 import GlobalTitle from "../../components/global-table";
-import { Tabs } from "antd";
 import TopBar from "../../components/top-bar";
 
 
