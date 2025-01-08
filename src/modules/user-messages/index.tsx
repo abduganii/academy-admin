@@ -1,10 +1,12 @@
 import { useState } from "react";
 import GlobalTitle from "../../components/global-table";
 import TopBar from "../../components/top-bar";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
+  const {t}= useTranslation()
   const columns = [
     {
       title:'№',
@@ -12,16 +14,16 @@ export default function IndexPage() {
       width:20
     },
     {
-      title: 'nama',
+      title: t('nama'),
       dataIndex: 'user',
       render: (user:any) => <p>{user?.firstName} {user?.lastName}</p>,
     },
     {
-      title: 'email',
+      title: t('email'),
       dataIndex: 'email',
     },
     {
-    title: 'text',
+    title: t('text'),
     dataIndex: 'text',
   },
 
@@ -29,7 +31,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Сообщение" setSearch={setSearch} search={search}  />
+      <TopBar title="messages" setSearch={setSearch} search={search}  />
       <div className="p-4">
         <GlobalTitle isAction={false} api='user-messages' url='user-messages' columns={columns} filter={{email:search||undefined,relations:['user']}}/>
       </div>

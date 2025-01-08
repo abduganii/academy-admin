@@ -9,6 +9,7 @@ import { Button, Modal } from "antd";
 import { useQuery, useQueryClient } from "react-query";
 import { GetByIdData } from "../../../service/global";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
@@ -16,6 +17,7 @@ export default function IndexPage() {
   const language = useSelector((state:any) => state.lang?.lang);
   const [loader, setLoader] = useState<boolean>(false);
    const queryClient = useQueryClient();
+   const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -23,7 +25,7 @@ export default function IndexPage() {
       width: 20,
       },
     {
-      title: 'Title',
+      title: t('name'),
       dataIndex: 'name',
     }
     ] 
@@ -36,7 +38,7 @@ export default function IndexPage() {
     
   return (
     <div>
-      <TopBar openMadal={()=>setOpenId('new')} title="Теги" setSearch={setSearch} search={search} url='tags' />
+      <TopBar openMadal={()=>setOpenId('new')} title="tags" setSearch={setSearch} search={search} url='tags' />
       <div className="p-4">
         <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='tags' url='tags' columns={columns} filter={{name:search||undefined}}/>
       </div>
@@ -45,7 +47,7 @@ export default function IndexPage() {
         footer={null}
         className='w-full min-h-[400px] max-w-[483px]'
         loading={openId == "new" ? false: madalLoading}
-        title={openId == "new" ? 'Добавить тег':'Редактировать тег'}
+        title={openId == "new" ? t('add'):t('update')}
          open={Boolean(openId)} 
          onCancel={()=>setOpenId(false)}
          >
@@ -83,15 +85,15 @@ export default function IndexPage() {
                     type="text"
                     formik={formik}
                     value={formik.values.name}
-                    label={"Название тега"}
+                    label={t('name')}
                     name={`name`}
                     id={"name"}
-                    placeholder={'Название тега'}
+                    placeholder={t('name')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                   />
               </div>
-              <Button loading={loader} className='w-full' type="primary" size="large" htmlType="submit" >Сохранить</Button>
+              <Button loading={loader} className='w-full' type="primary" size="large" htmlType="submit" >{t('save')}</Button>
             </>
           );
         }}

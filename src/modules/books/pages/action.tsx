@@ -11,12 +11,14 @@ import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const language = useSelector((state:any) => state.lang?.lang); 
   const { id } = useParams();
+  const {t} = useTranslation()
   const { data,isLoading } = useQuery(["oneBooks",id,language], () =>
     GetByIdData("books",id),
   {
@@ -32,7 +34,7 @@ export default function CreatePage() {
 
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       
       {isLoading?"": <FormContainer
         url={"books"}
@@ -61,10 +63,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.name}
-                    label={"name"}
+                    label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={'name'}
+                    placeholder={t('name')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
@@ -74,8 +76,8 @@ export default function CreatePage() {
                     acceptTypes="image/*"
                     valueName={data?.data?.image?.name || ''}
                     className={"mb-4"}
-                      label="Обложка"
-                      text="Загрузить"
+                      label={t('cover')}
+                      text={t('dowload')}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`image`, e?.data?.id);
                       }}
@@ -88,11 +90,11 @@ export default function CreatePage() {
                     options={staticLang?.data}
                     fieldNames={{value: 'id', label: 'name'}}
                     value={formik.values.lang }
-                    label={"lang"}
+                    label={t("lang")}
                     name={`lang`}
                     id={"lang"}
                     typeValue=""
-                    placeholder={'lang'}
+                    placeholder={t('lang')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.lang}
                     localChange={(e:any)=>{
@@ -106,11 +108,11 @@ export default function CreatePage() {
                       options={translators?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.translator }
-                      label={"translator"}
+                      label={t("translator")}
                       name={`translator`}
                       typeValue=""
                       id={"translator"}
-                      placeholder={'translator'}
+                      placeholder={t('translator')}
                       className={"mb-4"}
                       errors={formik.errors.translator}
                       localChange={(e:any)=>{
@@ -121,10 +123,10 @@ export default function CreatePage() {
                     type="datePicker"
                     formik={formik}
                     value={formik.values?.published_at}
-                    label={"published_at"}
+                    label={t("published_at")}
                     name={`published_at`}
                     id={"published_at"}
-                    placeholder={'published_at'}
+                    placeholder={t('published_at')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`published_at`, e);
@@ -138,11 +140,11 @@ export default function CreatePage() {
                       options={authors?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.author }
-                      label={"author"}
+                      label={t("author")}
                       name={`author`}
                       typeValue=""
                       id={"author"}
-                      placeholder={'author'}
+                      placeholder={t("author")}
                       className={"mb-4"}
                       errors={formik.errors.author}
                       localChange={(e:any)=>{
@@ -156,11 +158,11 @@ export default function CreatePage() {
                       options={publishers?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.publisher}
-                      label={"publisher"}
+                      label={t("publisher")}
                       name={`publisher`}
                       typeValue=""
                       id={"publisher"}
-                      placeholder={'publisher'}
+                      placeholder={t('publisher')}
                       className={"mb-4"}
                       errors={formik.errors.publisher}
                       localChange={(e:any)=>{
@@ -172,11 +174,11 @@ export default function CreatePage() {
                     type="number"
                     formik={formik}
                     value={formik.values.pageCount}
-                    label={"pageCount"}
+                    label={t("pageCount")}
                     name={`pageCount`}
                     id={"pageCount"}
                     typeValue='number'
-                    placeholder={'pageCount'}
+                    placeholder={t('pageCount')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.pageCount}
                   />
@@ -184,10 +186,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.annotation}
-                    label={"annotation"}
+                    label={t(t('annotation'))}
                     name={`annotation`}
-                    id={"annotation"}
-                    placeholder={'annotation'}
+                    id={t('annotation')}
+                    placeholder={t('annotation')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                   />
@@ -198,11 +200,11 @@ export default function CreatePage() {
                       fieldNames={{value: 'id', label: 'name'}}
                       options={tags?.data}
                       value={formik.values.tags }
-                      label={"tags"}
+                      label={t("tags")}
                       name={`tags`}
                       typeValue="multiple"
                       id={"tags"}
-                      placeholder={'tags'}
+                      placeholder={t("tags")}
                       className={"mb-4"}
                       errors={formik.errors.tags}
                       localChange={(e:any)=>{
@@ -215,11 +217,11 @@ export default function CreatePage() {
                       options={staticSections?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.section }
-                      label={"section"}
+                      label={t("section")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={'section'}
+                      placeholder={t("section")}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -233,11 +235,11 @@ export default function CreatePage() {
                         { value: true, label: 'unfreee' },
                        ]}
                       value={formik.values.isPaid}
-                      label={"isPaid"}
+                      label={t("isPaid")}
                       name={`isPaid`}
                       typeValue=""
                       id={"isPaid"}
-                      placeholder={'isPaid'}
+                      placeholder={t("isPaid")}
                       className={"mb-4"}
                       errors={formik.errors.isPaid}
                       localChange={(e:any)=>{
@@ -247,19 +249,19 @@ export default function CreatePage() {
                       type="number"
                       formik={formik}
                       value={formik.values.price}
-                      label={"price"}
+                      label={t("price")}
                       name={`price`}
                       id={"price"}
                         typeValue='number'
-                      placeholder={'price'}
+                      placeholder={t('price')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.price}
                     />
                       <FileUpload
                        acceptTypes=".pdf,.doc,.docx"
                     className={"mb-4"}
-                      label="Загрузить файл"
-                      text="Загрузить"
+                      label={t('dowloadFile')}
+                      text={t('dowload')}
                       errors={formik.errors.file}
                       valueName={data?.data?.file?.name || ''}
                       onUpload={(e: any)=>{

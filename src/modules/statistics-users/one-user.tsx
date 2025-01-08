@@ -2,6 +2,7 @@ import GlobalTitle from "../../components/global-table";
 import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Tabs } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexOnePage() {
@@ -9,6 +10,7 @@ export default function IndexOnePage() {
   const [params] = useSearchParams()
   const [ type ,setType] = useState('book')
   const navigate = useNavigate()
+  const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -16,22 +18,22 @@ export default function IndexOnePage() {
       width: 20,
       },
     {
-      title: 'Название',
+      title: t('name'),
       render: (text:any) => <p>{text?.book?.name||text?.article?.title   ||text?.video?.name}</p>,
     },
     {
-      title: 'Дата первого прочтения',
+      title:  t('created_at'),
       dataIndex: 'created_at',
       render: (text:string) => <p>{text.slice(0,10)}</p>,
     },
     {
-      title: 'Общее время прочтения',
+      title:   t('total_duration'),
       dataIndex: 'total_duration',
       render: (text:number | string) => <p>{Number(text) / 3600 } часов</p>,
       
     },
     {
-      title: 'Кол-во просмотров',
+      title: t('total_views'),
       dataIndex: 'total_views',
     },
  ]
@@ -40,16 +42,16 @@ export default function IndexOnePage() {
 const items: any = [
   {
     key: 'book',
-    label: 'book',
+    label: t('book'),
    
   },
   {
     key: 'article',
-    label: 'article',
+    label: t('article'),
   },
   {
     key: 'video',
-    label: 'video',
+    label: t('video'),
   },
 
 ];

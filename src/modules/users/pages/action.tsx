@@ -11,11 +11,13 @@ import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
 import { Switch } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
     const { id } = useParams();
+    const {t} = useTranslation()
     const language = useSelector((state:any) => state.lang?.lang); 
     const { data,isLoading } = useQuery(["oneUsers",id,language], () =>
       GetByIdData("users",id),
@@ -27,7 +29,7 @@ export default function CreatePage() {
     
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
         url={"users"}
         isFormData={false}
@@ -61,10 +63,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.firstName}
-                    label={"firstName"}
+                    label={t("firstName")}
                     name={`firstName`}
                     id={"firstName"}
-                    placeholder={'firstName'}
+                    placeholder={t('firstName')}
                     className={"colm1"}
                     errors={formik.errors.firstName}
                     required={true}
@@ -73,10 +75,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.lastName}
-                    label={"lastName"}
+                    label={t("lastName")}
                     name={`lastName`}
                     id={"lastName"}
-                    placeholder={'lastName'}
+                    placeholder={t('lastName')}
                     className={"colm1"}
                     errors={formik.errors.lastName}
                     required={true}
@@ -85,10 +87,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.middleName}
-                    label={"middleName"}
+                    label={t("middleName")}
                     name={`middleName`}
                     id={"middleName"}
-                    placeholder={'middleName'}
+                    placeholder={t('middleName')}
                     className={"colm1"}
                     errors={formik.errors.middleName}
                     required={true}
@@ -97,10 +99,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.password}
-                    label={"password"}
+                    label={t("password")}
                     name={`password`}
                     id={"password"}
-                    placeholder={'password'}
+                    placeholder={t('password')}
                     className={"colm1"}
                     errors={formik.errors.password}
                   /> 
@@ -108,10 +110,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.phone}
-                    label={"phone"}
+                    label={t("phone")}
                     name={`phone`}
                     id={"phone"}
-                    placeholder={'phone'}
+                    placeholder={t('phone')}
                     className={"colm2"}
                     errors={formik.errors.phone}
                     required={true}
@@ -122,10 +124,10 @@ export default function CreatePage() {
                     typeValue={'email'}
                     formik={formik}
                     value={formik.values.email}
-                    label={"email"}
+                    label={t("email")}
                     name={`email`}
                     id={"email"}
-                    placeholder={'email'}
+                    placeholder={t('email')}
                     className={"colm2"}
                     errors={formik.errors.email}
                     required={true}
@@ -134,10 +136,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.country}
-                    label={"country"}
+                    label={t("country")}
                     name={`country`}
                     id={"country"}
-                    placeholder={'country'}
+                    placeholder={t('country')}
                     className={"colm2"}
                     errors={formik.errors.country}
                     required={true}
@@ -146,10 +148,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.city}
-                    label={"city"}
+                    label={t("city")}
                     name={`city`}
                     id={"city"}
-                    placeholder={'city'}
+                    placeholder={t('city')}
                     className={"colm2"}
                     errors={formik.errors.city}
                     required={true}
@@ -158,10 +160,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.organization}
-                    label={"organization"}
+                    label={t("organization")}
                     name={`organization`}
                     id={"organization"}
-                    placeholder={'organization'}
+                    placeholder={t('organization')}
                     className={"colm2"}
                     errors={formik.errors.organization}
                     required={true}
@@ -170,10 +172,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.position}
-                    label={"position"}
+                    label={t("position")}
                     name={`position`}
                     id={"position"}
-                    placeholder={'position'}
+                    placeholder={t('position')}
                     className={"colm2"}
                     errors={formik.errors.position}
                     required={true}

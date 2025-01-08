@@ -9,8 +9,10 @@ import FileUpload from "../../../components/upload";
 import { DataFiels } from "./fiels";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
     const { id } = useParams();
@@ -27,7 +29,7 @@ export default function CreatePage() {
   
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       <FormContainer
         url={"videos"}
         isFormData={false}
@@ -55,10 +57,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.name}
-                    label={"name"}
+                    label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={'name'}
+                    placeholder={t('name')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
@@ -67,18 +69,18 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.description}
-                    label={"description"}
+                    label={t("description")}
                     name={`description`}
                     id={"description"}
-                    placeholder={'description'}
+                    placeholder={t('description')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.description}
                  />
                   <FileUpload
                     acceptTypes="image/*"
                     className={"mb-4"}
-                      label="Обложка"
-                      text="Загрузить"
+                      label={t('cover')}
+                      text={t('dowload')}
                       valueName={data?.data?.poster?.name || ''}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`poster`, e?.data?.id);
@@ -91,10 +93,10 @@ export default function CreatePage() {
                     typeValue={'number'}
                     formik={formik}
                     value={formik.values.releasedYear}
-                    label={"releasedYear"}
+                    label={t("releasedYear")}
                     name={`releasedYear`}
                     id={"releasedYear"}
-                    placeholder={'releasedYear'}
+                    placeholder={t('releasedYear')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.releasedYear}
                     required={true}
@@ -106,11 +108,11 @@ export default function CreatePage() {
                       options={staticLang?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.country || null}
-                      label={"country"}
+                      label={t("country")}
                       name={`country`}
                       id={"country"}
                       typeValue=""
-                      placeholder={'country'}
+                      placeholder={t('country')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.country}
                       localChange={(e:any)=>{
@@ -124,11 +126,11 @@ export default function CreatePage() {
                       options={staticLang?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.language || null}
-                      label={"language"}
+                      label={t("language")}
                       name={`language`}
                       id={"language"}
                       typeValue=""
-                      placeholder={'language'}
+                      placeholder={t('language')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.language}
                       localChange={(e:any)=>{
@@ -143,11 +145,11 @@ export default function CreatePage() {
                       options={staticSections?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.section || null}
-                      label={"section"}
+                      label={t("section")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={'section'}
+                      placeholder={t('section')}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -162,11 +164,11 @@ export default function CreatePage() {
                     fieldNames={{value: 'id', label: 'name'}}
                     options={tags?.data}
                     value={formik.values.tags || null}
-                    label={"tags"}
+                    label={t("tags")}
                     name={`tags`}
                     typeValue="multiple"
                     id={"tags"}
-                    placeholder={'tags'}
+                    placeholder={t('tags')}
                     className={"mb-4"}
                     errors={formik.errors.tags}
                     localChange={(e:any)=>{
@@ -177,8 +179,8 @@ export default function CreatePage() {
                       <FileUpload
                       acceptTypes="video/*"
                     className={"mb-4"}
-                      label="Загрузить файл"
-                      text="Загрузить"
+                    label={t('dowloadFile')}
+                    text={t('dowload')}
                       valueName={data?.data?.file?.name || ''}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`file`, e?.data?.id);

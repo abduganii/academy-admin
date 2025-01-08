@@ -2,11 +2,13 @@ import { useState } from "react";
 import GlobalTitle from "../../components/global-table";
 import TopBar from "../../components/top-bar";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
   const navigate = useNavigate()
+  const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -14,17 +16,17 @@ export default function IndexPage() {
       width: 20,
       },
     {
-    title: 'firstName',
+    title: t('firstName'),
     dataIndex: 'firstName',
   },
 
   {
-    title: 'date',
+    title: t('created_at'),
     dataIndex: 'created_at',
     render: (text:any) => <p>{text.slice(0,10)}</p>,
   },
   {
-    title: 'liveTime',
+    title: t('liveTime'),
     dataIndex: 'liveTime',
     render: (time:any) => <p>{time / 3600} часов </p>,
   },
@@ -33,7 +35,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Пользователи"  setSearch={setSearch} search={search}/>
+      <TopBar title="users"  setSearch={setSearch} search={search}/>
       {/* <div className='m-4 rounded-md bg-white p-4'>
       
       </div> */}

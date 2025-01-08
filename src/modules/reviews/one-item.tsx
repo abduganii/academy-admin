@@ -3,10 +3,12 @@ import { GetAllData } from "../../service/global";
 import { useQuery } from "react-query";
 import { Progress, Rate } from "antd";
 import GlobalTitle from "../../components/global-table";
+import { useTranslation } from "react-i18next";
 
 export default function OneItemPage() {
    const [params] = useSearchParams()
      const param = useParams()
+     const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -19,17 +21,17 @@ export default function OneItemPage() {
     render: (user:any) => <p>{user?.firstName} {user?.lastName}</p>,
     },
     {
-        title:"comment",
+        title:t("comment"),
         dataIndex: 'comment',
         width: 350,
     },
     {
-        title: 'rating',
+        title: t('rating'),
         dataIndex: 'star',
         render: (star:number) => <Rate value={star}/>,
       },
       {
-        title: 'date',
+        title: t('created_at'),
         dataIndex: 'created_at',
         render: (text:any) => <p>{text.slice(0,10)}</p>,
       },

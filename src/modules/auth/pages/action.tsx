@@ -6,9 +6,11 @@ import { Store } from "../../../utils/storage";
 import { useDispatch } from "react-redux";
 import { HandleAuth } from "../../../redux/auth";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ActionPage() {
    const [loader, setLoader] = useState<boolean>(false);
+   const { t} = useTranslation()
    const  dispatch = useDispatch()
    const navigate = useNavigate() 
   return (
@@ -54,10 +56,10 @@ export default function ActionPage() {
                           type="text"
                           formik={formik}
                           value={formik.values.email}
-                          label={"email"}
+                          label={t("email")}
                           name={`email`}
                           id={"email"}
-                          placeholder={'email'}
+                          placeholder={t('email')}
                           className={"mb-4 colm1"}
                           errors={formik.errors.email}
                           required={true}
@@ -67,16 +69,16 @@ export default function ActionPage() {
                             type="text"
                             formik={formik}
                             value={formik.values.password}
-                            label={"password"}
+                            label={t("password")}
                             name={`password`}
                             id={"password"}
                             typeValue='password'
-                            placeholder={'password'}
+                            placeholder={t('password')}
                             className={"mb-4 colm1"}
                             errors={formik.errors.password}
                           />
                           
-                          <Button type="primary" loading={loader} size="large" htmlType="submit" >Сохранить</Button>
+                          <Button type="primary" loading={loader} size="large" htmlType="submit" >{t("save")}</Button>
                       </div>
                     </div>
                   </div>

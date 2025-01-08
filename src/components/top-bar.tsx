@@ -2,6 +2,7 @@
 import { Button, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import {SearchOutlined} from "@ant-design/icons"
+import { useTranslation } from "react-i18next";
 interface IPops {
     title: string,
     openMadal?:any,
@@ -25,13 +26,14 @@ const debounce = <F extends (...args: any[]) => any>(
 
 export default function TopBar({title,url,params,setSearch,openMadal}:IPops) {
     const navigate = useNavigate()
+    const { t } = useTranslation();
   return (
     <div className="flex  gap-[20px] items-center p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px] font-semibold">{title}</p>
+        <p className="text-[28px] leading-[33px] font-semibold">{t(title)}</p>
         {setSearch && <Input prefix={<SearchOutlined />}  className="w-full max-w-[300px]"  onChange={debounce((e) => {
           setSearch(e.target.value)
-        }, 700)} placeholder="search"/>}
-        {url && <Button className="ml-auto" type="primary" size="large" onClick={openMadal? openMadal: ()=>navigate('/'+url+"/new"+ `${params ? params:''}`)}>+ Добавить</Button>}
+        }, 700)} placeholder={t('search')}/>}
+        {url && <Button className="ml-auto" type="primary" size="large" onClick={openMadal? openMadal: ()=>navigate('/'+url+"/new"+ `${params ? params:''}`)}>+ {t('add')}</Button>}
     </div>
   )
 }

@@ -9,8 +9,10 @@ import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
 import { ColorPicker } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const [params] = useSearchParams()
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function CreatePage() {
   return (
     <>
       <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px]  font-semibold">{id == "new"? `Добавить`:"Редактировать"}</p>
+        <p className="text-[28px] leading-[33px]  font-semibold">{id == "new"? t(`add`):t('update')}</p>
       </div>
       {isLoading?"": <FormContainer
         url={"maps"}
@@ -68,16 +70,16 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.name}
-                    label={"name"}
+                    label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={'name'}
+                    placeholder={t('name')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
                     disabled={true}
                   />
-                   <p className="text-[14px] leading-[24px] mb-[6px]">color</p>
+                   <p className="text-[14px] leading-[24px] mb-[6px]">{t('color')}</p>
                    <ColorPicker
                     className="w-full justify-start px-2 py-3"
                     // defaultValue="#000"

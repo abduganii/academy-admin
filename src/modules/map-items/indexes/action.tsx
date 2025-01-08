@@ -10,8 +10,10 @@ import {  GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import LangTab from "../../../components/lang-tab";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
     const [loader, setLoader] = useState(false);
      const navigate = useNavigate() 
     const language = useSelector((state:any) => state.lang?.lang); 
@@ -25,7 +27,7 @@ export default function CreatePage() {
    
   return (
     <>
-      <TopBar title={ItemId == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={ItemId == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
       madalId={ItemId}
         url={"map-items"}
@@ -59,10 +61,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t('title')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -72,11 +74,11 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.grade}
-                    label={"grade"}
+                    label={t("grade")}
                     name={`grade`}
                     typeValue={"number"}
                     id={"grade"}
-                    placeholder={'grade'}
+                    placeholder={t('grade')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.grade}
                     required={true}
@@ -85,10 +87,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.rate}
-                    label={"rate"}
+                    label={t("rate")}
                     name={`rate`}
                     id={"rate"}
-                    placeholder={'rate'}
+                    placeholder={t('rate')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.rate}
                     typeValue={"number"}

@@ -11,8 +11,10 @@ import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+  const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
     const { id } = useParams();
@@ -28,7 +30,7 @@ export default function CreatePage() {
 
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
         url={"news"}
         isFormData={false}
@@ -57,10 +59,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t('title')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -69,10 +71,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.content}
-                    label={"content"}
+                    label={t("content")}
                     name={`content`}
                     id={"content"}
-                    placeholder={'content'}
+                    placeholder={t('content')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.content}
                  />
@@ -81,8 +83,8 @@ export default function CreatePage() {
                       acceptTypes="image/*"
                       valueName={data?.data?.image?.name || ''}
                       className={"mb-4"}
-                        label="Обложка"
-                        text="Загрузить"
+                      label={t('dowloadFile')}
+                      text={t('dowload')}
                         onUpload={(e: any)=>{
                           formik.setFieldValue(`image`, e?.data?.id);
                         }}
@@ -94,11 +96,11 @@ export default function CreatePage() {
                       options={staticSections?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.section || null}
-                      label={"section"}
+                      label={t("section")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={'section'}
+                      placeholder={t('section')}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -112,11 +114,11 @@ export default function CreatePage() {
                     fieldNames={{value: 'id', label: 'name'}}
                     options={tags?.data}
                     value={formik.values.tags || null}
-                    label={"tags"}
+                    label={t("tags")}
                     name={`tags`}
                     typeValue="multiple"
                     id={"tags"}
-                    placeholder={'tags'}
+                    placeholder={t('tags')}
                     className={"mb-4"}
                     errors={formik.errors.tags}
                     localChange={(e:any)=>{
@@ -126,10 +128,10 @@ export default function CreatePage() {
                     type="datePicker"
                     formik={formik}
                     value={formik.values.publishStartTime}
-                    label={"publishStartTime"}
+                    label={t("publishStartTime")}
                     name={`publishStartTime`}
                     id={"publishStartTime"}
-                    placeholder={'publishStartTime'}
+                    placeholder={t('publishStartTime')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`publishStartTime`, e);
@@ -140,10 +142,10 @@ export default function CreatePage() {
                   type="datePicker"
                   formik={formik}
                   value={formik.values.publishEndTime}
-                  label={"publishEndTime"}
+                  label={t("publishEndTime")}
                   name={`publishEndTime`}
                   id={"publishEndTime"}
-                  placeholder={'publishEndTime'}
+                  placeholder={t('publishEndTime')}
                   className={"mb-4 colm1"}
                   localChange={(e:any)=>{
                     formik.setFieldValue(`publishEndTime`, e);
@@ -158,11 +160,11 @@ export default function CreatePage() {
                         { value: false, label: 'isActive' },
                        ]}
                       value={formik.values.isActive || null}
-                      label={"isActive"}
+                      label={t("isActive")}
                       name={`isActive`}
                       typeValue=""
                       id={"isActive"}
-                      placeholder={'isActive'}
+                      placeholder={t('isActive')}
                       className={"mb-4"}
                       errors={formik.errors.isActive}
                       localChange={(e:any)=>{

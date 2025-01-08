@@ -1,10 +1,12 @@
 import { useState } from "react";
 import GlobalTitle from "../../components/global-table";
 import TopBar from "../../components/top-bar";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
+  const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -12,15 +14,15 @@ export default function IndexPage() {
       width: 20,
       },
     {
-    title: 'Кол-во пользователи',
+    title: t('firstName'),
     dataIndex: 'firstName',
   },
   {
-    title: 'ДАТА посещения',
+    title: t('created_at'),
     dataIndex: 'created_at',
   },
   {
-    title: 'Время активности',
+    title: t('liveTime'),
     dataIndex: 'liveTime',
   },
 
@@ -28,7 +30,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Посещения"  setSearch={setSearch} search={search}/>
+      <TopBar title="daily"  setSearch={setSearch} search={search}/>
     
       <div className="p-4">
         <GlobalTitle 

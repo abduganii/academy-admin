@@ -4,9 +4,11 @@ import TopBar from "../../components/top-bar";
 import { Button, Modal, Select } from "antd";
 import { useQuery, useQueryClient } from "react-query";
 import { GetAllData, UpdateData1One } from "../../service/global";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
+  const {t}= useTranslation()
   const [search ,setSearch] = useState<string>('')
   const [open ,setOpen] = useState<any>(false)
   const [Status ,setStatus] = useState<any>(false)
@@ -19,40 +21,40 @@ export default function IndexPage() {
       width:20
     },
     {
-      title: 'nama',
+      title: t('fullName'),
       dataIndex: 'user',
       render: (user:any) => <p>{user?.firstName} {user?.lastName}</p>,
     },
     {
-      title: 'type',
+      title: t('type'),
       dataIndex: 'type',
     },
     {
-    title: 'email',
+    title:t('email'),
     dataIndex: 'email',
     },
     {
-      title:"phone",
+      title:t("phone"),
       dataIndex: 'user',
       render: (user:any) => <p>{user?.phone} </p>,
     },
     {
-      title:"message",
+      title:t("message"),
       dataIndex:"message"
     },
     {
-      title:"file",
+      title:t("file"),
       dataIndex:"file",
       render: (file:any) => <p>{(file?.size / 1048576 ).toFixed(2)}  mb</p>,
     },
     
     {
-      title:"type",
+      title:t("type"),
       dataIndex:"file",
       render: (file:any) => <p>{file?.type}</p>,
     },
     {
-      title:"status",
+      title:t("status"),
       dataIndex:"status",
       render: (status:any) => <p className={status == "pending" ? 'text-[#DD8819]' : status == "rejected" ? "text-[#FF1818]":"text-[#00AF38]"}>{status}</p>,
     }
@@ -66,14 +68,14 @@ export default function IndexPage() {
 
         <Modal
           className='w-full max-w-[438px]'
-            title={'Изменить статус'}
+            title={t('update')}
             open={Boolean(open)}
             footer={null}
             onCancel={() => setOpen(false)}
         >
              <Select
               className="w-full h-[48px] my-2"
-              placeholder={"Статус"}
+              placeholder={t('status')}
               loading={statusLoading}
               onChange={(e) => {
                 setStatus(e)
@@ -87,7 +89,7 @@ export default function IndexPage() {
                   setOpen(false)
                   queryClient.invalidateQueries(["cooperations"]);
                 })
-             }} >Сохранить</Button>
+             }} >{t('save')}</Button>
       </Modal>
       </div>
     </div>

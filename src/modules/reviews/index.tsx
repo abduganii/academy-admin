@@ -2,11 +2,13 @@ import GlobalTitle from "../../components/global-table";
 import {  useNavigate } from "react-router-dom";
 import { Rate, Tabs } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 export default function Page() {
   const [ type ,setType] = useState('book')
   const navigate = useNavigate()
+  const {t} = useTranslation()
   const columns = [
     {
       title: '№',
@@ -30,12 +32,12 @@ export default function Page() {
       />,
       },
     {
-    title: 'Name',
+    title: t('name'),
     dataIndex: 'name',
     
     },
     {
-      title: 'rating',
+      title: t('rating'),
       dataIndex: 'rating',
       render: (rating:number) => <Rate value={rating}/>,
     }

@@ -10,8 +10,10 @@ import {  GetByIdData } from "../../../../service/global";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import LangTab from "../../../../components/lang-tab";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const language = useSelector((state:any) => state.lang?.lang); 
     const navigate = useNavigate() 
@@ -25,7 +27,7 @@ export default function CreatePage() {
    
   return (
     <>
-      <TopBar title={ItemId == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={ItemId == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
       madalId={ItemId}
         url={"map-items"}
@@ -60,10 +62,10 @@ export default function CreatePage() {
                       type="text"
                       formik={formik}
                       value={formik.values.title}
-                      label={"title"}
+                      label={t("title")}
                       name={`title`}
                       id={"title"}
-                      placeholder={'title'}
+                      placeholder={t('title')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.title}
                       required={true}
@@ -72,10 +74,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.content}
-                    label={"content"}
+                    label={t("content")}
                     name={`content`}
                     id={"content"}
-                    placeholder={'content'}
+                    placeholder={t('content')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.content}
                  />
@@ -83,10 +85,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.link}
-                    label={"link"}
+                    label={t("link")}
                     name={`link`}
                     id={"link"}
-                    placeholder={'link'}
+                    placeholder={t('link')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.link}
                     required={true}

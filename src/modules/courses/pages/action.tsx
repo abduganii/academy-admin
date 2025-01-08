@@ -11,8 +11,10 @@ import { GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const [params] = useSearchParams()
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ export default function CreatePage() {
  
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       
       {isLoading?"": <FormContainer
         url={"courses"}
@@ -56,10 +58,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t('title')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                   />}
@@ -68,8 +70,8 @@ export default function CreatePage() {
                     acceptTypes="image/*"
                     valueName={data?.data?.image?.name || ''}
                     className={"mb-4"}
-                      label="Обложка"
-                      text="Загрузить"
+                    label={t('dowloadFile')}
+                    text={t('dowload')}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`image`, e?.data?.id);
                       }}
@@ -79,10 +81,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.text}
-                    label={"text"}
+                    label={t("text")}
                     name={`text`}
                     id={"text"}
-                    placeholder={'text'}
+                    placeholder={t('text')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.text}
                   />
@@ -90,7 +92,7 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.link}
-                    label={"link"}
+                    label={t("link")}
                     name={`link`}
                     id={"link"}
                     placeholder={'https://example.com'}

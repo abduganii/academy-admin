@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { queryClient } from '../service/api';
+import { useTranslation } from 'react-i18next';
 
 interface Iprops {
     columns: any;
@@ -22,6 +23,7 @@ interface Iprops {
 }
 const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params,openMadal,filter,isAction=true,isUpdate=true}: Iprops) => {
     const navigate = useNavigate()
+    const {t} = useTranslation()
     const [page,setPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
     const [open,setOpen] = useState<number |string | boolean>()
@@ -36,7 +38,7 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
           })
       );
       const Actioncolumns = {
-        title: 'Action',
+        title: t('action'),
         key: 'operation',
         fixed: 'right',
         width: 100,
@@ -74,10 +76,10 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
             footer={
                 <div className='flex w-full gap-[18px]'>
                      <Button className='w-full' type="primary" danger loading={loadingDelete} onClick={DeleteDate}>
-                     Удалить
+                     {t('delete')}
                     </Button>
                     <Button className='w-full text-[#404040] bg-[#E1E1E1]' onClick={() => setOpen(false)} >
-                    Отменить
+                    {t('cancel')}
                     </Button>
                 </div>
             }

@@ -3,9 +3,11 @@ import TopBar from "../../../components/top-bar";
 import { Table } from "antd";
 import { GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 
 export default function IndexInfoPage() {
   const { id } = useParams();
+  const {t} = useTranslation()
   const { data,isLoading } = useQuery(["oneMaps",id], () =>GetByIdData("maps",id));
   
   const navigate = useNavigate()
@@ -16,11 +18,11 @@ export default function IndexInfoPage() {
       width: 20,
     },
     {
-      title: 'title',
+      title: t('title'),
       dataIndex: 'title',
     },
     {
-      title: 'count',
+      title: t('count'),
       dataIndex: 'value',
     }
   ]
@@ -36,7 +38,7 @@ const result = keysToInclude.map((key,index) => ({
  
   return (
     <div>
-       <TopBar title="Информация о стране"  />
+       <TopBar title="info_country"  />
       <div className="p-4">
       <Table
         className={'cursor-pointer'}

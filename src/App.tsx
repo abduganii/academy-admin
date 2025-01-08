@@ -8,6 +8,7 @@ import { GetAllData } from "./service/global";
 import { useQuery } from "react-query";
 import { HandleRole } from "./redux/role";
 import { useDispatch } from 'react-redux';
+import "../i18";
 function App() {
   const navigate = useNavigate()
   const dispatch: any = useDispatch();

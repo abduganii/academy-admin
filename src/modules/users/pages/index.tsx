@@ -1,10 +1,12 @@
 import { useState } from "react";
 import GlobalTitle from "../../../components/global-table";
 import TopBar from "../../../components/top-bar";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
+  const {t} = useTranslation()
   const columns = [
     {
       title:'№',
@@ -12,11 +14,11 @@ export default function IndexPage() {
       width:20
     },
     {
-    title: 'firstName',
+    title: t('firstName'),
     dataIndex: 'firstName',
   },
   {
-    title: 'roles',
+    title: t('roles'),
     dataIndex: 'roles',
   },
 
@@ -24,7 +26,7 @@ export default function IndexPage() {
   ]
   return (
     <div>
-      <TopBar title="Пользователи" setSearch={setSearch} search={search} url='users' />
+      <TopBar title="users" setSearch={setSearch} search={search} url='users' />
       {/* <div className='m-4 rounded-md bg-white p-4'>
       
       </div> */}

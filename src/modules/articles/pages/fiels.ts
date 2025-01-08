@@ -12,7 +12,7 @@ export const  DataFiels = (data:any)=>  [
       value:data?.text || '',
     },
     {
-      name: "annotation",
+      name: 'annotation',
       validationType:"string",
       value:data?.annotation ||''
     },

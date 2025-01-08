@@ -11,8 +11,10 @@ import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import LangTab from "../../../components/lang-tab";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+  const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const language = useSelector((state:any) => state.lang?.lang); 
@@ -28,7 +30,7 @@ export default function CreatePage() {
    
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
         url={"articles"}
         isFormData={false}
@@ -57,10 +59,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t('title')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -73,11 +75,11 @@ export default function CreatePage() {
                       options={authors?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.author || null}
-                      label={"author"}
+                      label={t("author")}
                       name={`author`}
                       typeValue=""
                       id={"author"}
-                      placeholder={'author'}
+                      placeholder={t('author')}
                       className={"mb-4"}
                       errors={formik.errors.author}
                       localChange={(e:any)=>{
@@ -91,11 +93,11 @@ export default function CreatePage() {
                       options={staticSections?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.section || null}
-                      label={"section"}
+                      label={t("section")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={'section'}
+                      placeholder={t('section')}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -107,10 +109,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.annotation}
-                    label={"annotation"}
+                    label={t('annotation')}
                     name={`annotation`}
-                    id={"annotation"}
-                    placeholder={'annotation'}
+                    id={'annotation'}
+                    placeholder={t('annotation')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                  />
@@ -119,10 +121,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.text}
-                    label={"text"}
+                    label={t("text")}
                     name={`text`}
                     id={"text"}
-                    placeholder={'text'}
+                    placeholder={t('text')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.text}
                  />
@@ -130,10 +132,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.link}
-                    label={"link"}
+                    label={t("link")}
                     name={`link`}
                     id={"link"}
-                    placeholder={'link'}
+                    placeholder={t('link')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.link}
                     required={true}
@@ -143,10 +145,10 @@ export default function CreatePage() {
                     type="datePicker"
                     formik={formik}
                     value={formik.values.published_at}
-                    label={"published_at"}
+                    label={t("published_at")}
                     name={`published_at`}
                     id={"published_at"}
-                    placeholder={'published_at'}
+                    placeholder={t('published_at')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`published_at`, e);
@@ -156,8 +158,8 @@ export default function CreatePage() {
                      <FileUpload
                         acceptTypes=".pdf,.doc,.docx"
                         className={"mb-4"}
-                        label="Загрузить файл"
-                        text="Загрузить"
+                        label={t('dowloadFile')}
+                        text={t('dowload')}
                         errors={formik.errors.file}
                         valueName={data?.data?.file?.name || ''}
                         onUpload={(e: any)=>{

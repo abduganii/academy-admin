@@ -10,8 +10,10 @@ import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
+   const {t} = useTranslation()
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
     const { id } = useParams();
@@ -26,7 +28,7 @@ export default function CreatePage() {
     
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
         url={"notifications/temps"}
         isFormData={false}
@@ -54,10 +56,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t('title')}
                     className={"colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -67,10 +69,10 @@ export default function CreatePage() {
                         type="textArea"
                         formik={formik}
                         value={formik.values.description}
-                        label={"description"}
+                        label={t("description")}
                         name={`description`}
                         id={"description"}
-                        placeholder={'description'}
+                        placeholder={t('description')}
                         className={"mb-4 colm1"}
                         errors={formik.errors.description}
                       />
@@ -81,11 +83,11 @@ export default function CreatePage() {
                       fieldNames={{value: 'id', label: 'firstName'}}
                       options={users?.data}
                       value={formik.values.users }
-                      label={"users"}
+                      label={t("users")}
                       name={`users`}
                       typeValue="multiple"
                       id={"users"}
-                      placeholder={'users'}
+                      placeholder={t('users')}
                       className={"mb-4"}
                       errors={formik.errors.users}
                       localChange={(e:any)=>{

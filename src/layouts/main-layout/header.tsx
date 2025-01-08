@@ -2,17 +2,19 @@ import { Avatar, Breadcrumb } from 'antd'
 import { UserOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 export default function Header() {
     const location = useLocation();
     const navigate = useNavigate()
+    const {t} = useTranslation()
     const pathnames = location.pathname.split('/').filter((x) => x);
     const items = pathnames.map((name, index) => {
         const url = `/${pathnames.slice(0, index + 1).join('/')}`;
         return {
             title: index < pathnames.length - 1 ? (
-                <Link to={url}>{name.replace('%20',' ')}</Link>
+                <Link to={url}>{t(name.replace('%20',' '))}</Link>
             ) : (
-                name.replace('%20',' ')
+                t(name.replace('%20',' '))
             ),
         };
     });

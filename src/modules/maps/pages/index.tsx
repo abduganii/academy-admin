@@ -9,9 +9,11 @@ import {
   UnorderedListOutlined,
 } from '@ant-design/icons';
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 export default function IndexPage() {
   const [isMap,setIsMap] = useState<boolean>(true)
   const navigate = useNavigate()
+  const {t}= useTranslation()
   const columns = [
     {
       title: '№',
@@ -19,13 +21,13 @@ export default function IndexPage() {
       width: 20,
     },
     {
-      title: 'Name',
+      title: t('name'),
       dataIndex: 'name',
     },
     {
-      title: 'price',
+      title:  t('price'),
       dataIndex: 'price',
-      render: (price: any) => <p>{price} sum</p>,
+      render: (price: any) => <p>{price} {t('sum')}</p>,
     }
   ]
   const { isLoading, data } = useQuery(['maps'],() =>GetAllData('maps'));

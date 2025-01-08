@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import GlobalTitle from "../../components/global-table";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export default function OneBook() {
   const [params] = useSearchParams()
    const param = useParams()
+   const {t}= useTranslation()
   const columns = [
     {
       title: '№',
@@ -11,15 +13,15 @@ export default function OneBook() {
       width: 20,
       },
     {
-    title: 'firstName',
+    title: t('firstName'),
     dataIndex: 'firstName',
   },
   {
-    title: 'date',
+    title: t('created_at'),
     dataIndex: 'created_at',
   },
   {
-    title: 'liveTime',
+    title: t('liveTime'),
     dataIndex: 'liveTime',
   },
 

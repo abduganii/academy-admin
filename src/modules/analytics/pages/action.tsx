@@ -11,9 +11,11 @@ import { GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import LangTab from "../../../components/lang-tab";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePage() {
   const [loader, setLoader] = useState(false);
+  const {t} = useTranslation()
   const navigate = useNavigate();
     const { id } = useParams();
     const language = useSelector((state:any) => state.lang?.lang); 
@@ -26,7 +28,7 @@ export default function CreatePage() {
 
   return (
     <>
-      <TopBar title={id == "new"? `Добавить`:"Редактировать"}  />
+      <TopBar title={id == "new"? t(`add`):t('update')}  />
       {isLoading?"":  <FormContainer
         url={"analytics"}
         isFormData={false}
@@ -55,10 +57,10 @@ export default function CreatePage() {
                     type="text"
                     formik={formik}
                     value={formik.values.title}
-                    label={"title"}
+                    label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={'title'}
+                    placeholder={t("title")}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -67,10 +69,10 @@ export default function CreatePage() {
                     type="textArea"
                     formik={formik}
                     value={formik.values.description}
-                    label={"description"}
+                    label={t("description")}
                     name={`description`}
                     id={"description"}
-                    placeholder={'description'}
+                    placeholder={t("description")}
                     className={"mb-4 colm1"}
                     errors={formik.errors.description}
                  />
@@ -79,8 +81,8 @@ export default function CreatePage() {
                       acceptTypes="image/*"
                       valueName={data?.data?.image?.name || ''}
                       className={"mb-4"}
-                        label="Обложка"
-                        text="Загрузить"
+                      label={t('dowloadFile')}
+                      text={t('dowload')}
                         onUpload={(e: any)=>{
                           formik.setFieldValue(`image`, e?.data?.id);
                         }}

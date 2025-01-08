@@ -1,10 +1,12 @@
 import { useState } from "react";
 import GlobalTitle from "../../components/global-table";
 import { Tabs } from "antd";
+import { useTranslation } from "react-i18next";
 
 
 export default function IndexPage() {
   const [ type ,setType] = useState('books')
+  const {t} = useTranslation()
   const columns :any = {
     books:[
       {
@@ -13,28 +15,28 @@ export default function IndexPage() {
         width: 20,
         },
         {
-        title: 'name',
+        title: t('name'),
         dataIndex: 'name',
       },
       {
-        title: 'section',
+        title: t('section'),
         dataIndex: 'section',
       },
       {
-        title: 'Кол-во читателей (уникальное)',
+        title: t('count_read'),
         dataIndex: 'readers',
       },
       {
-        title: 'Кол-во просмотров (каждое)',
+        title: t('count_views'),
         dataIndex: 'views',
       },
       
       {
-        title: 'Кол-во скачиваний',
+        title: t('count_downloads'),
         dataIndex: 'downloads',
       },
       {
-        title: 'price',
+        title: t('price'),
         dataIndex: 'price',
         render: (value:any) => <p>{value} сум</p>
       },
@@ -46,34 +48,34 @@ export default function IndexPage() {
         width: 20,
         },
         {
-        title: 'title',
+        title: t('title'),
         dataIndex: 'title',
       },
       {
-        title: 'section',
+        title: t('section'),
         dataIndex: 'section',
       },
       {
-        title: 'Кол-во читателей (уникальное)',
+        title: t('count_read'),
         dataIndex: 'readers',
       },
       {
-        title: 'Кол-во просмотров (каждое)',
+        title: t('count_views'),
         dataIndex: 'views',
       },
       
       {
-        title: 'Кол-во скачиваний',
+        title: t('count_downloads'),
         dataIndex: 'downloads',
       },
     
       {
-        title: 'file',
+        title: t('file'),
         dataIndex: 'file',
         render: (file:any) => <p>{file?.type}</p>,
       },
       {
-        title: 'link',
+        title: t('link'),
         dataIndex: 'link',
       },
     ],
@@ -84,31 +86,32 @@ export default function IndexPage() {
         width: 20,
         },
         {
-          title: 'Image',
+          title: t('image'),
           dataIndex: 'image',
           width: 100,
           render: (url:any) => <img src={import.meta.env.VITE_API_BACKEND_URL+ url?.path} alt="img" className="rounded-lg  w-[56px] aspect-square object-cover" width={56} height={56}/>,
           },
           {
-            title: 'Title',
+            title: t('title'),
             dataIndex: 'title',
           },
           {
-            title: 'section',
-            dataIndex: 'section',
+            title: t('section'),
+            dataIndex: t('section'),
           },
         
           
           {
-            title: 'Статус',
+            title:t('status'),
             dataIndex: 'isActive',
             render: (text:boolean) => <p className={text ? 'text-[#0FB800]':'text-[#FB533D]'}>{text ? 'Активный':'Неактивный'}</p>,
           },
    
-      {
-        title: 'Кол-во просмотров (каждое)',
-        dataIndex: 'views',
-      },
+          {
+            title: t('count_views'),
+            dataIndex: 'views',
+          },
+         
     ],
     videos:[
       {
@@ -117,24 +120,25 @@ export default function IndexPage() {
         width: 20,
         },
         {
-          title: 'Image',
+          title: t('image'),
           dataIndex: 'poster',
           width: 100,
           render: (url:any) => <img src={import.meta.env.VITE_API_BACKEND_URL+ url?.path} alt="img" className="rounded-lg  w-[56px] aspect-square object-cover" width={56} height={56}/>,
           },
         {
-        title: 'Name',
+        title: t('name'),
         dataIndex: 'name',
         },
         {
-        title: 'section',
-        dataIndex: 'section',
+        title: t('section'),
+        dataIndex: t('section'),
       },
    
       {
-        title: 'Кол-во просмотров (каждое)',
+        title: t('count_views'),
         dataIndex: 'views',
       },
+     
     ]
   }
 
@@ -142,20 +146,20 @@ export default function IndexPage() {
 const items: any = [
   {
     key: 'books',
-    label: 'books',
+    label: t('books'),
    
   },
   {
     key: 'articles',
-    label: 'articles',
+    label: t('articles'),
   },
   {
     key: 'videos',
-    label: 'videos',
+    label: t('videos'),
   },
   {
     key: 'news',
-    label: 'news',
+    label: t('news'),
   },
 ];
   return (
