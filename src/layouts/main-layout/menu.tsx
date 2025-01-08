@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileTextOutlined, MailOutlined } from '@ant-design/icons';
+import { BarChartOutlined, DatabaseOutlined, FileTextOutlined, MailOutlined, MessageOutlined, NotificationOutlined, UnorderedListOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
@@ -56,7 +56,7 @@ const Adminitems: MenuItem[] = [
   },
   {
     key: '2',
-    icon: <MailOutlined />,
+    icon: <BarChartOutlined />,
     label: 'Статистика',
     children: [
       { key: '/statistics-users', label: 'Пользователи' },
@@ -66,14 +66,14 @@ const Adminitems: MenuItem[] = [
   },
   {
     key: '/users',
-    icon: <MailOutlined />,
+    icon: <UsergroupAddOutlined />,
     label: 'Пользователи',
    
   },
   
    {
     key: '3',
-    icon: <MailOutlined />,
+    icon: <NotificationOutlined />,
     label: 'Уведомления',
     children: [
       { key: '/', label: 'Настройки уведомле..' },
@@ -85,22 +85,22 @@ const Adminitems: MenuItem[] = [
   
   {
     key: '/action_history',
-    icon: <MailOutlined />,
+    icon: <DatabaseOutlined />,
     label: 'Журнал-logo',
   },
   {
     key: '/news',
-    icon: <MailOutlined />,
+    icon: <UnorderedListOutlined /> ,
     label: 'Новости',
   },
   {
     key: '/reviews',
-    icon: <MailOutlined />,
+    icon:<MessageOutlined />,
     label: 'reviews',
   },
   {
     key: '/cooperations',
-    icon: <MailOutlined />,
+    icon:<UsergroupAddOutlined />,
     label: 'Сотрудничество',
   },
 ];
