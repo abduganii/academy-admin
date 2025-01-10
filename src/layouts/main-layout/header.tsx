@@ -3,6 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import Lang from '../../components/lang';
 export default function Header() {
     const location = useLocation();
     const navigate = useNavigate()
@@ -19,10 +20,11 @@ export default function Header() {
         };
     });
   return (
-<div className='w-full border-b border-collapse  flex items-center justify-between p-6 bg-white h-[68px]'>
+<div className='w-full border-b border-collapse  flex gap-4 items-center justify-between p-6 bg-white h-[68px]'>
        <Breadcrumb
             items={items}
         />
+        <Lang/>
           <Avatar
               onClick={()=>navigate('/profile')}
             className="cursor-pointer"

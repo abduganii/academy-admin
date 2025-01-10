@@ -93,7 +93,7 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
             
       </Modal>
         <Table
-        className={handleRowClick? 'cursor-pointer':""}
+        className={handleRowClick? 'cursor-pointer local-hight':""}
         columns={isAction ? [...columns, Actioncolumns]:columns}
         dataSource={data?.data}
         loading={isLoading}

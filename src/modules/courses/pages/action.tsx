@@ -70,7 +70,7 @@ export default function CreatePage() {
                     acceptTypes="image/*"
                     valueName={data?.data?.image?.name || ''}
                     className={"mb-4"}
-                    label={t('dowloadFile')}
+                    label={t('image')}
                     text={t('dowload')}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`image`, e?.data?.id);

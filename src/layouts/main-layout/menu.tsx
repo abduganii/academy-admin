@@ -5,105 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import { Store } from "../../utils/storage";
 import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
 type MenuItem = Required<MenuProps>['items'][number];
 
-const Adminitems: MenuItem[] = [
-  {
-    key: '1',
-    icon: <FileTextOutlined />,
-    label: 'Ресурсы',
-    children: [
-      { 
-        key: '/books',
-        label: 'Книги',
-        children: [
-          { key: '/books', label: 'Книги' },
-          { key: '/authors', label: 'Авторы' },
-          { key: '/categories', label: 'Категории' },
-          { key: '/tags', label: 'Теги' },
-          { key: '/publishers', label: 'Издательство' },
-          { key: '/translators', label: 'Переводчики' },
-        ]
-      },
-      // { key: '/literature', label: 'Литература' },
-      { 
-        key: '/videos', label: 'Видеоматериалы',
-        children: [
-          { key: '/videos', label: 'Видеоматериалы'},
-          { key: '/tags', label: 'Теги' },
-         ]
-       },
-      {
-         key: '/articles', label: 'Статьи',
-         children: [
-          { key: '/articles', label: 'Статьи'},
-          { key: '/authors', label: 'Авторы' },
-        
-         ]
-       },
-      { key: '/maps', label: 'Карта' },
-      { key: '/analytics', label: 'Аналитика' },
-      { 
-        key: '/courses', label: 'Курсы',
-        children: [
-          { key: '/courses?type=local', label: 'Наши курсы'},
-          { key: '/courses?type=virtual', label: 'Виртуальная академия' },
-          { key: '/courses?type=international', label: 'Международные курсы' },
-         ]
-       },
-      // /courses
-    ],
-  },
-  {
-    key: '2',
-    icon: <BarChartOutlined />,
-    label: 'Статистика',
-    children: [
-      { key: '/statistics-users', label: 'Пользователи' },
-      { key: '/statistics-visits', label: 'Посещения' },
-      { key: '/statistics-view', label: 'Просмотр' },
-    ],
-  },
-  {
-    key: '/users',
-    icon: <UsergroupAddOutlined />,
-    label: 'Пользователи',
-   
-  },
-  
-   {
-    key: '3',
-    icon: <NotificationOutlined />,
-    label: 'Уведомления',
-    children: [
-      { key: '/', label: 'Настройки уведомле..' },
-      { key: '/contact-us-messages', label: 'Связаться с нами' },
-      { key: '/user-messages', label: 'Сообщения' },
-      { key: '/notifications', label: 'Отправить уведомление' },
-    ],
-  },
-  
-  {
-    key: '/action_history',
-    icon: <DatabaseOutlined />,
-    label: 'Журнал-logo',
-  },
-  {
-    key: '/news',
-    icon: <UnorderedListOutlined /> ,
-    label: 'Новости',
-  },
-  {
-    key: '/reviews',
-    icon:<MessageOutlined />,
-    label: 'reviews',
-  },
-  {
-    key: '/cooperations',
-    icon:<UsergroupAddOutlined />,
-    label: 'Сотрудничество',
-  },
-];
+
 const Manegeritems: MenuItem[] = [
   {
     key: '1',
@@ -171,6 +76,104 @@ const Manegeritems: MenuItem[] = [
 
 
 const SiteBar: React.FC = () => {
+  const {t} = useTranslation()
+  const Adminitems: MenuItem[] = [
+    {
+      key: '1',
+      icon: <FileTextOutlined />,
+      label: 'Ресурсы',
+      children: [
+        { 
+          key: '/books',
+          label: t('books'),
+          children: [
+            { key: '/books', label: t('books') },
+            { key: '/authors', label: t('authors') },
+            { key: '/categories', label:  t('categories')},
+            { key: '/tags', label: t('tags') },
+            { key: '/publishers', label:  t('publishers') },
+            { key: '/translators', label:  t('translators') },
+          ]
+        },
+        // { key: '/literature', label: 'Литература' },
+        { 
+          key: '/videos', label: t('videos'),
+          children: [
+            { key: '/videos', label: t('videos')},
+            { key: '/tags', label: t('tags') },
+           ]
+         },
+        {
+           key: '/articles', label:t('articles'),
+           children: [
+            { key: '/articles', label: t('articles')},
+            { key: '/authors', label: t('authors') },
+          
+           ]
+         },
+        { key: '/maps', label: t('maps') },
+        { key: '/analytics', label: t('analytics')},
+        { 
+          key: '/courses', label: t('courses'),
+          children: [
+            { key: '/courses?type=local', label: 'Наши курсы'},
+            { key: '/courses?type=virtual', label: 'Виртуальная академия' },
+            { key: '/courses?type=international', label: 'Международные курсы' },
+           ]
+         },
+        // /courses
+      ],
+    },
+    {
+      key: '2',
+      icon: <BarChartOutlined />,
+      label: 'Статистика',
+      children: [
+        { key: '/statistics-users', label: 'Пользователи' },
+        { key: '/statistics-visits', label: 'Посещения' },
+        { key: '/statistics-view', label: 'Просмотр' },
+      ],
+    },
+    {
+      key: '/users',
+      icon: <UsergroupAddOutlined />,
+      label: 'Пользователи',
+     
+    },
+    
+     {
+      key: '3',
+      icon: <NotificationOutlined />,
+      label: 'Уведомления',
+      children: [
+        { key: '/', label: 'Настройки уведомле..' },
+        { key: '/contact-us-messages', label: 'Связаться с нами' },
+        { key: '/user-messages', label: 'Сообщения' },
+        { key: '/notifications', label: 'Отправить уведомление' },
+      ],
+    },
+    
+    {
+      key: '/action_history',
+      icon: <DatabaseOutlined />,
+      label: 'Журнал-logo',
+    },
+    {
+      key: '/news',
+      icon: <UnorderedListOutlined /> ,
+      label: 'Новости',
+    },
+    {
+      key: '/reviews',
+      icon:<MessageOutlined />,
+      label: 'reviews',
+    },
+    {
+      key: '/cooperations',
+      icon:<UsergroupAddOutlined />,
+      label: 'Сотрудничество',
+    },
+  ];
   const role = useSelector((state: any) => state.role?.Role) || Store.getRole();
   const [stateOpenKeys, setStateOpenKeys] = useState(['1']);
   const navigate = useNavigate();
