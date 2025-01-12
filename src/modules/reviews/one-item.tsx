@@ -16,7 +16,7 @@ export default function OneItemPage() {
       width: 20,
       },
     {
-    title: 'Name',
+    title: t('name'),
     dataIndex: 'user',
     render: (user:any) => <p>{user?.firstName} {user?.lastName}</p>,
     },
@@ -42,7 +42,7 @@ export default function OneItemPage() {
   return (
     <div>
        <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px] font-semibold mt-2">{params.get('type')+':'+params.get('name')}</p>
+        <p className="text-[28px] leading-[33px] font-semibold mt-2">{t(params.get('type') as string)+':'+params.get('name')}</p>
     </div>
      
       <div className="p-4">

@@ -14,16 +14,16 @@ export default function IndexPage() {
       width: 20,
       },
     {
-    title: t('firstName'),
-    dataIndex: 'firstName',
+    title: t('total_users'),
+    dataIndex: 'total_users',
   },
   {
     title: t('created_at'),
     dataIndex: 'created_at',
   },
   {
-    title: t('liveTime'),
-    dataIndex: 'liveTime',
+    title: t('total_duration'),
+    dataIndex: 'total_duration',
   },
 
   

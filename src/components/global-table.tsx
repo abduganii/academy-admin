@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { queryClient } from '../service/api';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 interface Iprops {
     columns: any;
@@ -28,8 +29,9 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
     const [pageSize,setPageSize] = useState(10)
     const [open,setOpen] = useState<number |string | boolean>()
     const [loadingDelete,setLoadingDelete] = useState<boolean>()
+    const language = useSelector((state:any) => state.lang?.lang); 
     const { isLoading, data } = useQuery(
-        [api,page,pageSize, ...Object.values(filter)],
+        [api,page,pageSize,language, ...Object.values(filter)],
         () =>
           GetAllData(api,{
             page:page,

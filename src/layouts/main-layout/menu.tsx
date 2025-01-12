@@ -88,7 +88,7 @@ const SiteBar: React.FC = () => {
           label: t('books'),
           children: [
             { key: '/books', label: t('books') },
-            { key: '/authors', label: t('authors') },
+            { key: '/authors?type=book', label: t('authors') },
             { key: '/categories', label:  t('categories')},
             { key: '/tags', label: t('tags') },
             { key: '/publishers', label:  t('publishers') },
@@ -98,16 +98,12 @@ const SiteBar: React.FC = () => {
         // { key: '/literature', label: 'Литература' },
         { 
           key: '/videos', label: t('videos'),
-          children: [
-            { key: '/videos', label: t('videos')},
-            { key: '/tags', label: t('tags') },
-           ]
          },
         {
            key: '/articles', label:t('articles'),
            children: [
             { key: '/articles', label: t('articles')},
-            { key: '/authors', label: t('authors') },
+            { key: '/authors?type=article', label: t('authors') },
           
            ]
          },
@@ -116,9 +112,9 @@ const SiteBar: React.FC = () => {
         { 
           key: '/courses', label: t('courses'),
           children: [
-            { key: '/courses?type=local', label: 'Наши курсы'},
-            { key: '/courses?type=virtual', label: 'Виртуальная академия' },
-            { key: '/courses?type=international', label: 'Международные курсы' },
+            { key: '/courses?type=local', label: t('our-courses')},
+            { key: '/courses?type=virtual', label: t('virtual-academy') },
+            { key: '/courses?type=international', label: t('international-courses')},
            ]
          },
         // /courses
@@ -127,51 +123,51 @@ const SiteBar: React.FC = () => {
     {
       key: '2',
       icon: <BarChartOutlined />,
-      label: 'Статистика',
+      label:  t('statistics'),
       children: [
-        { key: '/statistics-users', label: 'Пользователи' },
-        { key: '/statistics-visits', label: 'Посещения' },
-        { key: '/statistics-view', label: 'Просмотр' },
+        { key: '/statistics-users', label: t('users') },
+        { key: '/statistics-visits', label: t('daily') },
+        { key: '/statistics-view', label: t('views') },
       ],
     },
     {
-      key: '/users',
+      key: '/users' ,
       icon: <UsergroupAddOutlined />,
-      label: 'Пользователи',
+      label:  t('users'),
      
     },
     
      {
       key: '3',
       icon: <NotificationOutlined />,
-      label: 'Уведомления',
+      label: t('notification'),
       children: [
-        { key: '/', label: 'Настройки уведомле..' },
-        { key: '/contact-us-messages', label: 'Связаться с нами' },
-        { key: '/user-messages', label: 'Сообщения' },
-        { key: '/notifications', label: 'Отправить уведомление' },
+        { key: '/', label: t('set-notification')},
+        { key: '/contact-us-messages', label: t('contact-us-messages') },
+        { key: '/user-messages', label: t('messages') },
+        { key: '/notifications', label: t('send-notifications') },
       ],
     },
     
     {
       key: '/action_history',
       icon: <DatabaseOutlined />,
-      label: 'Журнал-logo',
+      label: t('action_history'),
     },
     {
       key: '/news',
       icon: <UnorderedListOutlined /> ,
-      label: 'Новости',
+      label: t('news'),
     },
     {
       key: '/reviews',
       icon:<MessageOutlined />,
-      label: 'reviews',
+      label: t('reviews'),
     },
     {
       key: '/cooperations',
       icon:<UsergroupAddOutlined />,
-      label: 'Сотрудничество',
+      label: t('cooperations'),
     },
   ];
   const role = useSelector((state: any) => state.role?.Role) || Store.getRole();

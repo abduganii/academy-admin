@@ -6,6 +6,7 @@
     "cr":"Ўзбек",
     "en":"English",
     "books": "Книги",
+    "book": "Книга",
     "add": "Добавить",
     "update": "Редактировать",
     "search": "Поиск",
@@ -86,5 +87,24 @@
     "liveTime": "Время активности",
     "translators": "Переводчики",
     "roles": "Роли",
-    "releasedYear": "Год выпуска"
+    "releasedYear": "Год выпуска",
+    "publishers": "Издатели",
+    "maps": "Карты",
+    "analytics": "Аналитика",
+    "courses": "Курсы",
+    "statistics": "Статистика",
+    "views": "Просмотры",
+    "contact-us-messages": "Свяжитесь с нами",
+    "send-notifications": "Отправить уведомления",
+    "action_history": "История действий",
+    "reviews": "Отзывы",
+    "cooperations": "Сотрудничество",
+    "set-notification":"Настройки уведомле",
+    "our-courses":"Наши курсы",
+    "virtual-academy":"Виртуальная академия",
+    "international-courses":"Международные курсы",
+    "select": "Выбрать",
+  "total_users": "Всего пользователей",
+  "position": "Должность"
+  
 }

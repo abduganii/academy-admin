@@ -10,10 +10,12 @@ import { useQuery, useQueryClient } from "react-query";
 import { GetByIdData } from "../../../service/global";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function IndexPage() {
   
   const [search ,setSearch] = useState<string>('')
+    const [params] = useSearchParams()
   const [openId,setOpenId] = useState<boolean | string | number>(false)
   const language = useSelector((state:any) => state.lang?.lang);
   const [loader, setLoader] = useState<boolean>(false);
@@ -41,7 +43,7 @@ export default function IndexPage() {
     <div>
       <TopBar openMadal={()=>setOpenId('new')} title="authors" setSearch={setSearch} search={search} url='authors' />
       <div className="p-4">
-        <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='authors' url='authors' columns={columns} filter={{name:search||undefined}}/>
+        <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='authors' url='authors' columns={columns} filter={{name:search||undefined,type:params.get('type') }}/>
       </div>
       <Modal
         footer={null}
@@ -67,7 +69,7 @@ export default function IndexPage() {
             name: "type",
             validationType:"string",
             validations: [{ type: "required" }],
-            value: 'book',
+            value: params.get('type') ,
           },
         ]}
         onSuccess={() => {

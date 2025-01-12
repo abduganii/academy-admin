@@ -37,6 +37,12 @@ export const  DataFiels = (data:any)=>  [
           value:data?.author?.id || null
       },
       {
+        name: "category",
+        validationType:"number",
+        value:data?.category?.id || null
+    },
+      
+      {
           name: "publisher",
           validationType:"number",
           validations: [{ type: "required" }],

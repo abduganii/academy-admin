@@ -1,5 +1,8 @@
 import  { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { Store } from '../utils/storage';
+import { changeLang } from '../redux/lang';
 
  const LangArr = [
     {
@@ -17,6 +20,7 @@ import { useTranslation } from 'react-i18next';
   ];
   
 export default function Lang() {
+  const dispatch: any = useDispatch();
     const [openLang, setOpenLang] = useState(false);
     const { t, i18n } = useTranslation();
     
@@ -65,7 +69,11 @@ export default function Lang() {
       {LangArr.map((e: any) => (
         <p
           key={e?.id}
-          onClick={() => changeLanguage(e?.lang)}
+          onClick={() => {
+            changeLanguage(e?.lang)
+            dispatch(changeLang(e?.lang))
+            Store.setLanguage(e?.lang)
+          }}
           className="py-2 px-4 m-0 hover:bg-[#3030305e]"
         >
           {t(e?.lang)}

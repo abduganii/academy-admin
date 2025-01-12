@@ -16,7 +16,7 @@ export default function Page() {
       width: 20,
       },
       {
-      title: 'Image',
+      title: t('image'),
       width: 100,
       render: (value:any) => 
       <img 
@@ -47,20 +47,20 @@ export default function Page() {
 const items: any = [
   {
     key: 'book',
-    label: 'book',
+    label: t('book'),
    
   },
  
   {
     key: 'video',
-    label: 'video',
+    label: t('video'),
   },
 
 ];
   return (
     <div>
        <div className="flex  gap-[20px] items-start p-4 w-full bg-white">
-        <p className="text-[28px] leading-[33px] font-semibold mt-2">{'Отзывы'}</p>
+        <p className="text-[28px] leading-[33px] font-semibold mt-2">{t('reviews')}</p>
         <Tabs className={`inline-block`}  defaultActiveKey={type} items={items} onChange={(key:string)=> {
           setType(key)
       }} />

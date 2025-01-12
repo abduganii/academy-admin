@@ -28,10 +28,11 @@ export default function CreatePage() {
    const { isLoading:landLoading, data: staticLang} = useQuery('static-lang',() =>GetAllData('static-data/Languages'));
    const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
    const { isLoading:authorsLoading, data: authors} = useQuery(['authors',language],() =>GetAllData('authors'));
+   const { isLoading:categoryLoading, data: category} = useQuery(['categories',language],() =>GetAllData('categories'));
    const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
    const { isLoading:translatorsLoading, data: translators} = useQuery(['translators',language],() =>GetAllData('translators'));
    const { isLoading:publishersLoading, data: publishers} = useQuery(['publishers',language],() =>GetAllData('publishers'));
-
+   
   return (
     <>
       <TopBar title={id == "new"? t(`add`):t('update')}  />
@@ -149,6 +150,24 @@ export default function CreatePage() {
                       errors={formik.errors.author}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`author`, e);
+                      }}
+                  />
+                  <GlobalInput
+                      type="select"
+                      formik={formik}
+                      loading={categoryLoading}
+                      options={category?.data}
+                      fieldNames={{value: 'id', label: 'name'}}
+                      value={formik.values.category }
+                      label={t("categories")}
+                      name={`categories`}
+                      typeValue=""
+                      id={"category"}
+                      placeholder={t("category")}
+                      className={"mb-4"}
+                      errors={formik.errors.category}
+                      localChange={(e:any)=>{
+                        formik.setFieldValue(`category`, e);
                       }}
                   />
                      <GlobalInput

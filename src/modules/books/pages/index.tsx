@@ -13,16 +13,16 @@ export default function IndexPage() {
       title: '№',
       dataIndex: 'id',
       width: 20,
-      },
-      {
+    },
+    {
       title: t('image'),
       dataIndex: 'image',
       width: 100,
       render: (url:any) => <img src={import.meta.env.VITE_API_BACKEND_URL+ url?.path} alt="img" className="rounded-lg  w-[56px] aspect-square object-cover" width={56} height={56}/>,
       },
     {
-    title: t('name'),
-    dataIndex: 'name',
+      title: t('name'),
+      dataIndex: 'name',
     },
     {
       title: t('annotation'),

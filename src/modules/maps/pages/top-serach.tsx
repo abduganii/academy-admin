@@ -1,4 +1,5 @@
 import { Select} from "antd";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export default function TopSerach() {
@@ -15,14 +16,15 @@ export default function TopSerach() {
 //     };
 //   };
     const navigate = useNavigate()
+    const {t} = useTranslation()
   return (
     <div className="flex  gap-[40px] items-start p-4 w-full bg-white">
-        <p className="text-[28px]  leading-[33px] font-semibold mt-2">Карта</p>
+        <p className="text-[28px]  leading-[33px] font-semibold mt-2">{t('maps')}</p>
        
         <Select
             showSearch
             className="ml-auto w-full max-w-[475px]"
-            placeholder="Select a person"
+            placeholder={t('select')}
             optionFilterProp="label"
             onSelect={(e)=>navigate(`/maps/new/modul?name=${e}`)}
             options={[

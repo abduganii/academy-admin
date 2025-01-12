@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { Form, Formik, FormikProps } from "formik";
 import { isFunction } from "lodash";
 import { formHelpers } from "../formHelpers.ts";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AddData, UpdateData, UpdateDataOne } from "../../service/global.ts";
+import { useDispatch } from "react-redux";
+import { changeDirty } from "../../redux/dirty.ts";
 interface IFORMCONTAINER {
   url: string;
   formik?: FormikProps<any>;
@@ -41,13 +43,17 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
   validateOnMount = false,
   ...formProps
 }) => {
+
   const { id } = useParams();
+  const dispatch: any = useDispatch();
   const { initialValues, validationSchema } =
     formHelpers.createFormSchema(fields);
+
   const handleSubmit = async (values: any, formikHelper: any) => {
     const formValues = formHelpers.getFormValues(values, fields, isFormData);
-    
+  
     setLoader(true);
+    dispatch(changeDirty(false))
     if ((madalId || id) == "new" || !(madalId || id)) {
       await AddData(url, formValues)
         .then((res: any) => {
@@ -97,6 +103,9 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
     }
   };
 
+  const ChangeDirty = (e:boolean)=>{
+    dispatch(changeDirty(e))
+  }
   return (
     <>
     <Formik
@@ -117,6 +126,8 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
       enableReinitialize={true}
     >
       {(formik) => {
+         ChangeDirty(formik.dirty)
+       
         return <Form {...formProps}>{children(formik)}</Form>;
       }}
     </Formik>
