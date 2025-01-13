@@ -104,6 +104,14 @@
     "virtual-academy": "Virtual akademiya",
     "international-courses": "Xalqaro kurslar",
     "select": "Tanlash",
-  "total_users": "Jami foydalanuvchilar",
-  "position": "Manzil"
+    "total_users": "Jami foydalanuvchilar",
+    "position": "Manzil",
+    "successfully-created": "Muvaffaqiyatli yaratildi",
+    "successfully-updated": "Muvaffaqiyatli yangilandi",
+    "required": "Ushbu maydon toʻldirilishi shart",
+    "invalid-email": "Notoʻgʻri email manzili",
+    "phone-not-valid": "Telefon raqami notoʻgʻri",
+    "image-valid": "Rasm hajmi 5 MB dan kam bo'lishi kerak.",
+    "anti_terrorism": "Terrorizmga qarshi",
+    "anti_corruption": "Korruptsiyaga qarshi"
 }

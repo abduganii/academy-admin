@@ -10,15 +10,15 @@ const createYupSchema = (field: any) => {
         validator = validator.typeError(params || `Invalid ${validationType}`);
         break;
       case "required":
-        validator = validator.required(params || "Required");
+        validator = validator.required(params || "required");
         break;
       case "email":
-        validator = validator.email(params || "Invalid email");
+        validator = validator.email(params || "invalid-email");
         break;
       case "phone":
         validator = validator.matches(
           /^\+998\d{9}$/,
-          "Phone number is not valid"
+          "PhoneNotValid"
         );
         break;
       case "min":

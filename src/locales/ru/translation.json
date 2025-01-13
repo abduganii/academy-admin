@@ -104,7 +104,15 @@
     "virtual-academy":"Виртуальная академия",
     "international-courses":"Международные курсы",
     "select": "Выбрать",
-  "total_users": "Всего пользователей",
-  "position": "Должность"
+    "total_users": "Всего пользователей",
+    "position": "Должность",
+    "seccessfully-created": "Успешно создано",
+    "seccessfully-update": "Успешно обновлено",
+    "required": "Это поле обязательно для заполнения",
+    "invalid-email": "Недействительный адрес электронной почты",
+    "PhoneNotValid": "Недействительный номер телефона",
+    "image-valid": "Размер изображения должен быть менее 5 МБ.",
+    "anti_terrorism": "Антитерроризм",
+    "anti_corruption": "Антикоррупция"
   
 }

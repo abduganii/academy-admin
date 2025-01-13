@@ -1,5 +1,6 @@
 import { DatePicker, Input, Select } from "antd";
 import dayjs from 'dayjs';
+import { useTranslation } from "react-i18next";
 const { TextArea } = Input;
 export default function GlobalInput({
     placeholder,
@@ -19,6 +20,7 @@ export default function GlobalInput({
     fieldNames,
     required,
   }: any) {
+    const {t} = useTranslation()
   return (
     <>
         <label className={`${className && className} inline-block w-full`}>
@@ -85,7 +87,7 @@ export default function GlobalInput({
           required={required}
         />   }  
 
-        {errors && <p className="p-0 m-0 text-[12px] font-normal text-red-500">{errors}</p>}
+        {errors && <p className="p-0 m-0 text-[12px] font-normal text-red-500">{t(errors)}</p>}
     </label>
     </>
   )

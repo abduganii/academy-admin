@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { AddData, UpdateData, UpdateDataOne } from "../../service/global.ts";
 import { useDispatch } from "react-redux";
 import { changeDirty } from "../../redux/dirty.ts";
+import { useTranslation } from "react-i18next";
 interface IFORMCONTAINER {
   url: string;
   formik?: FormikProps<any>;
@@ -43,7 +44,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
   validateOnMount = false,
   ...formProps
 }) => {
-
+  const {t} = useTranslation()
   const { id } = useParams();
   const dispatch: any = useDispatch();
   const { initialValues, validationSchema } =
@@ -58,7 +59,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
       await AddData(url, formValues)
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
-            toast.success("seccessfully created");
+            toast.success(t('seccessfully-created'));
             formikHelper.resetForm();
             onSuccess(res);
           }
@@ -74,7 +75,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
       await UpdateDataOne(url, formValues)
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
-            toast.success("seccessfully update");
+            toast.success(t("seccessfully-update"));
             onSuccess(res);
           }
         })
@@ -89,7 +90,7 @@ export const FormContainer: FC<IFORMCONTAINER> = ({
       await UpdateData(url, formValues, (madalId || id))
         .then((res: any) => {
           if (res?.status == "200" || res?.status == "201") {
-            toast.success("seccessfully update");
+            toast.success(t("seccessfully-update"));
             onSuccess(res);
           }
         })

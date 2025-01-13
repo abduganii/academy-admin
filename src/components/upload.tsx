@@ -2,6 +2,7 @@ import {LoadingOutlined, UploadOutlined} from "@ant-design/icons"
 import { UploadFile } from "../service/upload";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 interface iProps{
     label:string,
     className?:string,
@@ -15,6 +16,7 @@ interface iProps{
 export default function FileUpload({label,errors,text,valueName,acceptTypes, onUpload,className}:iProps) {
   const [loadingFile, setLoadingFile] = useState<boolean>(false);
   const [fileName, setfileName] = useState<string>(valueName||'');
+  const {t} = useTranslation()
   useEffect(()=>{
     setfileName(valueName)
   },[valueName])
@@ -34,7 +36,7 @@ export default function FileUpload({label,errors,text,valueName,acceptTypes, onU
             .finally(()=>setLoadingFile(false))
     } else {
       setLoadingFile(false)
-      toast.error("The image size must be less than 5 MB.");
+      toast.error(t('image-valid'));
     }
   }; 
   return (
@@ -47,7 +49,7 @@ export default function FileUpload({label,errors,text,valueName,acceptTypes, onU
           hendleimg(e)
         }} />
     </label>
-    {errors && <p className="p-0 m-0 text-[12px] font-normal text-red-500">{errors}</p>}
+    {errors && <p className="p-0 m-0 text-[12px] font-normal text-red-500">{t(errors)}</p>}
     </div>
   )
 }

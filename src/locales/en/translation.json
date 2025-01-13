@@ -106,5 +106,14 @@
   "international-courses": "International Courses",
   "select": "Select",
   "total_users": "Total users",
-  "position": "Position"
-    }
+  "position": "Position",
+  "successfully-created": "Successfully created",
+  "successfully-updated": "Successfully updated",
+  "required": "This field is required",
+  "invalid-email": "Invalid email",
+  "phone-not-valid": "Phone number is not valid",
+  "image-valid": "The image size must be less than 5 MB.",
+  "anti_terrorism": "Anti-terrorism",
+  "anti_corruption": "Anti-corruption"
+
+}

@@ -26,6 +26,8 @@ export default function IndexPage() {
     {
     title: t('section'),
     dataIndex: 'section',
+    render: (text:any) => <p>{t(text)}</p>,
+    
   },
   {
     title:t('country'),

@@ -21,6 +21,7 @@ export default function IndexPage() {
       {
         title: t('section'),
         dataIndex: 'section',
+        render: (text:any) => <p>{t(text)}</p>,
       },
       {
         title: t('count_read'),
@@ -54,6 +55,7 @@ export default function IndexPage() {
       {
         title: t('section'),
         dataIndex: 'section',
+        render: (text:any) => <p>{t(text)}</p>,
       },
       {
         title: t('count_read'),
@@ -98,6 +100,7 @@ export default function IndexPage() {
           {
             title: t('section'),
             dataIndex: t('section'),
+            render: (text:any) => <p>{t(text)}</p>,
           },
         
           
@@ -132,6 +135,7 @@ export default function IndexPage() {
         {
         title: t('section'),
         dataIndex: t('section'),
+        render: (text:any) => <p>{t(text)}</p>,
       },
    
       {
