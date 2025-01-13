@@ -142,7 +142,7 @@ const SiteBar: React.FC = () => {
       icon: <NotificationOutlined />,
       label: t('notification'),
       children: [
-        { key: '/', label: t('set-notification')},
+        // { key: '/', label: t('set-notification')},
         { key: '/contact-us-messages', label: t('contact-us-messages') },
         { key: '/user-messages', label: t('messages') },
         { key: '/notifications', label: t('send-notifications') },

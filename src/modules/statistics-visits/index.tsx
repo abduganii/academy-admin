@@ -16,6 +16,7 @@ export default function IndexPage() {
     {
     title: t('total_users'),
     dataIndex: 'total_users',
+    
   },
   {
     title: t('created_at'),

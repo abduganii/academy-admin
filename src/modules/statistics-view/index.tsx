@@ -17,6 +17,7 @@ export default function IndexPage() {
         {
         title: t('name'),
         dataIndex: 'name',
+        render: (text:any) => <p className="line-clamp-2">{text}</p>,
       },
       {
         title: t('section'),
@@ -51,6 +52,7 @@ export default function IndexPage() {
         {
         title: t('title'),
         dataIndex: 'title',
+        render: (text:any) => <p className="line-clamp-2">{text}</p>,
       },
       {
         title: t('section'),
@@ -96,6 +98,7 @@ export default function IndexPage() {
           {
             title: t('title'),
             dataIndex: 'title',
+            render: (text:any) => <p className="line-clamp-2">{text}</p>,
           },
           {
             title: t('section'),
@@ -131,11 +134,13 @@ export default function IndexPage() {
         {
         title: t('name'),
         dataIndex: 'name',
+        render: (text:any) => <p className="line-clamp-2">{text}</p>,
         },
         {
         title: t('section'),
         dataIndex: t('section'),
         render: (text:any) => <p>{t(text)}</p>,
+        
       },
    
       {

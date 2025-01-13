@@ -16,10 +16,12 @@ export default function IndexPage() {
     {
     title: t('title'),
     dataIndex: 'title',
+    render: (text:any) => <p className="line-clamp-2">{text}</p>,
   },
   {
     title: t('description'),
     dataIndex: 'description',
+    render: (text:any) => <p className="line-clamp-2">{text}</p>,
   },
 
   

@@ -36,11 +36,11 @@ export const  DataFiels = (data:any)=>  [
           validations: [{ type: "required" }],
           value:data?.author?.id || null
       },
-      {
-        name: "category",
-        validationType:"number",
-        value:data?.category?.id || null
-    },
+    //   {
+    //     name: "category",
+    //     validationType:"number",
+    //     value:data?.category?.id || null
+    // },
       
       {
           name: "publisher",

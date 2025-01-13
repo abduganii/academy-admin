@@ -152,7 +152,7 @@ export default function CreatePage() {
                         formik.setFieldValue(`author`, e);
                       }}
                   />
-                  <GlobalInput
+                  {/* <GlobalInput
                       type="select"
                       formik={formik}
                       loading={categoryLoading}
@@ -169,7 +169,7 @@ export default function CreatePage() {
                       localChange={(e:any)=>{
                         formik.setFieldValue(`category`, e);
                       }}
-                  />
+                  /> */}
                      <GlobalInput
                       type="select"
                       formik={formik}

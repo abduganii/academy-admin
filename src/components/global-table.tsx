@@ -63,11 +63,14 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
 
       const DeleteDate = async () => {
         setLoadingDelete(true)
-        await DeleteDataId(api, String(open)).then(() => {
-          toast.success("deleted");
+        await DeleteDataId(api, String(open)).then((res:any) => {
           setLoadingDelete(false)
           setOpen(false)
-          queryClient.invalidateQueries([api]);
+          if(res.status == "200" ){
+            toast.success("deleted");
+            queryClient.invalidateQueries([api]);
+          }
+        
         });
       }
       

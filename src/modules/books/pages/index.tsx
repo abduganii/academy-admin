@@ -23,10 +23,14 @@ export default function IndexPage() {
     {
       title: t('name'),
       dataIndex: 'name',
+      render: (text:any) => <p className="line-clamp-2">{text}</p>,
     },
     {
       title: t('annotation'),
       dataIndex: 'annotation',
+      render: (text:any) => <p className="line-clamp-2">{text}</p>,
+      
+      
     },
     {
       title: t('price'),
