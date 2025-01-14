@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline{
+    background-color: white !important;
+}
+
+:root {
+    scroll-behavior: smooth;
+  }
+  
+
+  .colm2{
+    width: calc((100% - 16px) / 2);
+  }
+  .ant-tabs-nav{
+    margin-bottom: 0 !important;
+    }
