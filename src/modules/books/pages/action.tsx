@@ -233,9 +233,11 @@ export default function CreatePage() {
                       type="select"
                       formik={formik}
                       loading={sectionsLoading}
-                      options={staticSections?.data}
+                      options={staticSections?.data?.map((e:any)=>{
+                        return {id:e?.id,name:t(e?.name?.toLowerCase())}
+                      })}
+                      value={t(formik.values.section) || null}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.section }
                       label={t("section")}
                       name={`section`}
                       typeValue=""
@@ -251,7 +253,7 @@ export default function CreatePage() {
                       type="select"
                       formik={formik}
                       options={[{ value: false, label: t('free') },
-                        { value: true, label: t('unfreee') },
+                        { value: true, label: t('unFree') },
                        ]}
                       value={formik.values.isPaid}
                       label={t("isPaid")}

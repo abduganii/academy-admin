@@ -89,13 +89,16 @@ export default function CreatePage() {
                           formik.setFieldValue(`image`, e?.data?.id);
                         }}
                       />
+                       
                       <GlobalInput
                       type="select"
                       formik={formik}
                       loading={sectionsLoading}
-                      options={staticSections?.data}
+                      options={staticSections?.data?.map((e:any)=>{
+                        return {id:e?.id,name:t(e?.name?.toLowerCase())}
+                      })}
                       fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.section || null}
+                      value={t(formik.values.section) || null}
                       label={t("section")}
                       name={`section`}
                       typeValue=""
