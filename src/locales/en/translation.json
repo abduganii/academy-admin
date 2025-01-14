@@ -117,5 +117,7 @@
   "anti_corruption": "Anti-corruption",
  "profile": "Profile",
   "free": "Free",
-  "unFree": "Paid"
+  "unFree": "Paid",
+  "language":"Language",
+  "new":"New"
 }

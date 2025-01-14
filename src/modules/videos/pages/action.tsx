@@ -10,6 +10,8 @@ import { DataFiels } from "./fiels";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import LangTab from "../../../components/lang-tab";
 
 export default function CreatePage() {
    const {t} = useTranslation()
@@ -23,10 +25,12 @@ export default function CreatePage() {
       enabled: id != "new"
     }
     );
-    const { isLoading:landLoading, data: staticLang} = useQuery('static-lang',() =>GetAllData('static-data/Languages'));
+    const language = useSelector((state:any) => state.lang?.lang); 
+    const { isLoading:landLoading, data: staticLang} = useQuery(['static-lang',language],() =>GetAllData('static-data/Languages'));
     const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
-    const { isLoading:tagsLoading, data: tags} = useQuery('tags',() =>GetAllData('tags'));
-  
+    const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
+    const { isLoading:mapsLoading, data: maps} = useQuery(['maps'],() =>GetAllData('maps'));
+
   return (
     <>
       <TopBar title={id == "new"? t(`add`):t('update')}  />
@@ -52,6 +56,7 @@ export default function CreatePage() {
             <>
              <div className="p-4">
               <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
+              {id == "new" ? '' : <LangTab /> }
                 <div className="w-full max-w-[504px]">
                   <GlobalInput
                     type="text"
@@ -104,8 +109,8 @@ export default function CreatePage() {
                    <GlobalInput
                       type="select"
                       formik={formik}
-                      loading={landLoading}
-                      options={staticLang?.data}
+                      loading={mapsLoading}
+                      options={maps?.data}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.country || null}
                       label={t("country")}
