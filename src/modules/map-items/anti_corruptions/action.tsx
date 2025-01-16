@@ -65,7 +65,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -75,8 +75,8 @@ export default function CreatePage() {
                       acceptTypes="image/*"
                       valueName={data?.data?.logo?.name || ''}
                       className={"mb-4"}
-                      label={t('dowloadFile')}
-                      text={t('dowload')}
+                      label={t('uploadFile')}
+                      text={t('upload')}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`logo`, e?.data?.id);
                       }}
@@ -88,7 +88,7 @@ export default function CreatePage() {
                     label={t("text")}
                     name={`text`}
                     id={"text"}
-                    placeholder={t('text')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.text}
                     required={true}

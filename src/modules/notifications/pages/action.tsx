@@ -59,7 +59,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -72,7 +72,7 @@ export default function CreatePage() {
                         label={t("description")}
                         name={`description`}
                         id={"description"}
-                        placeholder={t('description')}
+                        placeholder={t('enter')}
                         className={"mb-4 colm1"}
                         errors={formik.errors.description}
                       />
@@ -87,7 +87,7 @@ export default function CreatePage() {
                       name={`users`}
                       typeValue="multiple"
                       id={"users"}
-                      placeholder={t('users')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.users}
                       localChange={(e:any)=>{

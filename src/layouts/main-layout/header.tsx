@@ -20,7 +20,7 @@ export default function Header() {
         };
     });
   return (
-<div className='w-full border-b border-collapse  flex gap-4 items-center justify-between p-6 bg-white h-[68px]'>
+<div className='w-full border-b border-collapse  flex gap-4 items-center  justify-between p-6 bg-white h-[68px]'>
        <Breadcrumb
             items={items}
         />

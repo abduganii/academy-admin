@@ -19,8 +19,11 @@ export default function CreatePage() {
   const language = useSelector((state:any) => state.lang?.lang); 
   const { id } = useParams();
   const {t} = useTranslation()
+  const [filterCategory,setFilterCategory] = useState(false)
   const { data,isLoading } = useQuery(["oneBooks",id,language], () =>
-    GetByIdData("books",id),
+    GetByIdData("books",id,{
+      relations:['category.parent']
+    }),
   {
     enabled: id != "new"
   }
@@ -28,11 +31,20 @@ export default function CreatePage() {
    const { isLoading:landLoading, data: staticLang} = useQuery('static-lang',() =>GetAllData('static-data/Languages'));
    const { isLoading:sectionsLoading, data: staticSections} = useQuery('static-sections',() =>GetAllData('static-data/Sections'));
    const { isLoading:authorsLoading, data: authors} = useQuery(['authors',language],() =>GetAllData('authors'));
-   const { isLoading:categoryLoading, data: category} = useQuery(['categories',language],() =>GetAllData('categories'));
+   const { isLoading:categoryFilterLoading, data: categoryFilter,} = useQuery(['categories',language],() =>GetAllData('categories'));
+   const { isLoading:categoryLoading, data: category,} = useQuery(['categories',language,filterCategory],() =>
+    GetAllData('categories',{
+      parentId:filterCategory
+   }),
+   {
+    enabled: Boolean(filterCategory)
+  }
+);
    const { isLoading:tagsLoading, data: tags} = useQuery(['tags',language],() =>GetAllData('tags'));
    const { isLoading:translatorsLoading, data: translators} = useQuery(['translators',language],() =>GetAllData('translators'));
    const { isLoading:publishersLoading, data: publishers} = useQuery(['publishers',language],() =>GetAllData('publishers'));
    
+
   return (
     <>
       <TopBar title={id == "new"? t(`add`):t('update')}  />
@@ -51,15 +63,16 @@ export default function CreatePage() {
         onFinal={() => {
           setLoader(false);
         }}
+        
         validateOnMount={false}
       >
         {(formik) => {
           return (
             <>
              <div className="p-4">
-              <div className="w-full p-[24px] min-h-[500px]  bg-white rounded-lg">
+              <div className="w-full p-[24px] min-h-[500px]  costomSroll bg-white rounded-lg" style={{"height":"75vh"}}>
                {id == "new" ? '' : <LangTab /> }
-                <div className="w-full max-w-[504px]">
+                <div className="w-full max-w-[504px] " >
                   <GlobalInput
                     type="text"
                     formik={formik}
@@ -67,7 +80,7 @@ export default function CreatePage() {
                     label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={t('name')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
@@ -78,7 +91,7 @@ export default function CreatePage() {
                     valueName={data?.data?.image?.name || ''}
                     className={"mb-4"}
                       label={t('cover')}
-                      text={t('dowload')}
+                      text={t('upload')}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`image`, e?.data?.id);
                       }}
@@ -95,7 +108,7 @@ export default function CreatePage() {
                     name={`lang`}
                     id={"lang"}
                     typeValue=""
-                    placeholder={t('lang')}
+                    placeholder={t('select')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.lang}
                     localChange={(e:any)=>{
@@ -113,7 +126,7 @@ export default function CreatePage() {
                       name={`translator`}
                       typeValue=""
                       id={"translator"}
-                      placeholder={t('translator')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.translator}
                       localChange={(e:any)=>{
@@ -127,7 +140,7 @@ export default function CreatePage() {
                     label={t("published_at")}
                     name={`published_at`}
                     id={"published_at"}
-                    placeholder={t('published_at')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`published_at`, e);
@@ -145,7 +158,7 @@ export default function CreatePage() {
                       name={`author`}
                       typeValue=""
                       id={"author"}
-                      placeholder={t("author")}
+                      placeholder={t("select")}
                       className={"mb-4"}
                       errors={formik.errors.author}
                       localChange={(e:any)=>{
@@ -155,19 +168,37 @@ export default function CreatePage() {
                   <GlobalInput
                       type="select"
                       formik={formik}
+                      loading={categoryFilterLoading}
+                      options={categoryFilter?.data}
+                      fieldNames={{value: 'id', label: 'name'}}
+                      value={filterCategory ||null}
+                      label={t("categories")}
+                      typeValue=""
+                      id={"filtercategory"}
+                      placeholder={t("select")}
+                      className={"mb-4"}
+                      localChange={(e:any)=>{
+                        setFilterCategory(e)
+                          formik.setFieldValue(`category`, null);
+                      }}
+                  />
+                  <GlobalInput
+                      type="select"
+                      formik={formik}
                       loading={categoryLoading}
-                      options={category?.data}
+                      options={category?.data || data?.data?.category? [data?.data?.category]:[]}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={formik.values.category }
-                      label={t("categories")}
+                      label={t("sub_category")}
                       name={`categories`}
                       typeValue=""
                       id={"category"}
-                      placeholder={t("category")}
+                      placeholder={t("select")}
                       className={"mb-4"}
                       errors={formik.errors.category}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`category`, e);
+                      
                       }}
                   />
                      <GlobalInput
@@ -181,7 +212,7 @@ export default function CreatePage() {
                       name={`publisher`}
                       typeValue=""
                       id={"publisher"}
-                      placeholder={t('publisher')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.publisher}
                       localChange={(e:any)=>{
@@ -197,7 +228,7 @@ export default function CreatePage() {
                     name={`pageCount`}
                     id={"pageCount"}
                     typeValue='number'
-                    placeholder={t('pageCount')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.pageCount}
                   />
@@ -208,7 +239,7 @@ export default function CreatePage() {
                     label={t(t('annotation'))}
                     name={`annotation`}
                     id={t('annotation')}
-                    placeholder={t('annotation')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                   />
@@ -223,7 +254,7 @@ export default function CreatePage() {
                       name={`tags`}
                       typeValue="multiple"
                       id={"tags"}
-                      placeholder={t("tags")}
+                      placeholder={t("select")}
                       className={"mb-4"}
                       errors={formik.errors.tags}
                       localChange={(e:any)=>{
@@ -238,51 +269,55 @@ export default function CreatePage() {
                       })}
                       value={t(formik.values.section) || null}
                       fieldNames={{value: 'id', label: 'name'}}
-                      label={t("section")}
+                      label={t("section-books")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={t("section")}
+                      placeholder={t("select")}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`section`, e);
                       }}
                   />
+                  <div className="flex items-end gap-4">
                     <GlobalInput
                       type="select"
                       formik={formik}
-                      options={[{ value: false, label: t('free') },
-                        { value: true, label: t('unFree') },
+                      options={[{ value: true, label: t('free') },
+                        { value: false, label: t('unFree') },
                        ]}
                       value={formik.values.isPaid}
-                      label={t("isPaid")}
+                      label={t("price")}
                       name={`isPaid`}
                       typeValue=""
                       id={"isPaid"}
-                      placeholder={t("isPaid")}
+                      placeholder={t("select")}
                       className={"mb-4"}
                       errors={formik.errors.isPaid}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`isPaid`, e);
-                    }}/>
+                        if(!formik.values.isPaid){
+                          formik.setFieldValue(`price`, 0);
+                        }
+                      }}/>
                     <GlobalInput
                       type="number"
                       formik={formik}
+                      disabled={formik.values.isPaid}
                       value={formik.values.price}
-                      label={t("price")}
                       name={`price`}
                       id={"price"}
                         typeValue='number'
-                      placeholder={t('price')}
+                      placeholder={t('enter')}
                       className={"mb-4 colm1"}
-                      errors={formik.errors.price}
                     />
+                  </div>
                       <FileUpload
                        acceptTypes=".pdf,.doc,.docx"
                     className={"mb-4"}
-                      label={t('dowloadFile')}
-                      text={t('dowload')}
+                      label={t('uploadFile')}
+                      text={t('upload')}
                       errors={formik.errors.file}
                       valueName={data?.data?.file?.name || ''}
                       onUpload={(e: any)=>{

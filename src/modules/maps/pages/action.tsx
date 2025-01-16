@@ -73,7 +73,7 @@ export default function CreatePage() {
                     label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={t('name')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}

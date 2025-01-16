@@ -25,7 +25,7 @@
     "file": "Файл",
     "translator": "Переводчик",
     "published_at": "Дата публикации",
-    "publisher": "Издатель",
+    "publisher": "Издательство",
     "pageCount": "Количество страниц",
     "tags": "Теги",
     "section": "Раздел",
@@ -103,7 +103,7 @@
     "our-courses":"Наши курсы",
     "virtual-academy":"Виртуальная академия",
     "international-courses":"Международные курсы",
-    "select": "Выбрать",
+    "select": "Выберите",
     "total_users": "Всего пользователей",
     "position": "Должность",
     "seccessfully-created": "Успешно создано",
@@ -118,5 +118,9 @@
     "free": "Бесплатно",
     "unFree": "Платно",
     "language":"Язык",
-    "new":"Новый"
+    "new":"Новый",
+    "enter":"Введите",
+    "section-books":"Раздел книги",
+    "section-articles":"Раздел статьи",
+    "section-vidoes":"Раздел видеоматериала"
 }

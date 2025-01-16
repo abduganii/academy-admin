@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { GetByIdData } from "../../../service/global";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function IndexPage() {
   const [search ,setSearch] = useState<string>('')
@@ -18,6 +19,8 @@ export default function IndexPage() {
   const [loader, setLoader] = useState<boolean>(false);
    const queryClient = useQueryClient();
    const { t} = useTranslation()
+   const navigate = useNavigate()
+     const [params] = useSearchParams()
   const columns = [
     {
       title: '№',
@@ -29,7 +32,7 @@ export default function IndexPage() {
       dataIndex: 'name',
     }
     ] 
-    const { data, isLoading:madalLoading } = useQuery(["onePublisher",openId,language], () =>
+    const { data, isLoading:madalLoading } = useQuery(["oneCategoriesr",openId,language], () =>
       GetByIdData("categories",openId),
     {
       enabled: openId != false && openId != 'new'
@@ -40,7 +43,9 @@ export default function IndexPage() {
     <div>
       <TopBar openMadal={()=>setOpenId('new')} title="categories" setSearch={setSearch} search={search} url='categories' />
       <div className="p-4">
-        <GlobalTitle openMadal={(e:number | string)=>setOpenId(e)} api='categories' url='categories' columns={columns} filter={{name:search||undefined}}/>
+        <GlobalTitle  
+            handleRowClick={!params.get('parent') ? (e:any)=>{ navigate(`/categories?parent=${e?.id}`)}:()=>{}}
+        openMadal={(e:number | string)=>setOpenId(e)} api='categories' url='categories' columns={columns} filter={{name:search||undefined,parentId:params.get('parent') || undefined}}/>
       </div>
    
       <Modal
@@ -56,6 +61,12 @@ export default function IndexPage() {
         isFormData={false}
         setLoader={setLoader}
         madalId={openId}
+        customData={(value: any) => {
+          const returnResult: any = JSON.parse(JSON.stringify(value));
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          !returnResult["parent"] && delete returnResult["parent"];
+          return returnResult;
+        }}
         fields={[
           {
             name: "name",
@@ -63,6 +74,12 @@ export default function IndexPage() {
             validations: [{ type: "required" }],
             value:data?.data?.name,
           },
+          {
+            name: "parent",
+            validationType:"number",
+            value: Number(params.get('parent')) || undefined,
+          },
+         
         ]}
         onSuccess={() => {
           setOpenId(false);
@@ -88,12 +105,12 @@ export default function IndexPage() {
                     label={t('name')}
                     name={`name`}
                     id={"name"}
-                    placeholder={t('name')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                   />
               </div>
-              <Button loading={loader} className='w-full' type="primary" size="large" htmlType="submit" >Сохранить</Button>
+              <Button loading={loader} className='w-full' type="primary" size="large" htmlType="submit" >{t('save')}</Button>
             </>
           );
         }}

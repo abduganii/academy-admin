@@ -119,5 +119,8 @@
   "free": "Free",
   "unFree": "Paid",
   "language":"Language",
-  "new":"New"
+  "new":"New",
+  "sub_category":"Подкатегория",
+  "uploadFile":"Upload file",
+  "upload":"Upload"
 }

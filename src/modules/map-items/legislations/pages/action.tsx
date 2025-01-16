@@ -65,7 +65,7 @@ export default function CreatePage() {
                       label={t("title")}
                       name={`title`}
                       id={"title"}
-                      placeholder={t('title')}
+                      placeholder={t('enter')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.title}
                       required={true}
@@ -77,7 +77,7 @@ export default function CreatePage() {
                     label={t("content")}
                     name={`content`}
                     id={"content"}
-                    placeholder={t('content')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.content}
                  />
@@ -88,7 +88,7 @@ export default function CreatePage() {
                     label={t("link")}
                     name={`link`}
                     id={"link"}
-                    placeholder={t('link')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.link}
                     required={true}

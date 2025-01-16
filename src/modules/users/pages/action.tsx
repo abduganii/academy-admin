@@ -66,7 +66,7 @@ export default function CreatePage() {
                     label={t("firstName")}
                     name={`firstName`}
                     id={"firstName"}
-                    placeholder={t('firstName')}
+                    placeholder={t('enter')}
                     className={"colm1"}
                     errors={formik.errors.firstName}
                     required={true}
@@ -78,7 +78,7 @@ export default function CreatePage() {
                     label={t("lastName")}
                     name={`lastName`}
                     id={"lastName"}
-                    placeholder={t('lastName')}
+                    placeholder={t('enter')}
                     className={"colm1"}
                     errors={formik.errors.lastName}
                     required={true}
@@ -90,7 +90,7 @@ export default function CreatePage() {
                     label={t("middleName")}
                     name={`middleName`}
                     id={"middleName"}
-                    placeholder={t('middleName')}
+                    placeholder={t('enter')}
                     className={"colm1"}
                     errors={formik.errors.middleName}
                     required={true}
@@ -102,7 +102,7 @@ export default function CreatePage() {
                     label={t("password")}
                     name={`password`}
                     id={"password"}
-                    placeholder={t('password')}
+                    placeholder={t('enter')}
                     className={"colm1"}
                     errors={formik.errors.password}
                   /> 
@@ -113,7 +113,7 @@ export default function CreatePage() {
                     label={t("phone")}
                     name={`phone`}
                     id={"phone"}
-                    placeholder={t('phone')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.phone}
                     required={true}
@@ -127,7 +127,7 @@ export default function CreatePage() {
                     label={t("email")}
                     name={`email`}
                     id={"email"}
-                    placeholder={t('email')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.email}
                     required={true}
@@ -139,7 +139,7 @@ export default function CreatePage() {
                     label={t("country")}
                     name={`country`}
                     id={"country"}
-                    placeholder={t('country')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.country}
                     required={true}
@@ -151,7 +151,7 @@ export default function CreatePage() {
                     label={t("city")}
                     name={`city`}
                     id={"city"}
-                    placeholder={t('city')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.city}
                     required={true}
@@ -163,7 +163,7 @@ export default function CreatePage() {
                     label={t("organization")}
                     name={`organization`}
                     id={"organization"}
-                    placeholder={t('organization')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.organization}
                     required={true}
@@ -175,7 +175,7 @@ export default function CreatePage() {
                     label={t("position")}
                     name={`position`}
                     id={"position"}
-                    placeholder={t('position')}
+                    placeholder={t('enter')}
                     className={"colm2"}
                     errors={formik.errors.position}
                     required={true}

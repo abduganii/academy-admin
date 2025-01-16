@@ -62,7 +62,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -74,7 +74,7 @@ export default function CreatePage() {
                     label={t("content")}
                     name={`content`}
                     id={"content"}
-                    placeholder={t('content')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.content}
                  />
@@ -83,8 +83,8 @@ export default function CreatePage() {
                       acceptTypes="image/*"
                       valueName={data?.data?.image?.name || ''}
                       className={"mb-4"}
-                      label={t('dowloadFile')}
-                      text={t('dowload')}
+                      label={t('uploadFile')}
+                      text={t('upload')}
                         onUpload={(e: any)=>{
                           formik.setFieldValue(`image`, e?.data?.id);
                         }}
@@ -99,11 +99,11 @@ export default function CreatePage() {
                       })}
                       fieldNames={{value: 'id', label: 'name'}}
                       value={t(formik.values.section) || null}
-                      label={t("section")}
+                      label={t("section-articles")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={t('section')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -121,7 +121,7 @@ export default function CreatePage() {
                     name={`tags`}
                     typeValue="multiple"
                     id={"tags"}
-                    placeholder={t('tags')}
+                    placeholder={t('select')}
                     className={"mb-4"}
                     errors={formik.errors.tags}
                     localChange={(e:any)=>{
@@ -134,7 +134,7 @@ export default function CreatePage() {
                     label={t("publishStartTime")}
                     name={`publishStartTime`}
                     id={"publishStartTime"}
-                    placeholder={t('publishStartTime')}
+                    placeholder={t('select')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`publishStartTime`, e);
@@ -148,7 +148,7 @@ export default function CreatePage() {
                   label={t("publishEndTime")}
                   name={`publishEndTime`}
                   id={"publishEndTime"}
-                  placeholder={t('publishEndTime')}
+                  placeholder={t('select')}
                   className={"mb-4 colm1"}
                   localChange={(e:any)=>{
                     formik.setFieldValue(`publishEndTime`, e);
@@ -167,7 +167,7 @@ export default function CreatePage() {
                       name={`isActive`}
                       typeValue=""
                       id={"isActive"}
-                      placeholder={t('isActive')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.isActive}
                       localChange={(e:any)=>{

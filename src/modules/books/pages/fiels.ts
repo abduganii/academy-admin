@@ -81,8 +81,7 @@ export const  DataFiels = (data:any)=>  [
       {
         name: "price",
         validationType:"number",
-        validations: [{ type: "required" }],
-        value:data?.price || ''
+        value:data?.price || 0
     },
     {
       name: "file",

@@ -88,7 +88,7 @@ export default function IndexPage() {
                     label={t('fullName')}
                     name={`name`}
                     id={"name"}
-                    placeholder={t('fullName')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                   />

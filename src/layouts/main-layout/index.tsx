@@ -4,9 +4,9 @@ import Header from "./header";
 
 export default function MainLayout() {
   return (
-    <div className="flex">
+    <div className="flex h-screen ">
        <SiteBar/>
-       <div className="bg-[#F5F5F5] w-full">
+       <div className="bg-[#F5F5F5] w-full ">
           <Header/>
          <Outlet/>
        </div>

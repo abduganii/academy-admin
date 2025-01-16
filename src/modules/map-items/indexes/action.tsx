@@ -64,7 +64,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -78,7 +78,7 @@ export default function CreatePage() {
                     name={`grade`}
                     typeValue={"number"}
                     id={"grade"}
-                    placeholder={t('grade')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.grade}
                     required={true}
@@ -90,7 +90,7 @@ export default function CreatePage() {
                     label={t("rate")}
                     name={`rate`}
                     id={"rate"}
-                    placeholder={t('rate')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.rate}
                     typeValue={"number"}

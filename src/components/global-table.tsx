@@ -44,10 +44,12 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
         key: 'operation',
         fixed: 'right',
         width: 100,
-        render: (e: any) => <div className='flex gap-[6px]'>
+        render: (e: any) => <div onClick={(el)=>el.stopPropagation()} className='flex gap-[6px]'>
           {
             onCooperationsChange? 
-            <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>onCooperationsChange(e?.id)} type="primary" danger>
+            <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>{
+              onCooperationsChange(e?.id)
+              }} type="primary" danger>
              <FormOutlined />
             </Button>:
             <Button className='w-[30px] aspect-square flex items-center justify-center' onClick={()=>setOpen(e?.id)} type="primary" danger>
@@ -103,7 +105,10 @@ const GlobalTitle = ({columns,api,onCooperationsChange,url,handleRowClick,params
         dataSource={data?.data}
         loading={isLoading}
         onRow={handleRowClick? (record) => ({
-          onClick: () => handleRowClick(record),
+          onClick: () => {
+            handleRowClick(record)
+            record.stopPropagation()
+          }
         }):undefined}  
         onChange={(e:any)=>{
            setPage( e.current)

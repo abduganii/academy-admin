@@ -62,7 +62,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -79,7 +79,7 @@ export default function CreatePage() {
                       name={`author`}
                       typeValue=""
                       id={"author"}
-                      placeholder={t('author')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.author}
                       localChange={(e:any)=>{
@@ -114,7 +114,7 @@ export default function CreatePage() {
                     label={t('annotation')}
                     name={`annotation`}
                     id={'annotation'}
-                    placeholder={t('annotation')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.annotation}
                  />
@@ -126,7 +126,7 @@ export default function CreatePage() {
                     label={t("text")}
                     name={`text`}
                     id={"text"}
-                    placeholder={t('text')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.text}
                  />
@@ -137,7 +137,7 @@ export default function CreatePage() {
                     label={t("link")}
                     name={`link`}
                     id={"link"}
-                    placeholder={t('link')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.link}
                     required={true}
@@ -150,7 +150,7 @@ export default function CreatePage() {
                     label={t("published_at")}
                     name={`published_at`}
                     id={"published_at"}
-                    placeholder={t('published_at')}
+                    placeholder={t('select')}
                     className={"mb-4 colm1"}
                     localChange={(e:any)=>{
                       formik.setFieldValue(`published_at`, e);
@@ -160,8 +160,8 @@ export default function CreatePage() {
                      <FileUpload
                         acceptTypes=".pdf,.doc,.docx"
                         className={"mb-4"}
-                        label={t('dowloadFile')}
-                        text={t('dowload')}
+                        label={t('uploadFile')}
+                        text={t('upload')}
                         errors={formik.errors.file}
                         valueName={data?.data?.file?.name || ''}
                         onUpload={(e: any)=>{

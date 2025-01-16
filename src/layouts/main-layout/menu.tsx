@@ -188,8 +188,8 @@ const SiteBar: React.FC = () => {
   };
 
   return (
-    <div className='w-full h-screen max-w-[312px]'>
-      <div className='w-full border-b px-[26px] py-[12px] h-[68px]'>
+    <div className='w-full h-full  costomSroll max-w-[312px]'>
+      <div className='w-full fixed max-w-[312px] bg-white border-b px-[26px] py-[12px] z-40  h-[68px]'>
         <img src='/logo.svg'/>
       </div>
       <Menu
@@ -197,7 +197,7 @@ const SiteBar: React.FC = () => {
         openKeys={stateOpenKeys}
         onOpenChange={onOpenChange}
         onClick={onClick} // Add onClick handler
-        className='w-full h-full'
+        className='w-full mt-[68px]'
         items={role =="admin" ? Adminitems : Manegeritems}
       />
     </div>

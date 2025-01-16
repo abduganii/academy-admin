@@ -65,7 +65,7 @@ export default function CreatePage() {
                     label={t("name")}
                     name={`name`}
                     id={"name"}
-                    placeholder={t('name')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.name}
                     required={true}
@@ -77,7 +77,7 @@ export default function CreatePage() {
                     label={t("description")}
                     name={`description`}
                     id={"description"}
-                    placeholder={t('description')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.description}
                  />
@@ -85,7 +85,7 @@ export default function CreatePage() {
                     acceptTypes="image/*"
                     className={"mb-4"}
                       label={t('cover')}
-                      text={t('dowload')}
+                      text={t('upload')}
                       valueName={data?.data?.poster?.name || ''}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`poster`, e?.data?.id);
@@ -101,7 +101,7 @@ export default function CreatePage() {
                     label={t("releasedYear")}
                     name={`releasedYear`}
                     id={"releasedYear"}
-                    placeholder={t('releasedYear')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.releasedYear}
                     required={true}
@@ -117,7 +117,7 @@ export default function CreatePage() {
                       name={`country`}
                       id={"country"}
                       typeValue=""
-                      placeholder={t('country')}
+                      placeholder={t('select')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.country}
                       localChange={(e:any)=>{
@@ -135,7 +135,7 @@ export default function CreatePage() {
                       name={`language`}
                       id={"language"}
                       typeValue=""
-                      placeholder={t('language')}
+                      placeholder={t('select')}
                       className={"mb-4 colm1"}
                       errors={formik.errors.language}
                       localChange={(e:any)=>{
@@ -152,11 +152,11 @@ export default function CreatePage() {
                       })}
                       value={t(formik.values.section) ||null}
                       fieldNames={{value: 'id', label: 'name'}}
-                      label={t("section")}
+                      label={t("section-vidoes")}
                       name={`section`}
                       typeValue=""
                       id={"section"}
-                      placeholder={t('section')}
+                      placeholder={t('select')}
                       className={"mb-4"}
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
@@ -175,7 +175,7 @@ export default function CreatePage() {
                     name={`tags`}
                     typeValue="multiple"
                     id={"tags"}
-                    placeholder={t('tags')}
+                    placeholder={t('select')}
                     className={"mb-4"}
                     errors={formik.errors.tags}
                     localChange={(e:any)=>{
@@ -186,8 +186,8 @@ export default function CreatePage() {
                       <FileUpload
                       acceptTypes="video/*"
                     className={"mb-4"}
-                    label={t('dowloadFile')}
-                    text={t('dowload')}
+                    label={t('uploadFile')}
+                    text={t('upload')}
                       valueName={data?.data?.file?.name || ''}
                       onUpload={(e: any)=>{
                         formik.setFieldValue(`file`, e?.data?.id);

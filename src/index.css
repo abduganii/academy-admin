@@ -17,3 +17,22 @@
   .ant-tabs-nav{
     margin-bottom: 0 !important;
     }
+
+    .costomSroll{
+      overflow: auto;
+    }
+  .costomSroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .costomSroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .costomSroll::-webkit-scrollbar-thumb {
+    background: #c9c8c8;
+  }
+  
+  .costomSroll::-webkit-scrollbar-thumb:hover {
+    background: #949393;
+  }

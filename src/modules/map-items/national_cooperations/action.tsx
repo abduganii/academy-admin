@@ -64,7 +64,7 @@ export default function CreatePage() {
                     label={t("title")}
                     name={`title`}
                     id={"title"}
-                    placeholder={t('title')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.title}
                     required={true}
@@ -76,7 +76,7 @@ export default function CreatePage() {
                     label={t("text")}
                     name={`text`}
                     id={"text"}
-                    placeholder={t('text')}
+                    placeholder={t('enter')}
                     className={"mb-4 colm1"}
                     errors={formik.errors.text}
                 />
