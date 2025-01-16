@@ -21,6 +21,7 @@ export default function GlobalInput({
     required,
   }: any) {
     const {t} = useTranslation()
+    console.log(options)
   return (
     <>
         <label className={`${className && className} inline-block w-full`}>

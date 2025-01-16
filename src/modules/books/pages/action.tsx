@@ -165,42 +165,7 @@ export default function CreatePage() {
                         formik.setFieldValue(`author`, e);
                       }}
                   />
-                  <GlobalInput
-                      type="select"
-                      formik={formik}
-                      loading={categoryFilterLoading}
-                      options={categoryFilter?.data}
-                      fieldNames={{value: 'id', label: 'name'}}
-                      value={filterCategory ||null}
-                      label={t("categories")}
-                      typeValue=""
-                      id={"filtercategory"}
-                      placeholder={t("select")}
-                      className={"mb-4"}
-                      localChange={(e:any)=>{
-                        setFilterCategory(e)
-                          formik.setFieldValue(`category`, null);
-                      }}
-                  />
-                  <GlobalInput
-                      type="select"
-                      formik={formik}
-                      loading={categoryLoading}
-                      options={category?.data || data?.data?.category? [data?.data?.category]:[]}
-                      fieldNames={{value: 'id', label: 'name'}}
-                      value={formik.values.category }
-                      label={t("sub_category")}
-                      name={`categories`}
-                      typeValue=""
-                      id={"category"}
-                      placeholder={t("select")}
-                      className={"mb-4"}
-                      errors={formik.errors.category}
-                      localChange={(e:any)=>{
-                        formik.setFieldValue(`category`, e);
-                      
-                      }}
-                  />
+                 
                      <GlobalInput
                       type="select"
                       formik={formik}
@@ -278,6 +243,42 @@ export default function CreatePage() {
                       errors={formik.errors.section}
                       localChange={(e:any)=>{
                         formik.setFieldValue(`section`, e);
+                      }}
+                  />
+                   <GlobalInput
+                      type="select"
+                      formik={formik}
+                      loading={categoryFilterLoading}
+                      options={categoryFilter?.data}
+                      fieldNames={{value: 'id', label: 'name'}}
+                      value={filterCategory ||null}
+                      label={t("categories")}
+                      typeValue=""
+                      id={"filtercategory"}
+                      placeholder={t("select")}
+                      className={"mb-4"}
+                      localChange={(e:any)=>{
+                        setFilterCategory(e)
+                          formik.setFieldValue(`category`, null);
+                      }}
+                  />
+                  <GlobalInput
+                      type="select"
+                      formik={formik}
+                      loading={categoryLoading}
+                      options={category?.data ?category?.data: data?.data?.category ? [data?.data?.category]:[]}
+                      fieldNames={{value: 'id', label: 'name'}}
+                      value={formik.values.category }
+                      label={t("sub_category")}
+                      name={`categories`}
+                      typeValue=""
+                      id={"category"}
+                      placeholder={t("select")}
+                      className={"mb-4"}
+                      errors={formik.errors.category}
+                      localChange={(e:any)=>{
+                        formik.setFieldValue(`category`, e);
+                      
                       }}
                   />
                   <div className="flex items-end gap-4">
